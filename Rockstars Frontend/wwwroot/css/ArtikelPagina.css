@@ -19,3 +19,45 @@ h1 {
     margin-top: 3%;
     margin-right: 3%;
 }
+
+.artikel img {
+    width: 100%;
+}
+
+.Titel {
+    height: 55%;
+    overflow: hidden;
+    position: relative;
+    height: 16.4em;
+}
+.Titel:after {
+    content: "";
+    text-align: right;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 70%;
+    height: 2em;
+    background: linear-gradient(to right, rgba(35, 35, 35, 0), rgba(35, 35, 35, 1) 50%);
+}
+
+.info {
+    height: 10%;
+    margin-top: 5%;
+
+}
+
+.Titel h2 {
+    color: white;
+    margin-left: 5%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    font-size: 160%;
+    overflow-wrap: break-word;
+}
+.info h3 {
+    color: white;
+    margin-left: 5%;
+    font-size: 100%;
+
+}

@@ -1,6 +1,8 @@
 ﻿
 @{
     ViewData["Title"] = "ArtikelPagina";
+
+    List<ArtikelModel> artikelen = new List<ArtikelModel>();
 }
 
 <link rel="stylesheet" href="~/css/ArtikelPagina.css" />
@@ -11,10 +13,21 @@
 </body>
 
 <div class="artikelen">
-    <div class="artikel"> </div>
-    <div class="artikel"> </div>
-    <div class="artikel"> </div>
-    <div class="artikel"> </div>
-    <div class="artikel"> </div>
-    <div class="artikel"> </div>
+
+@*   @foreach (ArtikelModel artikel in artikelen)
+    {*@
+    @for (int i = 0; i < 20; i++)
+    {
+        <div class="artikel">
+            <img src="/Images/thumbnail.jpg"/> @*thumbnail*@
+            <div class="Titel">
+                <h2>VAN NIETS TOT FULL-WEB-APP IN 10 MUIS-KLIKS!</h2> @*artikel.title*@
+            </div>
+            <div class="info">
+                <h3>Team Rockstars IT | 2021-03-11</h3> @*artikel.author + artikel.createdDate*@
+            </div>
+        </div>
+    }
+    @*}*@
+
 </div>
