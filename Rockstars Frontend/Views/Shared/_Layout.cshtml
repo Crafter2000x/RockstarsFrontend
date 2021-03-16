@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - fontys_rockstars_frontend</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/_site.css" />
+    <link rel="stylesheet" type="text/css" href="~/Font/MyFontsWebfontsKit/MyFontsWebfontsKit.css" />
 </head>
 <body>
     <header>
@@ -20,10 +21,10 @@
                     <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                         <ul class="navbar-nav flex-grow-1">
                             <li class="navText">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">HOME</a>
                             </li>
                             <li class="navText">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="ArtikelPagina">Artikel Overzicht</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="ArtikelPagina">ARTIKELEN</a>
                             </li>
                         </ul>
                     </div>
@@ -39,7 +40,7 @@
 
     <footer class="footer text-muted">
         <div class="container" style="color:black;">
-            &copy; @DateTime.Today.Year - Rockstart IT - Development
+            &copy; @DateTime.Today.Year - Rockstars IT - Development
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
