@@ -5,7 +5,7 @@
 }
 
 <div class="text-center">
-    @try
+    @*try
     {
         api = new ApiController();
         await api.ArtikelPaginaAPI();
@@ -18,7 +18,7 @@
     catch
     {
         <h3 style="color:white;">ping: NOT SUCCESFULL!</h3>
-    }
+    }*@
 @*
 
    @{ string pdfurl = "https://localhost:6001" + artikelen[0].pdf.url; }

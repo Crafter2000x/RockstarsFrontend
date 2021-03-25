@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - fontys_rockstars_frontend</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/_site.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" type="text/css" href="~/Font/MyFontsWebfontsKit/MyFontsWebfontsKit.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <header>
@@ -39,13 +40,52 @@
     </div>
 
     <footer class="footer text-muted">
-        <div class="container" style="color:black;">
-            &copy; @DateTime.Today.Year - Rockstars IT - Development
-        </div>
+                <a onclick="topFunction()">
+                    <div class="topKnop">
+                        <i class="fa fa-sort-up"></i>
+                    </div>
+                </a>
+                <div class="meerInfo">
+                    <h1>MEER INFORMATIE</h1>
+                    <ul>
+                        <li><a href="https://www.teamrockstars.nl/over-ons/">Over ons</a></li>
+                        <li><a href="https://www.teamrockstars.nl/onze-werkwijze/">Onze werkwijze</a></li>
+                        <li><a href="https://www.teamrockstars.nl/over-ons/ons-team/">Ons team</a></li>
+                        <li><a href="https://www.teamrockstars.nl/werken-bij/">Werken bij</a></li>
+                        <li><a href="https://www.teamrockstars.nl/women/">Women in Tech</a></li>
+                        <li><a href="https://www.teamrockstars.nl/developers/student/">Students</a></li>
+                        <li><a href="https://www.teamrockstars.nl/contact/">Contact</a></li>
+                        <li><a href="https://www.teamrockstars.nl/algemene-voorwaarden/">Algemene Voorwaarden</a></li>
+                        <li><a href="https://www.teamrockstars.nl/privacy-policy/">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="chapters">
+                    <h1>CHAPTERS</h1>
+                    <ul>
+                        <li><a href="https://www.teamrockstars.nl/developers/chapters/">Overzicht Chapters</a></li>
+                        <li><a href="https://www.teamrockstars.nl/developers/chapters/north-2/">Chapter North</a></li>
+                        <li><a href="https://www.teamrockstars.nl/developers/chapters/central/">Chapter Central</a></li>
+                        <li><a href="https://www.teamrockstars.nl/developers/chapters/west/">Chapter West</a></li>
+                        <li><a href="https://www.teamrockstars.nl/developers/chapters/east/">Chapter East</a></li>
+                        <li><a href="https://www.teamrockstars.nl/developers/chapters/lower-south/">Chapter Lower South</a></li>
+                        <li><a href="https://www.teamrockstars.nl/developers/chapters/chapter-upper-south/">Chapter Upper South</a></li>
+                    </ul>
+                </div>
+                <div class="telefoonNummer">
+                    <a class="btn telefoonButton" href="tel:0736157777">073-615 77 77 <i class="fa fa-phone"></i></a>
+                </div>
     </footer>
+
+    <script>
+        function topFunction() {
+            document.body.scrollTop = 0; // Safari
+            document.documentElement.scrollTop = 0; // Chrome, Firefox, IE and Opera
+        }
+    </script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>
