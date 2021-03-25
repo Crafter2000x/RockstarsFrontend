@@ -28,6 +28,17 @@ namespace Rockstars_Frontend.Controllers
             return View();
         }
 
+        public IActionResult Artikel(string? title)
+        {
+            if (title == null)
+            {
+                return RedirectToAction("ArtikelPagina");
+            }
+            ViewData["ID"] = title;
+            return View();
+        }
+
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

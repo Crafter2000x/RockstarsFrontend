@@ -1,7 +1,28 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    ApiController api;
+    List<ArtikelModel> artikelen = new List<ArtikelModel>();
 }
 
 <div class="text-center">
-    <h3 style="color:white;">ping: OK!</h3>
+    @*try
+    {
+        api = new ApiController();
+        await api.ArtikelPaginaAPI();
+        artikelen = api.artikelen;
+        if (api.connection)
+        {
+            <h3 style="color:white;">ping: OK!</h3>
+        }
+    }
+    catch
+    {
+        <h3 style="color:white;">ping: NOT SUCCESFULL!</h3>
+    }*@
+@*
+
+   @{ string pdfurl = "https://localhost:6001" + artikelen[0].pdf.url; }
+      <embed src="@pdfurl#view=FitH&scrollbar=0&toolbar=0&statusbar=0&messages=0&navpanes=0" width="100%" height="1000px" />
+*@
+
 </div>
