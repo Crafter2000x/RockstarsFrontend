@@ -1,0 +1,44 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+body {
+    background-color: #232323;
+    font-family: 'DIN 2014';
+    font-weight: bold;
+}
+
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+/*Begin - Everything related to the nav bar*/
+
+.navigation {
+    background-color: #ffe000;
+}
+
+    .navigation img {
+        filter: drop-shadow(0px 0px 9px #000000);
+    }
+
+.nav-link {
+    font-size: 40px;
+    margin-right: 45px;
+}
+
+/*End - Everything related to the nav bar*/
+
+.footy {
+    background-color: #ffe000;
+}

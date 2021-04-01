@@ -27,6 +27,10 @@ namespace Rockstars_Frontend.Controllers
         {
             return View();
         }
+        public IActionResult OnDemand()
+        {
+            return View();
+        }
 
         public IActionResult Artikel(string? title)
         {

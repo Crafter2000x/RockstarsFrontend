@@ -1,0 +1,102 @@
+﻿body {
+
+}
+
+.topButton {
+    margin-top: 3%;
+    height: 50px;
+}
+
+.buttonTop {
+    float: right;
+}
+
+.buttonTop {
+    float: right;
+    background-color: #ffe000;
+    width: 35%;
+    height: 50px;
+    top: 0px;
+    color: #232323;
+    font-size: 150%;
+    line-height: 30px;
+    font-family: 'DIN 2014';
+    font-weight: bold;
+}
+
+.buttonTop:hover {
+    background-color: #232323;
+    color: white;
+    border: solid 1px #ffe000;
+}
+
+.talks {
+    margin-top: 3.5%;
+    margin-bottom: 30%;
+}
+
+.talk {
+    color: white;
+    border: solid 2px #ffe000;
+    margin-top: 4%;
+}
+.talk h1 {
+    margin-top: 1%;
+    margin-right: 1%;
+}
+
+.talkMiddle {
+    width: 100%;
+    height: auto;
+}
+
+.talkDesc {
+    margin-top: 1%;
+    width: 60%;
+    margin-left: 1.5%;
+    border: solid 1px #ffe000;
+    margin-bottom: 1%;
+}
+
+.talkThumbnail {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 8%;
+    width: 30%;
+    height: auto;
+    border: solid 1.5px #ffe000;
+}
+
+.talkBottom {
+    width: 100%;
+    height: auto;
+}
+
+.talkTribe {
+    margin-top: 1%;
+    width: 60%;
+    margin-left: 1.5%;
+    margin-bottom: 1%;
+}
+
+.btnAanvraag {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 8%;
+    width: 30%;
+    height: auto;
+    border: solid 1.5px #ffe000;
+
+    background-color: #232323;
+    color: white;
+    font-size: 125%;
+    line-height: 30px;
+    font-family: 'DIN 2014';
+    font-weight: normal;
+}
+
+.btnAanvraag:hover {
+    background-color: #ffe000;
+    color: #232323;
+    border: solid 1.5px white;
+}
