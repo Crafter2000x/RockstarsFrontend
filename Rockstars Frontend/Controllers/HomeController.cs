@@ -13,6 +13,8 @@ namespace Rockstars_Frontend.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
+        ApiController api = new ApiController();
+
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
@@ -41,6 +43,20 @@ namespace Rockstars_Frontend.Controllers
             ViewData["ID"] = title;
             return View();
         }
+
+        [HttpPost]
+        public IActionResult OnDemand(FormulierModel model)
+        {
+            if (model.voorkeursDag < DateTime.Now)
+            {
+            //CHECK
+            }
+
+            // MAIL SERVER
+            api.AddToAPI(model);
+            return View();
+        }
+
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

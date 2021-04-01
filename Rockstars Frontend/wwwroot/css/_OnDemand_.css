@@ -1,5 +1,5 @@
-﻿body {
-
+﻿h5 {
+    color: white;
 }
 
 .topButton {
@@ -28,6 +28,9 @@
     background-color: #232323;
     color: white;
     border: solid 1px #ffe000;
+}
+.buttonTop:hover p{
+    color: white;
 }
 
 .talks {
@@ -99,4 +102,9 @@
     background-color: #ffe000;
     color: #232323;
     border: solid 1.5px white;
+}
+
+
+.formulier {
+
 }

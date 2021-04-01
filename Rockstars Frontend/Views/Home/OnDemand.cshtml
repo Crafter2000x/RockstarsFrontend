@@ -1,14 +1,37 @@
-﻿@{
+﻿@model FormulierModel; 
+
+@{
     ViewData["Title"] = "OnDemand";
 
     List<TalkModel> talks = new List<TalkModel>();
 }
 
-<link rel="stylesheet" href="~/css/_OnDemand.css" />
+<link rel="stylesheet" href="~/css/_OnDemand_.css" />
+<link rle="stylesheet" href="https://use.fontawesome.com/release/v5.4.1/css/all.css" />
+
+<script src="~/js/site.js" asp-append-version="true"></script>
+
 
 <body>
     <div class="topButton">
-        <button class="btn btn-primary buttonTop">Talk Aanvragen</button>
+        <a class="btn buttonTop" data-toggle="collapse" data-target="#Formulier">
+        <p>Talk Aanvragen</p></a>
+    </div>
+    <div class="collapse" id="Formulier">
+        <div class="formulier">
+            @using (Html.BeginForm("OnDemand", "Home", FormMethod.Post))
+            {
+             <h5>Voorkeursdag: </h5>   @Html.EditorFor(m => m.voorkeursDag, new { @type = "date", @required = "required" }) <br />
+                                       @Html.ValidationSummary()
+             <h5>Bedrijfsnaam: </h5>   @Html.TextBoxFor(m => m.bedrijfsNaam, new { @required = "required" }) <br />
+             <h5>Aantal mensen aanwezig: </h5>   @Html.TextBoxFor(m => m.aantalMensenAanwezig, new { @type = "number", min = 1, max = 100, @required = "required" }) <br />
+             <h5>Tribe: </h5>   @Html.DropDownListFor(m => m.tribe, new SelectList(Enum.GetValues(typeof(Tribes)))) <br />
+             <h5>Opmerking: </h5>   @Html.EditorFor(m => m.opmerking) <br />
+             <h5>Email: </h5>   @Html.TextBoxFor(m => m.contactEmail, new { @type = "mail", @required = "required" }) <br />
+             <h5>Telefoon: </h5>   @Html.TextBoxFor(m => m.telefoonNummer, new { @required = "required" }) <br /><br />
+             <input type="submit" value="Vraag aan"/>
+            }
+        </div>
     </div>
 
     <div class="talks">
@@ -20,18 +43,18 @@
                 {*@
         @for (int i = 0; i < 20; i++)
         {
-        <div class="container talk">
-            <h1>"TITEL"</h1>
-            <div class="row talkMiddle">
-                <p class="talkDesc">Description Hier</p>
-                <img class="talkThumbnail" src="~/Images/defaultOp.png"/>
-            </div>
-            <div class="row talkBottom">
-                <h2 class="talkTribe">"TRIBE"</h2>
-                <button class="btn btn-primary btnAanvraag">Toegang Aanvragen</button>
-            </div>
+            <div class="container talk">
+                <h1>"TITEL"</h1>
+                <div class="row talkMiddle">
+                    <p class="talkDesc">Description Hier</p>
+                    <img class="talkThumbnail" src="~/Images/defaultOp.png" />
+                </div>
+                <div class="row talkBottom">
+                    <h2 class="talkTribe">"TRIBE"</h2>
+                    <button class="btn btn-primary btnAanvraag">Toegang Aanvragen</button>
+                </div>
 
-        </div>
+            </div>
         }
     </div>
 </body>

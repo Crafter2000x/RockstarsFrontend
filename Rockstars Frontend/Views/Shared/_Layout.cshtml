@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - fontys_rockstars_frontend</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/_site.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" type="text/css" href="~/Font/MyFontsWebfontsKit/MyFontsWebfontsKit.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rle="stylesheet" href="https://use.fontawesome.com/release/v5.4.1/css/all.css" />
 </head>
 <body>
     <header>
@@ -40,6 +41,7 @@
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
+            <button id="topBtn"><i class="fa fa-arrow-up"></i></button>
         </main>
     </div>
 
@@ -95,7 +97,7 @@
             </div>
         </div>
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-           &copy; 2020 Copyright:
+            &copy; 2020 Copyright:
             <a class="text-dark" href="https://Google.com/">Rockstars IT</a>
         </div>
     </footer>
@@ -103,5 +105,7 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+
+
 </body>
 </html>

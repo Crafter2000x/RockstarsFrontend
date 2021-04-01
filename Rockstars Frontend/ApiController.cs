@@ -33,5 +33,10 @@ namespace Rockstars_Frontend
                 }
             }
         }
+
+        public void AddToAPI(FormulierModel form)
+        {
+            // KOMT LATER
+        }
     }
 }
