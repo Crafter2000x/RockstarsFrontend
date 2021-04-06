@@ -23,9 +23,13 @@ namespace Rockstars_Frontend.Controllers
             return View();
         }
 
-        public IActionResult ArtikelPagina()
+        public async Task<IActionResult> ArtikelPagina()
         {
-            return View();
+            List<ArtikelModel> artikelen = new List<ArtikelModel>();
+            ApiController api = new ApiController();
+            await api.ArtikelPaginaAPI();
+            artikelen = api.artikelen;
+            return View(artikelen);
         }
 
         public IActionResult Artikel(string? title)

@@ -1,11 +1,7 @@
-﻿
+﻿@model List<ArtikelModel>
 @{
     ViewData["Title"] = "ArtikelPagina";
-
-    List<ArtikelModel> artikelen = new List<ArtikelModel>();
-    ApiController api = new ApiController();
-    await api.ArtikelPaginaAPI();
-    artikelen = api.artikelen;
+    List<ArtikelModel> itemlist = new List<ArtikelModel>();
 }
 
 <link rel="stylesheet" href="~/css/_ArtikelPagina.css" />
@@ -14,29 +10,41 @@
 <h1>ARTIKELEN</h1>
 <body>
     <div class="bgImage" />
-</body>
 
-<div class="artikelen">
+    <div class="artikelen" id="container">
 
-    @foreach (ArtikelModel artikel in artikelen)
-    {
-            string Imageurl = "https://localhost:6001" + artikel.thumbnail.url;
-            string artikeltitle = artikel.title;
-            if (artikel.status == 1)
+        @foreach (ArtikelModel item in Model)
+        {
+            string Imageurl = "https://localhost:6001" + item.thumbnail.url;
+            string artikeltitle = item.title;
+            if (item.status == 1)
             {
                 <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle">
                     <div class="artikel">
                         <img src="@Imageurl" /> @*thumbnail*@
                         <div class="Titel">
-                            <h2>@artikel.title.ToUpper()</h2> @*artikel.title*@
+                            <h2>@item.title.ToUpper()</h2> @*artikel.title*@
                         </div>
                         <div class="info">
-                            <h3><i class="fa fa-pencil"></i>&nbsp; &nbsp;@artikel.author</h3>
-                            <h3><i class="fa fa-calendar-o"></i>&nbsp; &nbsp;@artikel.createdDate.ToString("dd-MM-yyyy")</h3>@*artikel.author + artikel.createdDate*@
+                            <h3><i class="fa fa-pencil"></i>&nbsp; &nbsp;@item.author</h3>
+                            <h3><i class="fa fa-calendar-o"></i>&nbsp; &nbsp;@item.createdDate.ToString("dd-MM-yyyy")</h3>@*artikel.author + artikel.createdDate*@
                         </div>
                     </div>
                 </a>
+            }
         }
-    }
 
-</div>
+    </div>
+    <div class="loading">
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+    </div>
+</body>
+@foreach (ArtikelModel item in Model)
+ { 
+    <script type="text/javascript">
+
+        var i == parseString('@item.title');
+    </script>
+ }
