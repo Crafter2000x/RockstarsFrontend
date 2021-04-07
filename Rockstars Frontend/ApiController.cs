@@ -13,6 +13,7 @@ namespace Rockstars_Frontend
     {
         string Baseurl = "https://localhost:6001/";
         public List<ArtikelModel> artikelen = new List<ArtikelModel>();
+        public List<TalkModel> talks = new List<TalkModel>();
         public bool connection = false;
 
         public async Task ArtikelPaginaAPI()
@@ -23,7 +24,7 @@ namespace Rockstars_Frontend
                 client.BaseAddress = new Uri(Baseurl);
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
-                HttpResponseMessage Res = await client.GetAsync("api/Article");
+                HttpResponseMessage Res = await client.GetAsync("api/Post");
 
                 if (Res.IsSuccessStatusCode)
                 {
@@ -33,8 +34,48 @@ namespace Rockstars_Frontend
                 }
             }
         }
+        public async Task TalkAPI()
+        {
 
-        public void AddToAPI(FormulierModel form)
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(Baseurl);
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage Res = await client.GetAsync("api/Post");
+
+                if (Res.IsSuccessStatusCode)
+                {
+                    connection = true;
+                    var talkResponse = Res.Content.ReadAsStringAsync().Result;
+                    talks = JsonConvert.DeserializeObject<List<TalkModel>>(talkResponse);
+                }
+            }
+        }
+
+        public async Task AddToAPI(FormulierModel form)
+        {
+            using (var client = new HttpClient())
+            {
+              client.BaseAddress= new Uri(Baseurl);
+              client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+              var json = System.Text.Json.JsonSerializer.Serialize(form);
+
+              HttpResponseMessage Res = await client.PostAsJsonAsync("api/Appointment",json);
+                if (Res.IsSuccessStatusCode)
+                {
+                    connection = true;
+                }
+                else
+                {
+                    throw new Exception(Res.ReasonPhrase);
+                }
+
+
+            }
+            // KOMT LATER
+        }
+        public void AddToAPI(TalkModel talk)
         {
             // KOMT LATER
         }

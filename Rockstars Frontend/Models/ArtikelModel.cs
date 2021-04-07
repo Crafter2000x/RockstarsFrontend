@@ -1,39 +1,39 @@
-﻿using System;
+﻿using Rockstars.WebApi.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Rockstars_Frontend.Models
 {
     public class ArtikelModel
     {
-        public class Thumbnail
-        {
-            public int id { get; set; }
-            public string name { get; set; }
-            public string url { get; set; }
-            public string contentType { get; set; }
-        }
+        public int Id { get; set; }
 
+        public string Title { get; set; }
 
-        public class Pdf
-        {
-            public int id { get; set; }
-            public string name { get; set; }
-            public string url { get; set; }
-            public string contentType { get; set; }
-        }
-        public int id { get; set; }
-        public string title { get; set; }
-        public string author { get; set; }
-        public int status { get; set; }
+        public string Description { get; set; }
 
-        public Thumbnail thumbnail { get; set; }
-        public Pdf pdf { get; set; }
-        public int thumbnailId { get; set; }
+        public StoredFile Thumbnail { set; get; }
 
-        public DateTime createdDate { get; set; }
+        public int ThumbnailId { get; set; }
 
+        public int AuthorId { get; set; }
+
+        public User Author { get; set; }
+
+        public int TribeId { get; set; }
+
+        public Tribe Tribe { get; set; }
+
+        public int Type { get; set; }
+
+        public int Status { get; set; }
+
+        public IDictionary<string, string> Attributes { get; set; }
+
+        public DateTime CreatedDate { get; set; }
     }
 }

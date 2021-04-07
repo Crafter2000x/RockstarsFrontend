@@ -106,5 +106,7 @@
 
 
 .formulier {
-
+    border-top: solid 1.5px #ffe000;
+    margin-bottom: 10px;
+    margin-top: 15px;
 }

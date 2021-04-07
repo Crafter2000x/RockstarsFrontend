@@ -11,17 +11,11 @@ h1 {
 }
 
 .artikelen {
-    width: 100%;
-    margin-bottom: 32.5%;
+    margin-bottom: 10%;
 }
 
 .artikel {
-    display: inline-block;
-    height: 500px;
     border: solid 1px black;
-    width: 30%;
-    margin-top: 3%;
-    margin-right: 3%;
     background-color: rgba(35, 35, 35, 1);
 }
 
@@ -29,19 +23,11 @@ h1 {
         border: solid 1px #ffe000;
     }
 
-    .artikel img {
-        width: 100%;
-        max-height: 182px;
-        min-height: 182px;
-        min-width: 331px;
-        max-width: 331px;
-    }
 
 .Titel {
     height: 55%;
     overflow: hidden;
     position: relative;
-    height: 16.4em;
 }
 
     .Titel:after {
@@ -54,6 +40,7 @@ h1 {
         height: 2em;
         background: linear-gradient(to right, rgba(35, 35, 35, 0), rgba(35, 35, 35, 1) 50%);
     }
+
 
 .info {
     height: 15%;
@@ -80,32 +67,18 @@ h1 {
         background: linear-gradient(to right, rgba(35, 35, 35, 0), rgba(35, 35, 35, 1) 90%);
     }
 
-.Titel h2 {
+.card-body h5 {
     color: white;
-    margin-left: 5%;
-    margin-top: 5%;
-    margin-bottom: 5%;
-    font-size: 160%;
     overflow-wrap: break-word;
     font-weight: bold;
 }
 
-.info h3 {
+h3 {
     color: white;
-    margin-left: 5%;
     font-size: 100%;
 }
 
-#topBtn {
-    position: fixed;
-    bottom: 40px;
-    right: 40px;
-    font-size: 12px;
-    width: 50px;
-    height: 50px;
-    background-color: #232323;
-    color: white;
-    border: none;
-    cursor: pointer;
-    display: none;
+.beep {
+    padding-top: 5%;
+    padding-bottom: 5%;
 }

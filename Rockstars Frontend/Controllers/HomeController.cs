@@ -45,16 +45,24 @@ namespace Rockstars_Frontend.Controllers
         }
 
         [HttpPost]
-        public IActionResult OnDemand(FormulierModel model)
+        public async Task<IActionResult> OnDemand(FormulierEnAanvraagModel model)
         {
-            if (model.voorkeursDag < DateTime.Now)
+            if (model.form.preferredDateTime < DateTime.Now)
             {
-            //CHECK
+                ModelState.AddModelError("model","Vul een geldige datum in.");
+                return View();
             }
 
             // MAIL SERVER
-            api.AddToAPI(model);
-            return View();
+            await api.AddToAPI(model.form);
+            return View("OnDemand");
+        }
+        [HttpPost]
+        public IActionResult Aanvragen(TalkModel talk)
+        {
+            //MAIL SERVER
+            api.AddToAPI(talk);
+            return View("OnDemand");
         }
 
 

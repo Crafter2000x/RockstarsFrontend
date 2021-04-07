@@ -1,46 +1,43 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "ArtikelPagina";
 
     List<ArtikelModel> artikelen = new List<ArtikelModel>();
     ApiController api = new ApiController();
     await api.ArtikelPaginaAPI();
     artikelen = api.artikelen;
+
 }
 
 <link rel="stylesheet" href="~/css/_ArtikelPagina.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="~/js/site.js" asp-append-version="true"></script>
+<br>
+<div class="container">
 
-<h1>ARTIKELEN</h1>
-<body>
-    <div class="bgImage" />
-    <button id="topBtn"><i class="fas fa-arrow-up"></i></button>
-</body>
+    <div class="row art">
 
-<div class="artikelen">
-
-    @foreach (ArtikelModel artikel in artikelen)
-    {
-        string Imageurl = "https://localhost:6001" + artikel.thumbnail.url;
-        string artikeltitle = artikel.title;
-        if (artikel.status == 1)
+        @foreach (ArtikelModel artikel in artikelen)
         {
-            <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle">
-                <div class="artikel">
-                    <img src="@Imageurl" /> @*thumbnail*@
-                    <div class="Titel">
-                        <h2>@artikel.title.ToUpper()</h2> @*artikel.title*@
-                    </div>
-                    <div class="info">
-                        <div class="author">
-                            <h3><i class="fa fa-pencil"></i>&nbsp; &nbsp;@artikel.author</h3>
-                        </div>
-                        <h3><i class="fa fa-calendar-o"></i>&nbsp; &nbsp;@artikel.createdDate.ToString("dd-MM-yyyy")</h3>@*artikel.author + artikel.createdDate*@
+            string Imageurl = "https://localhost:6001" + artikel.Thumbnail.Url;
+            string artikeltitle = artikel.Title;
+            if (artikel.Status == 1&&artikel.Type==0|| artikel.Status == 0 && artikel.Type == 0)
+            {
+                <div class="col-md-12 col-lg-4 col-sm-3">
+                    <div class="beep">
+                        <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle">
+                            <div class="card h-100 artikel">
+                                <img src=@Imageurl class="card-img-top" alt="...">
+                                <div class="card-body info">
+                                    <h5 class="card-title Titel">@artikel.Title</h5>
+                                    <h3 class="card-text author"><i class="fa fa-pencil"></i>&nbsp; &nbsp;@artikel.Author.Name</h3>
+                                </div>
+                                <div class="card-footer">
+                                    <h3 class="text-muted"><i class="fa fa-calendar-o"></i>&nbsp; &nbsp;@artikel.CreatedDate.ToString("dd-MM-yyyy")</h3>
+                                </div>
+                            </div>
+                        </a>
                     </div>
                 </div>
-            </a>
+            }
         }
-    }
-
+    </div>
 </div>
