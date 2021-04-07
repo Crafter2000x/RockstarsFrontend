@@ -19,7 +19,6 @@
 
 <link rel="stylesheet" href="~/css/_Artikel.css" />
 
-@*wanneer je een webinar perongeluk geen type webinar geeft komt ie dus hier en dan geeft ie een error, bevat nml geen pdf*@
  @{string pdfurl = "https://localhost:6001/api/File/" + artikel.Attributes["pdf"] +"/retrieve"; }
 
 @{ string Imageurl = "https://localhost:6001" + artikel.Thumbnail.Url;}

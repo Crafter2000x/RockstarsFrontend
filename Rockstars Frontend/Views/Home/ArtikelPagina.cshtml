@@ -19,7 +19,7 @@
         {
             string Imageurl = "https://localhost:6001" + artikel.Thumbnail.Url;
             string artikeltitle = artikel.Title;
-            if (artikel.Status == 1&&artikel.Type==0|| artikel.Status == 0 && artikel.Type == 0)
+            if (artikel.Status == 1 && artikel.Type == 0 || artikel.Status == 0 && artikel.Type == 0)
             {
                 <div class="col-md-12 col-lg-4 col-sm-3">
                     <div class="beep">
@@ -27,11 +27,11 @@
                             <div class="card h-100 artikel">
                                 <img src=@Imageurl class="card-img-top" alt="...">
                                 <div class="card-body info">
-                                    <h5 class="card-title Titel">@artikel.Title</h5>
+                                    <h5 class="card-title Titel text-uppercase">@artikel.Title</h5>
                                     <h3 class="card-text author"><i class="fa fa-pencil"></i>&nbsp; &nbsp;@artikel.Author.Name</h3>
                                 </div>
                                 <div class="card-footer">
-                                    <h3 class="text-muted"><i class="fa fa-calendar-o"></i>&nbsp; &nbsp;@artikel.CreatedDate.ToString("dd-MM-yyyy")</h3>
+                                    <h3><i class="fa fa-calendar-o"></i>&nbsp; &nbsp;@artikel.CreatedDate.ToString("dd-MM-yyyy")</h3>
                                 </div>
                             </div>
                         </a>

@@ -60,6 +60,7 @@ namespace Rockstars_Frontend
               client.BaseAddress= new Uri(Baseurl);
               client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
               var json = System.Text.Json.JsonSerializer.Serialize(form);
+                
 
               HttpResponseMessage Res = await client.PostAsJsonAsync("api/Appointment",json);
                 if (Res.IsSuccessStatusCode)
@@ -73,11 +74,28 @@ namespace Rockstars_Frontend
 
 
             }
-            // KOMT LATER
         }
-        public void AddToAPI(TalkModel talk)
+        public async Task AddToAPI(TalkModel talk)
         {
-            // KOMT LATER
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(Baseurl);
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+                var json = System.Text.Json.JsonSerializer.Serialize(talk);
+
+
+                HttpResponseMessage Res = await client.PostAsJsonAsync("api/Appointment", json);
+                if (Res.IsSuccessStatusCode)
+                {
+                    connection = true;
+                }
+                else
+                {
+                    throw new Exception(Res.ReasonPhrase);
+                }
+
+
+            }
         }
     }
 }

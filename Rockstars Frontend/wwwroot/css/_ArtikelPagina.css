@@ -38,7 +38,7 @@ h1 {
         right: 0;
         width: 70%;
         height: 2em;
-        background: linear-gradient(to right, rgba(35, 35, 35, 0), rgba(35, 35, 35, 1) 50%);
+        background: linear-gradient(to right, rgba(35, 35, 35, 0), rgba(35, 35, 35, 1) 90%);
     }
 
 
@@ -71,6 +71,20 @@ h1 {
     color: white;
     overflow-wrap: break-word;
     font-weight: bold;
+}
+
+.card img {
+    height: 300px;
+}
+
+@media (min-width: 1025px) {
+    .card img {
+        height: 350px;
+    }
+}
+
+.beep a {
+    text-decoration: none;
 }
 
 h3 {

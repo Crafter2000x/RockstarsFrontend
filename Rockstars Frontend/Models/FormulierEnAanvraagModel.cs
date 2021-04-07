@@ -9,5 +9,7 @@ namespace Rockstars_Frontend.Models
     {
         public FormulierModel form { get; set; }
         public TalkModel talk { get; set; }
+
+        public ArtikelModel art { get; set; }
     }
 }

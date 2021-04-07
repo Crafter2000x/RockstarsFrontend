@@ -23,7 +23,6 @@ namespace Rockstars_Frontend.Models
         [DataType(DataType.PhoneNumber)]
         public string phoneNumber { get; set; }
 
-        [DataType(DataType.MultilineText)]
         public string comment { get; set; }
     }
 
