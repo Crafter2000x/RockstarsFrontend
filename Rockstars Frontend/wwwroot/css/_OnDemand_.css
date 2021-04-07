@@ -1,8 +1,21 @@
-﻿h5 {
+﻿.talks h5 {
     color: white;
 }
+.formulier h5{
+    color:white;
+}
+
+@media (max-width: 768px) {
+    .topButton {
+        font-size: 75%;
+        margin-top: 3%;
+        height: 50px;
+    }
+}
+
 
 .topButton {
+    font-size: 75%;
     margin-top: 3%;
     height: 50px;
 }

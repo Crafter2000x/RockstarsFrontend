@@ -64,7 +64,7 @@ h1 {
         right: 0;
         width: 70%;
         height: 2em;
-        background: linear-gradient(to right, rgba(35, 35, 35, 0), rgba(35, 35, 35, 1) 90%);
+        background: linear-gradient(to right, rgba(35, 35, 35, 0), rgba(35, 35, 35, 1) 99%);
     }
 
 .card-body h5 {
