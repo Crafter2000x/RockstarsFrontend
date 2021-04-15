@@ -1,6 +1,7 @@
 ﻿body {
-
+    height:100%;
 }
+
 .TribeBox {
     left: 0;
     right: 0;
@@ -9,6 +10,7 @@
     position: absolute;
     margin-top: 3%;
     text-align:center;
+    
 }
 
 .ImageDiv{
@@ -34,19 +36,22 @@
     text-decoration: none;
 }
 
-    .btn1-btn1:hover {
-        transform: scale(1.1);
-        box-shadow: 0 30px 45px -15px rgba(0,111,255,0.65);
-        text-decoration:none;
-        color:white;
-    }
+.btn1-btn1:hover {
+    transform: scale(1.1);
+    box-shadow: 0 30px 45px -15px rgba(15,70,126,0.65);
+    background-color: rgba(15,70,126,0.3);
+    text-decoration: none;
+    color: white;
+}
 
 .TribeBox1 {
-    border: 1px solid yellow;
+    border: 1px solid #0F467E;
     height: 900px;
     width: 100%;
     margin-left: 20px;
     margin-right: 20px;
+    margin-bottom: 10%;
+    transition: 0.3s;
 }
 
 .btn2 {
@@ -56,18 +61,20 @@
 
 .btn2-btn2:hover {
     transform: scale(1.1);
-    box-shadow: 0 30px 45px -15px rgba( 192, 192, 192,0.65);
-    background-color: rgba(192, 192, 192, 0.3);
+    box-shadow: 0 30px 45px -15px rgba(255,69,0,0.65);
+    background-color: rgba(255,69,0,0.3);
     text-decoration: none;
     color: white;
 }
 
 .TribeBox2 {
-    border: 1px solid rgba(192, 192, 192, 0.3);
+    border: 1px solid #FF4500;
     height: 900px;
     width: 100%;
     margin-left: 20px;
     margin-right: 20px;
+    margin-bottom: 10%;
+    transition: 0.3s;
 }
 
 .btn3 {
@@ -77,17 +84,20 @@
 
 .btn3-btn3:hover {
     transform: scale(1.1);
-    box-shadow: 0 30px 45px -15px rgba(0,111,255,0.65);
+    box-shadow: 0 30px 45px -15px rgba(235,45,48,0.65);
+    background-color: rgba(235,45,48,0.3);
     text-decoration: none;
     color: white;
 }
 
 .TribeBox3 {
-    border: 1px solid yellow;
+    border: 1px solid #EB2D30;
     height: 900px;
     width: 100%;
     margin-left: 20px;
     margin-right: 20px;
+    margin-bottom: 10%;
+    transition: 0.3s;
 }
 
 .btn4 {
@@ -97,17 +107,20 @@
 
 .btn4-btn4:hover {
     transform: scale(1.1);
-    box-shadow: 0 30px 45px -15px rgba(0,111,255,0.65);
+    box-shadow: 0 30px 45px -15px rgba(196,0,195,0.65);
+    background-color: rgba(196,0,195,0.3);
     text-decoration: none;
     color: white;
 }
 
 .TribeBox4 {
-    border: 1px solid yellow;
+    border: 1px solid #C400C3;
     height: 900px;
     width: 100%;
     margin-left: 20px;
     margin-right: 20px;
+    margin-bottom: 10%;
+    transition: 0.3s;
 }
 
 .btn5 {
@@ -117,15 +130,18 @@
 
 .btn5-btn5:hover {
     transform: scale(1.1);
-    box-shadow: 0 30px 45px -15px rgba(0,111,255,0.65);
+    box-shadow: 0 30px 45px -15px rgba(32,202,131,0.65);
+    background-color: rgba(32,202,131,0.3);
     text-decoration: none;
     color: white;
 }
 
 .TribeBox5 {
-    border: 1px solid yellow;
+    border: 1px solid #20CA83;
     height: 900px;
     width: 100%;
     margin-left: 20px;
     margin-right: 20px;
+    margin-bottom: 10%;
+    transition: 0.3s;
 }
