@@ -115,7 +115,14 @@ namespace Rockstars_Frontend.Controllers
             return View();
         }
 
-
+        public IActionResult TribeOverzicht()
+        {
+            return View();
+        }
+        public IActionResult TribePagina()
+        {
+            return View();
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
