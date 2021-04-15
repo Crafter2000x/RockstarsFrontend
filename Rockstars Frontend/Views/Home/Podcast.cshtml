@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "Podcast";
+    List<PodcastModel> podcasts = new List<PodcastModel>();
+    ApiController api = new ApiController();
+    await api.PodcastAPI();
+    podcasts = api.podcasts;
+    PodcastModel podcast = new PodcastModel();
+
+    foreach (PodcastModel pod in podcasts)
+    {
+        if (pod.title.Equals(ViewData["ID"].ToString()))
+        {
+            podcast = pod;
+        }
+    }
+
+    string podcastURL;
+    podcast.attributes.TryGetValue("spotify", out podcastURL);
+
+    string goodpodcastURL = podcastURL.Replace("episode", "embed-podcast/episode");
+
+    List<string> keywords = new List<string>();
+    string multipleKeywords;
+    podcast.attributes.TryGetValue("keypoints", out multipleKeywords);
+    keywords = multipleKeywords.Split(",").ToList();
+}
+
+<link rel="stylesheet" href="~/css/Podcast.css" />
+
+<body>
+    <div class="information">
+        <h1>@podcast.title</h1>
+        <h3 title="@podcast.Author.Biography">@podcast.Author.Name - @podcast.Tribe.Title - @podcast.Author.Role</h3>
+        <p>@podcast.description</p>
+    </div>
+
+    <iframe src="@goodpodcastURL" width="100%" height="232" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+    @foreach (string kword in keywords)
+    {
+        <p>-&nbsp;@kword</p>
+    }
+</body>
+

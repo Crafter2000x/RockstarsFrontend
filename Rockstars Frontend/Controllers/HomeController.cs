@@ -35,12 +35,26 @@ namespace Rockstars_Frontend.Controllers
         {
             return View();
         }
+        public IActionResult Podcasts()
+        {
+            return View();
+        }
 
         public IActionResult Artikel(string? title)
         {
             if (title == null)
             {
                 return RedirectToAction("ArtikelPagina");
+            }
+            ViewData["ID"] = title;
+            return View();
+        }
+
+        public IActionResult Podcast(string? title)
+        {
+            if (title == null)
+            {
+                return RedirectToAction("Podcasts");
             }
             ViewData["ID"] = title;
             return View();
