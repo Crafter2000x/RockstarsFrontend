@@ -1,7 +1,49 @@
 ﻿
 @{
     ViewData["Title"] = "TribePagina";
+    List<ArtikelModel> artikelen = new List<ArtikelModel>();
+    ApiController api = new ApiController();
+    await api.ArtikelPaginaAPI();
+    artikelen = api.artikelen;
+    ArtikelModel artikel = new ArtikelModel();
+    foreach (ArtikelModel ar in artikelen)
+    {
+        if (ar.Title.Equals(ViewData["ID"].ToString()))
+        {
+            artikel = ar;
+        }
+    }
 }
 
-<h1>TribePagina</h1>
+<link rel="stylesheet" href="~/css/_Artikel.css" />
+
+@*@{string pdfurl = "https://localhost:6001/api/File/" + artikel.Attributes["pdf"] + "/retrieve"; }
+
+@{ string Imageurl = "https://localhost:6001" + artikel.Thumbnail.Url;}*@
+<div class="container">
+    <div class="row artikelInfo">
+        <div class="infoBorder">
+            <div class="information">
+                <div class="artikelTitle">
+                    <h1>@artikel.Title</h1>
+                </div>
+                <h1><i class="fa fa-pencil"></i>&nbsp; &nbsp;@artikel.Author.Name</h1>
+                <h1><i class="fa fa-calendar-o"></i>&nbsp; &nbsp;@artikel.CreatedDate.ToString("dd-MM-yyyy")</h1>
+                <h1><i class="fa fa-users"></i>&nbsp; &nbsp;@artikel.Tribe.Title</h1><br />
+                @*<a href="@pdfurl" download><h2>Download als PDF</h2></a>*@
+            </div>
+            <div class="thumbnail">
+                @*<img src="@Imageurl" />*@
+            </div>
+            <div class="description">
+                @artikel.Description
+                <p>
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui.
+                    Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero. Fusce vulputate eleifend sapien. Vestibulum purus quam, scelerisque ut, mollis sed, nonummy id, metus. Nullam accumsan lorem in dui. Cras ultricies mi eu turpis hendrerit fringilla. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In ac dui quis mi consectetuer lacinia.
+                </p>
+            </div>
+        </div>
+        @*<embed class="pdfReader" src="@pdfurl#view=FitH&scrollbar=0&toolbar=0&statusbar=0&messages=0&navpanes=0" />*@
+    </div>
+</div>
 

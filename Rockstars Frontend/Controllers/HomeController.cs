@@ -40,7 +40,7 @@ namespace Rockstars_Frontend.Controllers
         {
             if (title == null)
             {
-                return RedirectToAction("ArtikelPagina");
+                return RedirectToAction("TribeOverzicht");
             }
             ViewData["ID"] = title;
             return View();
@@ -119,8 +119,13 @@ namespace Rockstars_Frontend.Controllers
         {
             return View();
         }
-        public IActionResult TribePagina()
+        public IActionResult TribePagina(string? title)
         {
+            if (title == null)
+            {
+                return RedirectToAction("ArtikelPagina");
+            }
+            ViewData["ID"] = title;
             return View();
         }
 
