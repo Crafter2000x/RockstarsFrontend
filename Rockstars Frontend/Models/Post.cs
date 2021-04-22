@@ -2,36 +2,29 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Rockstars.WebApi.Data;
+using System.Text.Json.Serialization;
 
-namespace Rockstars.WebApi.Models
-{
-    public class Post : IEntity
+namespace Rockstars_Frontend.Models { 
+    public class Post
     {
-        public int Id { get; set; }
-
         [Required]
         public string Title { get; set; }
 
         [Required]
         public string Description { get; set; }
 
-        [BindNever]
+        public int ThumbnailId { get; set; }
+        
         [ForeignKey(nameof(ThumbnailId))]
         public StoredFile Thumbnail { set; get; }
 
-        public int ThumbnailId { get; set; }
-
         public int AuthorId { get; set; }
-
-        [BindNever]
+        
         [ForeignKey(nameof(AuthorId))]
         public User Author { get; set; }
 
         public int TribeId { get; set; }
-
-        [BindNever]
+        
         [ForeignKey(nameof(TribeId))]
         public Tribe Tribe { get; set; }
 
@@ -40,9 +33,11 @@ namespace Rockstars.WebApi.Models
 
         public PostStatus Status { get; set; } = PostStatus.Concept;
 
-        public IDictionary<string,string> Attributes { get; set; }
+        [Required]
+        public IList<PostAttribute> Attributes { get; set; }
+
+        public DateTime CreatedAt { get; set; }
         
-        [BindNever]
-        public DateTime CreatedDate { get; set; } = DateTime.Now;
+        public DateTime? UpdatedAt { get; set; }
     }
 }

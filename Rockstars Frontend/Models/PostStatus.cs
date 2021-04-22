@@ -1,4 +1,4 @@
-﻿namespace Rockstars.WebApi.Models
+﻿namespace Rockstars_Frontend.Models
 {
     public enum PostStatus
     {

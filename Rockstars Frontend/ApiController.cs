@@ -34,6 +34,24 @@ namespace Rockstars_Frontend
                 }
             }
         }
+        public async Task TribePaginaAPI()
+        {
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(Baseurl);
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage Res = await client.GetAsync("api/Tribe");
+
+                if (Res.IsSuccessStatusCode)
+                {
+                    connection = true;
+                    var TribeResponse = Res.Content.ReadAsStringAsync().Result;
+                    AllTribes = JsonConvert.DeserializeObject<List<ArtikelModel>>(TribeResponse);
+                }
+            }
+        }
         public async Task TalkAPI()
         {
 

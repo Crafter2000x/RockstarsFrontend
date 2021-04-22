@@ -1,16 +1,16 @@
 ﻿
 @{
     ViewData["Title"] = "TribePagina";
-    List<ArtikelModel> artikelen = new List<ArtikelModel>();
+    List<Tribe> Tribes = new List<Tribe>();
     ApiController api = new ApiController();
-    await api.ArtikelPaginaAPI();
-    artikelen = api.artikelen;
+    await api.TribePaginaAPI();
+    Tribes = api.artikelen;
     ArtikelModel artikel = new ArtikelModel();
     foreach (ArtikelModel ar in artikelen)
     {
         if (ar.Title.Equals(ViewData["ID"].ToString()))
         {
-            artikel = ar;
+            Tribes = ar;
         }
     }
 }

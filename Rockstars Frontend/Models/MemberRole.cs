@@ -1,6 +1,6 @@
 ﻿namespace Rockstars_Frontend.Models
 {
-    public enum UserRole
+    public enum MemberRole
     {
         Normal = 0,
         TribeLead = 1,
