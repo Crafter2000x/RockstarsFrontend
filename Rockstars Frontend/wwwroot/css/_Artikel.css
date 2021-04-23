@@ -3,13 +3,14 @@
 }
 
 .artikelInfo {
-    width: 100%;
+    min-width: 100%;
     margin-bottom: 10%;
     margin-top: 5%;
 }
 
 .infoBorder {
     border: solid 2px #ffe000;
+    width: 100%;
 }
 
 .information {
@@ -31,7 +32,7 @@
     height: 216px;
     margin-top: -22.5%;
     margin-right: 5%;
-    border: solid 2px #ffe000;
+    border: solid 1px #ffe000;
 }
 
 .thumbnail img {
@@ -52,6 +53,8 @@
 .description p {
     color: #ffe000;
     font-weight: lighter;
+
+
 }
 
 .pdfReader {

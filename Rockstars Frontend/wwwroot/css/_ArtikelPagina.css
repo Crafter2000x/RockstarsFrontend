@@ -4,6 +4,7 @@
     font-family: 'DIN 2014';
 }
 
+
 h1 {
     color: white;
     font-weight: bold;
@@ -95,4 +96,18 @@ h3 {
 .beep {
     padding-top: 5%;
     padding-bottom: 5%;
+}
+
+.noResultsDIV {
+    min-height: 588px;
+    min-width: 100%;
+}
+
+.noResultsDIV p{
+    text-align: center;
+    color: white;
+}
+
+.Search {
+    margin-left: 70%;
 }

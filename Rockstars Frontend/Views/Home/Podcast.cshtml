@@ -14,6 +14,8 @@
         }
     }
 
+    string baseURL = "https://localhost:6001";
+
     string podcastURL;
     podcast.attributes.TryGetValue("spotify", out podcastURL);
 
@@ -23,21 +25,86 @@
     string multipleKeywords;
     podcast.attributes.TryGetValue("keypoints", out multipleKeywords);
     keywords = multipleKeywords.Split(",").ToList();
+
+    string biotext = podcast.Author.Biography;
+    var multiplebio = biotext.Split().Take(7);
+    string bioMultiple = String.Join(" ", multiplebio);
+
+
+    string desctext = podcast.description;
+    var multipledesc = biotext.Split().Take(7);
+    string descMultiple = String.Join(" ", multipledesc);
+
 }
 
 <link rel="stylesheet" href="~/css/Podcast.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
 <body>
-    <div class="information">
-        <h1>@podcast.title</h1>
-        <h3 title="@podcast.Author.Biography">@podcast.Author.Name - @podcast.Tribe.Title - @podcast.Author.Role</h3>
-        <p>@podcast.description</p>
-    </div>
+    @*<div class="information">
+            <h1>@podcast.title</h1>
+            <h3 title="@podcast.Author.Biography">@podcast.Author.Name - @podcast.Tribe.Title - @podcast.Author.Role</h3>
+            <p>@podcast.description</p>
+        </div>
 
+        <iframe src="@goodpodcastURL" width="100%" height="232" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+        @foreach (string kword in keywords)
+        {
+            <p>-&nbsp;@kword</p>
+        }*@
+
+    @{string profilePicture = baseURL + "/api/File/" + podcast.Author.ImageId + "/retrieve";}
+
+    <div class="row Auteur">
+        <img class="profilePicture" src="@profilePicture" />
+        <div class="profileInfo">
+            <h1>@podcast.Author.Name</h1>
+            <h2><a>@podcast.Tribe.Title</a> - @podcast.Author.Role</h2>
+            @if (biotext.Length > 50)
+            {
+                <div class="text12">
+                    <p>@bioMultiple <a data-toggle="collapse" data-target="#BioGraphy"><b><u>Read more</u></b></a></p>
+                    <p class="collapse" id="BioGraphy">
+                        @biotext
+                    </p>
+                </div>
+
+            }
+            else
+            {
+                <div class="text12">@biotext</div>
+            }
+            
+        </div>
+    </div>
+    <div class="podcastInfo">
+        <h1>@podcast.title</h1>
+        @foreach (string kword in keywords)
+        {
+            
+            <p><i class="fa fa-caret-right" style="color: #ffe000"></i>&nbsp;@kword</p>
+        }
+        @if (desctext.Length > 50)
+        {
+            <div class="text12">
+                <p>@descMultiple <a data-toggle="collapse" data-target="#Description"><b><u>Read more</u></b></a></p>
+                <p class="collapse" id="Description">
+                    @desctext
+                </p>
+            </div>
+
+        }
+        else
+        {
+            <div class="text12">@biotext</div>
+            
+        }
+    </div>
     <iframe src="@goodpodcastURL" width="100%" height="232" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-    @foreach (string kword in keywords)
-    {
-        <p>-&nbsp;@kword</p>
-    }
+
+
+
+
 </body>
 
