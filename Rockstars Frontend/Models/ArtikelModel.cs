@@ -33,6 +33,6 @@ namespace Rockstars_Frontend.Models
 
         public IDictionary<string, string> Attributes { get; set; }
 
-        public DateTime CreatedDate { get; set; }
+        public DateTime CreatedAt { get; set; }
     }
 }

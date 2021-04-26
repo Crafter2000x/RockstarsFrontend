@@ -13,6 +13,7 @@ namespace Rockstars_Frontend
     {
         string Baseurl = "https://localhost:6001/";
         public List<ArtikelModel> artikelen = new List<ArtikelModel>();
+        public List<Tribe> AllTribes = new List<Tribe>();
         public List<TalkModel> talks = new List<TalkModel>();
         public bool connection = false;
 
@@ -48,7 +49,7 @@ namespace Rockstars_Frontend
                 {
                     connection = true;
                     var TribeResponse = Res.Content.ReadAsStringAsync().Result;
-                    AllTribes = JsonConvert.DeserializeObject<List<ArtikelModel>>(TribeResponse);
+                    AllTribes = JsonConvert.DeserializeObject<List<Tribe>>(TribeResponse);
                 }
             }
         }

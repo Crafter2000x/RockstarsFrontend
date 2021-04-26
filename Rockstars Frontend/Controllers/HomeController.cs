@@ -27,12 +27,17 @@ namespace Rockstars_Frontend.Controllers
             return View();
         }
 
-        public IActionResult ArtikelPagina()
+        public IActionResult ArtikelPagina(string Tribe)
         {
-            return View();
-        }
-        public IActionResult OnDemand()
-        {
+            if (Tribe == null)
+            {
+                ViewData["TRIBE"] = "allen";
+            }
+            else
+            {
+                ViewData["TRIBE"] = Tribe;
+            }
+
             return View();
         }
 
@@ -45,6 +50,20 @@ namespace Rockstars_Frontend.Controllers
             ViewData["ID"] = title;
             return View();
         }
+        public IActionResult OnDemand(string Tribe)
+        {
+            if (Tribe == null)
+            {
+                ViewData["TRIBE"] = "allen";
+            }
+            else
+            {
+                ViewData["TRIBE"] = Tribe;
+            }
+
+            return View();
+        }
+
 
         [HttpPost]
         public async Task<IActionResult> OnDemand(FormulierEnAanvraagModel model)

@@ -21,7 +21,7 @@
 
  @{string pdfurl = "https://localhost:6001/api/File/" + artikel.Attributes["pdf"] +"/retrieve"; }
 
-@{ string Imageurl = "https://localhost:6001" + artikel.Thumbnail.Url;}
+@{ string Imageurl = "https://localhost:6001" + artikel.Thumbnail.RelativeUrl;}
 <div class="container">
     <div class="row artikelInfo">
         <div class="infoBorder">
@@ -30,7 +30,7 @@
                     <h1>@artikel.Title</h1>
                 </div>
                 <h1><i class="fa fa-pencil"></i>&nbsp; &nbsp;@artikel.Author.Name</h1>
-                <h1><i class="fa fa-calendar-o"></i>&nbsp; &nbsp;@artikel.CreatedDate.ToString("dd-MM-yyyy")</h1>
+                <h1><i class="fa fa-calendar-o"></i>&nbsp; &nbsp;@artikel.CreatedAt.ToString("dd-MM-yyyy")</h1>
                 <h1><i class="fa fa-users"></i>&nbsp; &nbsp;@artikel.Tribe.Title</h1><br />
                 <a href="@pdfurl" download><h2>Download als PDF</h2></a>
             </div>

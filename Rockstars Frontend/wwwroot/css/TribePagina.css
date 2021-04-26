@@ -1,2 +1,298 @@
 ﻿body {
+    background-image: url(/Images/defaultOp.png) !important;
+    background-attachment: fixed;
+    font-family: 'DIN 2014';
 }
+.artikelInfo {
+    width: 100%;
+    margin-bottom: 10%;
+    margin-top: 5%;
+}
+
+.infoBorder {
+    border: solid 2px #ffe000;
+}
+
+.information {
+    width: 63%;
+    padding: 2%;
+}
+
+.artikelTitle {
+    font-size: 30px;
+    margin-top: -15px;
+    margin-bottom: 4%;
+}
+
+.thumbnail {
+    display: inline-flex;
+    float: right;
+    width: 384px;
+    height: 216px;
+    margin-top: -22.5%;
+    margin-right: 5%;
+    border: solid 2px #ffe000;
+}
+
+    .thumbnail img {
+        width: 100%;
+        max-height: 212px;
+        min-height: 212px;
+        min-width: 382px;
+        max-width: 382px;
+    }
+
+.description {
+    width: 99.6%;
+    padding: 2%;
+    border-top-style: none;
+    overflow-wrap: break-word;
+}
+
+    .description p {
+        color: #ffe000;
+        font-weight: lighter;
+    }
+
+.pdfReader {
+    width: 100%;
+    height: 1400px;
+    margin-top: 5%;
+    margin-bottom: 20%;
+}
+
+h1 {
+    color: white;
+    font-weight: normal;
+    margin-top: 2%;
+}
+
+.artikelen {
+    margin-bottom: 10%;
+}
+
+.artikel {
+    border: solid 1px black;
+    background-color: rgba(35, 35, 35, 1);
+}
+
+    .artikel:hover {
+        border: solid 1px #ffe000;
+    }
+
+
+.Titel {
+    height: 55%;
+    overflow: hidden;
+    position: relative;
+}
+
+    .Titel:after {
+        content: "";
+        text-align: right;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 70%;
+        height: 2em;
+        background: linear-gradient(to right, rgba(35, 35, 35, 0), rgba(35, 35, 35, 1) 90%);
+    }
+
+
+.info {
+    height: 15%;
+    margin-top: 0%;
+}
+
+.author {
+    height: 10%;
+    overflow: hidden;
+    text-overflow: clip;
+    white-space: nowrap;
+    position: relative;
+    height: 1.8em;
+}
+
+    .author:after {
+        content: "";
+        text-align: right;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 70%;
+        height: 2em;
+        background: linear-gradient(to right, rgba(35, 35, 35, 0), rgba(35, 35, 35, 1) 99%);
+    }
+
+.card-body h5 {
+    color: white;
+    overflow-wrap: break-word;
+    font-weight: bold;
+}
+
+.card img {
+    height: 300px;
+}
+
+@media (min-width: 1025px) {
+    .card img {
+        height: 350px;
+    }
+}
+
+.beep a {
+    text-decoration: none;
+}
+
+h3 {
+    color: white;
+    font-size: 100%;
+}
+
+.beep {
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+.talks h5 {
+    color: white;
+}
+
+.formulier h5 {
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .topButton {
+        font-size: 75%;
+        margin-top: 3%;
+        height: 50px;
+    }
+}
+
+
+.topButton {
+    font-size: 75%;
+    margin-top: 3%;
+    height: 50px;
+}
+
+.buttonTop {
+    float: right;
+}
+
+.buttonTop {
+    float: right;
+    background-color: #ffe000;
+    width: 35%;
+    height: 50px;
+    top: 0px;
+    color: #232323;
+    font-size: 150%;
+    line-height: 30px;
+    font-family: 'DIN 2014';
+    font-weight: bold;
+}
+
+    .buttonTop:hover {
+        background-color: #232323;
+        color: white;
+        border: solid 1px #ffe000;
+    }
+
+        .buttonTop:hover p {
+            color: white;
+        }
+
+.talks {
+    margin-top: 3.5%;
+    margin-bottom: 30%;
+}
+
+.talk {
+    color: white;
+    border: solid 2px #ffe000;
+    margin-top: 4%;
+}
+
+    .talk h1 {
+        margin-top: 1%;
+        margin-right: 1%;
+    }
+
+.talkMiddle {
+    width: 100%;
+    height: auto;
+}
+
+.talkDesc {
+    margin-top: 1%;
+    width: 60%;
+    margin-left: 1.5%;
+    border: solid 1px #ffe000;
+    margin-bottom: 1%;
+}
+
+.talkThumbnail {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 8%;
+    width: 30%;
+    height: auto;
+    border: solid 1.5px #ffe000;
+}
+
+.talkBottom {
+    width: 100%;
+    height: auto;
+}
+
+.talkTribe {
+    margin-top: 1%;
+    width: 60%;
+    margin-left: 1.5%;
+    margin-bottom: 1%;
+}
+
+.btnAanvraag {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 8%;
+    width: 30%;
+    height: auto;
+    border: solid 1.5px #ffe000;
+    background-color: #232323;
+    color: white;
+    font-size: 125%;
+    line-height: 30px;
+    font-family: 'DIN 2014';
+    font-weight: normal;
+}
+
+    .btnAanvraag:hover {
+        background-color: #ffe000;
+        color: #232323;
+        border: solid 1.5px white;
+    }
+
+
+.formulier {
+    border-top: solid 1.5px #ffe000;
+    margin-bottom: 10px;
+    margin-top: 15px;
+}
+
+.moreButton {
+    width: 100%;
+    height: 100%;
+    background-color: grey;
+    margin-left:5%;
+    margin-right:5%;
+    font-size:22px;
+    text-decoration:none;
+    color:white;
+    justify-content:center;
+}
+    .moreButton:hover {
+        text-decoration: none;
+        color: white;
+    }

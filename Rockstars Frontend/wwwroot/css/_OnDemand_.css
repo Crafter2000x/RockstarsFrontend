@@ -1,4 +1,9 @@
-﻿.talks h5 {
+﻿body {
+    background-image: url(/Images/defaultOp.png) !important;
+    background-attachment: fixed;
+    font-family: 'DIN 2014';
+}
+.talks h5 {
     color: white;
 }
 .formulier h5{

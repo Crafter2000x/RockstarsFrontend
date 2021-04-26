@@ -1,14 +1,26 @@
-﻿@model FormulierEnAanvraagModel; 
+﻿@model FormulierEnAanvraagModel;
 
 @{
     ViewData["Title"] = "OnDemand";
     List<TalkModel> talks = new List<TalkModel>();
+    List<TalkModel> newtalks = new List<TalkModel>();
     ApiController api = new ApiController();
     await api.TalkAPI();
     talks = api.talks;
     int number = 0;
     string id = "1" + number;
- 
+    @foreach (TalkModel artikel in talks)
+    {
+        newtalks.Add(artikel);
+        if (ViewData["TRIBE"].ToString() != "allen")
+        {
+            if (artikel.Tribe.Title != ViewData["TRIBE"].ToString())
+            {
+                newtalks.Remove(artikel);
+            }
+        }
+    }
+
 }
 
 <link rel="stylesheet" href="~/css/_OnDemand_.css" />
@@ -20,7 +32,8 @@
 <body>
     <div class="topButton">
         <a class="btn buttonTop" data-toggle="collapse" data-target="#Formulier">
-        <p>Talk Aanvragen</p></a>
+            <p>Talk Aanvragen</p>
+        </a>
     </div>
     <div class="collapse" id="Formulier">
         <div class="formulier">
@@ -42,37 +55,37 @@
 
     <div class="talks">
 
-        @foreach (TalkModel talk in talks)
+        @foreach (TalkModel talk in newtalks)
         {
-            string thumbnailUrl = "https://localhost:6001" + talk.thumbnail.Url;
+            string thumbnailUrl = "https://localhost:6001" + talk.thumbnail.RelativeUrl;
             // na de || moet eigenijk weg omdat deze niet published zijn.
-            if (talk.Type==1 && talk.Status==1|| talk.Type == 1 && talk.Status==0)
+            if (talk.Type == 1 && talk.Status == 1 || talk.Type == 1 && talk.Status == 0)
             {
-            <div class="container talk">
-                <h1>@talk.title</h1>
-                <div class="row talkMiddle">
-                    <p class="talkDesc">@talk.description</p>
-                    <img class="talkThumbnail" src="@thumbnailUrl" />
-                </div>
-                <div class="row talkBottom">
-                    <h2 class="talkTribe">@talk.Tribe.Title</h2>
-                    <button class="btn btn-primary btnAanvraag" data-toggle="collapse" data-target="#Aanvragen">Toegang Aanvragen</button>
-                </div>
-                <div class="collapse" id="Aanvragen">
-                    <div class="formulier">
-                        @using (Html.BeginForm("Aanvragen", "Home", FormMethod.Post))
-                        {
-
-                            <h5>Email: </h5> @Html.TextBoxFor(m => m.form.contactEmail, new { @type = "mail", @required = "required" }) <br />
-                            <h5>Bedrijfsnaam: </h5> @Html.TextBoxFor(m => m.form.companyName) <br />
-                            <h5>Rol: </h5> @Html.EditorFor(m => m.form.comment) <br />
-                            <h5>Telefoon: </h5> @Html.TextBoxFor(m => m.form.phoneNumber) <br /><br />
-                            <input type="submit" value="Vraag aan" /><br />
-                        }
+                <div class="container talk">
+                    <h1>@talk.title</h1>
+                    <div class="row talkMiddle">
+                        <p class="talkDesc">@talk.description</p>
+                        <img class="talkThumbnail" src="@thumbnailUrl" />
                     </div>
-                </div>
+                    <div class="row talkBottom">
+                        <h2 class="talkTribe">@talk.Tribe.Title</h2>
+                        <button class="btn btn-primary btnAanvraag" data-toggle="collapse" data-target="#Aanvragen">Toegang Aanvragen</button>
+                    </div>
+                    <div class="collapse" id="Aanvragen">
+                        <div class="formulier">
+                            @using (Html.BeginForm("Aanvragen", "Home", FormMethod.Post))
+                            {
 
-            </div>
+                                <h5>Email: </h5> @Html.TextBoxFor(m => m.form.contactEmail, new { @type = "mail", @required = "required" }) <br />
+                                <h5>Bedrijfsnaam: </h5> @Html.TextBoxFor(m => m.form.companyName) <br />
+                                <h5>Rol: </h5> @Html.EditorFor(m => m.form.comment) <br />
+                                <h5>Telefoon: </h5> @Html.TextBoxFor(m => m.form.phoneNumber) <br /><br />
+                                <input type="submit" value="Vraag aan" /><br />
+                            }
+                        </div>
+                    </div>
+
+                </div>
             }
         }
     </div>

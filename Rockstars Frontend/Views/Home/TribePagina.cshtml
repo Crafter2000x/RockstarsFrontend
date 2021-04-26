@@ -1,49 +1,147 @@
-﻿
+﻿@model ArtikelModel
 @{
     ViewData["Title"] = "TribePagina";
     List<Tribe> Tribes = new List<Tribe>();
     ApiController api = new ApiController();
     await api.TribePaginaAPI();
-    Tribes = api.artikelen;
-    ArtikelModel artikel = new ArtikelModel();
-    foreach (ArtikelModel ar in artikelen)
+    Tribes = api.AllTribes;
+    Tribe Tribeso = new Tribe();
+    foreach (Tribe ar in Tribes)
     {
-        if (ar.Title.Equals(ViewData["ID"].ToString()))
-        {
-            Tribes = ar;
-        }
+
+        Tribeso = ar;
+
     }
+    List<ArtikelModel> artikelen = new List<ArtikelModel>();
+    List<TalkModel> webinars = new List<TalkModel>();
+    List<ArtikelModel> drieartikelen = new List<ArtikelModel>();
+    List<TalkModel> driewebinars = new List<TalkModel>();
+    ApiController api2 = new ApiController();
+    await api2.ArtikelPaginaAPI();
+    artikelen = api2.artikelen;
+    await api2.TalkAPI();
+    webinars = api2.talks;
+    int i = 0;
+    FormulierModel form = new FormulierModel();
 }
 
-<link rel="stylesheet" href="~/css/_Artikel.css" />
+<link rel="stylesheet" href="~/css/TribePagina.css" />
 
-@*@{string pdfurl = "https://localhost:6001/api/File/" + artikel.Attributes["pdf"] + "/retrieve"; }
-
-@{ string Imageurl = "https://localhost:6001" + artikel.Thumbnail.Url;}*@
-<div class="container">
-    <div class="row artikelInfo">
-        <div class="infoBorder">
-            <div class="information">
-                <div class="artikelTitle">
-                    <h1>@artikel.Title</h1>
+@*@foreach (TribeMember user in TribeMember)
+    {
+        string Imageurl = "https://localhost:6001" + artikel.Thumbnail.Url;
+        string artikeltitle = artikel.Title;
+        if (artikel.Status == 1 && artikel.Type == 0 || artikel.Status == 0 && artikel.Type == 0)
+        {
+            <div class="col-md-12 col-lg-4 col-sm-3">
+                <div class="beep">
+                    <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle">
+                        <div class="card h-100 artikel">
+                            <img src=@Imageurl class="card-img-top" alt="...">
+                            <div class="card-body info">
+                                <h5 class="card-title Titel text-uppercase">@artikel.Title</h5>
+                                <h3 class="card-text author"><i class="fa fa-pencil"></i>&nbsp; &nbsp;@artikel.Author.Name</h3>
+                                <h3 class="card-text author"><i class="fa fa-users"></i>&nbsp; &nbsp;@artikel.Tribe.Title</h3>
+                            </div>
+                            <div class="card-footer">
+                                <h3><i class="fa fa-calendar-o"></i>&nbsp; &nbsp;@artikel.CreatedDate.ToString("dd-MM-yyyy")</h3>
+                            </div>
+                        </div>
+                    </a>
                 </div>
-                <h1><i class="fa fa-pencil"></i>&nbsp; &nbsp;@artikel.Author.Name</h1>
-                <h1><i class="fa fa-calendar-o"></i>&nbsp; &nbsp;@artikel.CreatedDate.ToString("dd-MM-yyyy")</h1>
-                <h1><i class="fa fa-users"></i>&nbsp; &nbsp;@artikel.Tribe.Title</h1><br />
-                @*<a href="@pdfurl" download><h2>Download als PDF</h2></a>*@
             </div>
-            <div class="thumbnail">
-                @*<img src="@Imageurl" />*@
+        }
+    }*@
+
+@*@{string pdfurl = "https://localhost:6001/api/File/" + artikel.Attributes["pdf"] + "/retrieve"; }*@
+
+@*@{ string Imageurl = "https://localhost:6001" + Tribeso.Members[0].User.Image;}*@
+<div class="container">
+    @foreach (ArtikelModel artikel in artikelen)
+    {
+        artikelen = artikelen.OrderByDescending(x => x.CreatedAt).ToList();
+    }
+    @foreach (TalkModel artikel in webinars)
+    {
+        webinars = webinars.OrderByDescending(x => x.createdDate).ToList();
+    }
+
+    @for (int q = 0; q < 3; q++)
+    {
+        if (artikelen[i].Status == 1 && artikelen[i].Type == 0 || artikelen[i].Status == 0 && artikelen[i].Type == 0)
+        {
+            drieartikelen.Add(artikelen[q]);
+        }
+        else
+        {
+            q = q - 1;
+        }
+        i++;
+    }
+    @{i = 0; }
+    @for (int y = 0; y < 3; y++)
+    {
+        if (webinars[i].Status == 1 && webinars[i].Type == 1 || webinars[i].Status == 0 && webinars[i].Type == 1)
+        {
+            driewebinars.Add(webinars[y]);
+        }
+        else
+        {
+            y = y - 1;
+        }
+        i++;
+    }
+
+    <div class="row art">
+        @foreach (ArtikelModel artikel in drieartikelen)
+        {
+            string Imageurl = "https://localhost:6001" + artikel.Thumbnail.RelativeUrl;
+            string artikeltitle = artikel.Title;
+
+            <div class="col-md-12 col-lg-4 col-sm-3">
+                <div class="beep">
+                    <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle">
+                        <div class="card h-100 artikel">
+                            <img src=@Imageurl class="card-img-top" alt="...">
+                            <div class="card-body info">
+                                <h5 class="card-title Titel text-uppercase">@artikel.Title</h5>
+                                <h3 class="card-text author"><i class="fa fa-pencil"></i>&nbsp; &nbsp;@artikel.Author.Name</h3>
+                                <h3 class="card-text author"><i class="fa fa-users"></i>&nbsp; &nbsp;@artikel.Tribe.Title</h3>
+                            </div>
+                            <div class="card-footer">
+                                <h3><i class="fa fa-calendar-o"></i>&nbsp; &nbsp;@artikel.CreatedAt.ToString("dd-MM-yyyy")</h3>
+                            </div>
+                        </div>
+                    </a>
+                </div>
             </div>
-            <div class="description">
-                @artikel.Description
-                <p>
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui.
-                    Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero. Fusce vulputate eleifend sapien. Vestibulum purus quam, scelerisque ut, mollis sed, nonummy id, metus. Nullam accumsan lorem in dui. Cras ultricies mi eu turpis hendrerit fringilla. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In ac dui quis mi consectetuer lacinia.
-                </p>
+        }
+        <a class="row moreButton" asp-action="ArtikelPagina" asp-controller="Home" asp-route-Tribe="Amazon Web Services Tribe">
+
+            <h2>+</h2>
+
+        </a>
+    </div>
+    @foreach (TalkModel talk in driewebinars)
+    {
+        string thumbnailUrl = "https://localhost:6001" + talk.thumbnail.RelativeUrl;
+        // na de || moet eigenijk weg omdat deze niet published zijn.
+
+        <div class="container talk">
+            <h1>@talk.title</h1>
+            <div class="row talkMiddle">
+                <p class="talkDesc">@talk.description</p>
+                <img class="talkThumbnail" src="@thumbnailUrl" />
+            </div>
+            <div class="row talkBottom">
+                <h2 class="talkTribe">@talk.Tribe.Title</h2>
             </div>
         </div>
-        @*<embed class="pdfReader" src="@pdfurl#view=FitH&scrollbar=0&toolbar=0&statusbar=0&messages=0&navpanes=0" />*@
-    </div>
+    }
+    <a class="row moreButton" asp-action="OnDemand" asp-controller="Home" asp-route-Tribe="Amazon Web Services Tribe">
+
+        <h2>+</h2>
+
+    </a>
 </div>
 
