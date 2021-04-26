@@ -7,6 +7,7 @@ a:hover {
 }
 
 .podcast {
+    background-color: #232323;
     border-bottom: solid 2px #ffe000;
     box-shadow: inset 0 -3px 0 -1px #333333;
     transition: box-shadow .25s ease-in-out;
@@ -43,4 +44,29 @@ a:hover {
 
 .title {
     overflow: hidden;
+}
+
+.noResultsDIV {
+    min-height: 588px;
+    min-width: 100%;
+}
+
+    .noResultsDIV p {
+        text-align: center;
+        color: white;
+    }
+
+.Search {
+    border: solid 1px #ffe000 !important;
+    border-radius: 5px;
+    background-color: #232323;
+    margin-left: 80%;
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+    color: #ffe000;
+}
+
+input:not([type="button"]):not([type="submit"]):not([type="reset"]):hover, input:not([type="button"]):not([type="submit"]):not([type="reset"]):focus, textarea:hover, textarea:focus, select:hover, select:focus {
+    border: 2px solid #1b2a44;
+    outline: none;
 }
