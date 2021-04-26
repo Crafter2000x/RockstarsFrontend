@@ -3,6 +3,7 @@
     background-attachment: fixed;
     font-family: 'DIN 2014';
 }
+
 .talks h5 {
     color: white;
 }
@@ -18,6 +19,15 @@
     }
 }
 
+.noResultsDIV {
+    min-height: 588px;
+    min-width: 100%;
+}
+
+    .noResultsDIV p {
+        text-align: center;
+        color: white;
+    }
 
 .topButton {
     font-size: 75%;
@@ -25,21 +35,23 @@
     height: 50px;
 }
 
-.buttonTop {
-    float: right;
-}
 
 .buttonTop {
-    float: right;
+    position: fixed;
+    float: left;
     background-color: #ffe000;
-    width: 35%;
+    width: 10%;
     height: 50px;
-    top: 0px;
     color: #232323;
     font-size: 150%;
     line-height: 30px;
     font-family: 'DIN 2014';
     font-weight: bold;
+    bottom: 40px;
+    left: 20px;
+    z-index: 1;
+    cursor: pointer;
+    border: solid 1px #232323;
 }
 
 .buttonTop:hover {
@@ -57,6 +69,8 @@
 }
 
 .talk {
+    background-color: #232323;
+    display: block;
     color: white;
     border: solid 2px #ffe000;
     margin-top: 4%;
@@ -75,7 +89,6 @@
     margin-top: 1%;
     width: 60%;
     margin-left: 1.5%;
-    border: solid 1px #ffe000;
     margin-bottom: 1%;
 }
 
@@ -127,4 +140,26 @@
     border-top: solid 1.5px #ffe000;
     margin-bottom: 10px;
     margin-top: 15px;
+}
+
+.Search {
+    border: solid 1px #ffe000 !important;
+    border-radius: 5px;
+    background-color: #232323;
+    margin-left: 80%;
+    margin-top: 2.5%;
+    color: #ffe000;
+    outline-color: #ffe000 !important;
+}
+
+
+input:not([type="button"]):not([type="submit"]):not([type="reset"]):hover, input:not([type="button"]):not([type="submit"]):not([type="reset"]):focus, textarea:hover, textarea:focus, select:hover, select:focus 
+{    
+    border:2px solid #1b2a44;    
+    outline:none;
+}
+
+.Search:focus {
+    border: solid 1px #ffe000 !important;
+    border-radius: 5px;
 }

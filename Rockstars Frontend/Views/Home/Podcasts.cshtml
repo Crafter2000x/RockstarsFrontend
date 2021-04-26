@@ -1,0 +1,79 @@
+﻿@{
+    ViewData["Title"] = "Podcasts";
+
+    List<PodcastModel> podcasts = new List<PodcastModel>();
+    ApiController api = new ApiController();
+    await api.PodcastAPI();
+    podcasts = api.podcasts;
+    string baseIP = "https://localhost:6001";
+    int id = 1;
+}
+<link rel="stylesheet" href="~/css/_Podcasts.css" />
+
+<input class="Search" onkeyup="filter()" type="text" id="value" placeholder="Type to Search" />
+
+<body>
+
+    @foreach (PodcastModel podcast in podcasts)
+    {
+        if (podcast.status == 1 && podcast.type == 2 || podcast.status == 0 && podcast.type == 2)
+        {
+            string profilePicture = baseIP + "/api/File/" + podcast.Author.ImageId + "/retrieve";
+            <a asp-controller="Home" asp-action="Podcast" asp-route-title="@podcast.title">
+                <div class="container podcast">
+                    <div class="row">
+                        <img class="picture" src="@profilePicture" />
+                        <div class="text">
+                            <h2 class="number">PODCAST #@id</h2>
+                            <h1 class="title name">@podcast.title</h1>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            id++;
+        }
+    }
+    <div class="noResultsDIV" id="test" style="display: none;">
+        <p>Geen resultaten gevonden</p>
+    </div>
+    <script type="text/javascript">
+        function filter() {
+            var value, name, profile, i, weergave;
+            value = document.getElementById("value").value.toUpperCase();
+            profile = document.getElementsByClassName("podcast");
+
+
+            for (i = 0; i < profile.length; i++) {
+                name = profile[i].getElementsByClassName("name");
+                if (name[0].innerHTML.toUpperCase().indexOf(value) > -1) {
+                    profile[i].style.display = "block";
+                }
+                else {
+                    profile[i].style.display = "none";
+                }
+
+            }
+            weergave = false;
+
+            for (i = 0; i < profile.length; i++) {
+
+                if (profile[i].style.display == "block") {
+                    weergave = true;
+                }
+            }
+            console.warn(weergave);
+
+            if (weergave == false) {
+                document.getElementById("test").style.display = "flex";
+            } else {
+                document.getElementById("test").style.display = "none";
+
+            }
+
+
+        }
+
+    </script>
+</body>
+
+

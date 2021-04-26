@@ -15,6 +15,7 @@ namespace Rockstars_Frontend
         public List<ArtikelModel> artikelen = new List<ArtikelModel>();
         public List<Tribe> AllTribes = new List<Tribe>();
         public List<TalkModel> talks = new List<TalkModel>();
+        public List<PodcastModel> podcasts = new List<PodcastModel>();
         public bool connection = false;
 
         public async Task ArtikelPaginaAPI()
@@ -68,6 +69,23 @@ namespace Rockstars_Frontend
                     connection = true;
                     var talkResponse = Res.Content.ReadAsStringAsync().Result;
                     talks = JsonConvert.DeserializeObject<List<TalkModel>>(talkResponse);
+                }
+            }
+        }
+        public async Task PodcastAPI()
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(Baseurl);
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage Res = await client.GetAsync("api/Post");
+
+                if (Res.IsSuccessStatusCode)
+                {
+                    connection = true;
+                    var podcastResponse = Res.Content.ReadAsStringAsync().Result;
+                    podcasts = JsonConvert.DeserializeObject<List<PodcastModel>>(podcastResponse);
                 }
             }
         }

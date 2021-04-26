@@ -28,43 +28,40 @@
 
 <script src="~/js/site.js" asp-append-version="true"></script>
 
+<input class="Search" onkeyup="filter()" type="text" id="value" placeholder="Type to Search" />
 
 <body>
-    <div class="topButton">
-        <a class="btn buttonTop" data-toggle="collapse" data-target="#Formulier">
-            <p>Talk Aanvragen</p>
-        </a>
-    </div>
-    <div class="collapse" id="Formulier">
-        <div class="formulier">
-            @using (Html.BeginForm("OnDemand", "Home", FormMethod.Post))
-            {
-                <h5>Voorkeursdag: </h5> @Html.EditorFor(m => m.form.preferredDateTime, new { @type = "date", @required = "required" }) <br />
-                @Html.ValidationSummary()
-                <h5>Bedrijfsnaam: </h5> @Html.TextBoxFor(m => m.form.companyName, new { @required = "required" }) <br />
-                <h5>Aantal mensen aanwezig: </h5> @Html.TextBoxFor(m => m.form.amountOfPeople, new { @type = "number", min = 1, max = 100, @required = "required" }) <br />
-                <h5>Tribe: </h5> @Html.DropDownListFor(m => m.form.tribe.Title, new SelectList(Enum.GetValues(typeof(Tribes)))) <br />
-                <h5>Tribe-Beschrijving: </h5> @Html.EditorFor(m => m.form.tribe.Description) <br />
-                <h5>Opmerking: </h5> @Html.EditorFor(m => m.form.comment) <br />
-                <h5>Email: </h5> @Html.TextBoxFor(m => m.form.contactEmail, new { @type = "mail", @required = "required" }) <br />
-                <h5>Telefoon: </h5> @Html.TextBoxFor(m => m.form.phoneNumber, new { @required = "required" }) <br /><br />
-                <input type="submit" value="Vraag aan" />
-            }
-        </div>
-    </div>
-
     <div class="talks">
-
-        @foreach (TalkModel talk in newtalks)
+        <div class="collapse" id="Formulier">
+            <div class="formulier">
+                @using (Html.BeginForm("OnDemand", "Home", FormMethod.Post))
+                {
+                    <h5>Voorkeursdag: </h5> @Html.EditorFor(m => m.form.preferredDateTime, new { @type = "date", @required = "required" }) <br />
+                    @Html.ValidationSummary()
+                    <h5>Bedrijfsnaam: </h5> @Html.TextBoxFor(m => m.form.companyName, new { @required = "required" }) <br />
+                    <h5>Aantal mensen aanwezig: </h5> @Html.TextBoxFor(m => m.form.amountOfPeople, new { @type = "number", min = 1, max = 100, @required = "required" }) <br />
+                    <h5>Tribe: </h5> @Html.DropDownListFor(m => m.form.tribe.Title, new SelectList(Enum.GetValues(typeof(Tribes)))) <br />
+                    <h5>Tribe-Beschrijving: </h5> @Html.EditorFor(m => m.form.tribe.Description) <br />
+                    <h5>Opmerking: </h5> @Html.EditorFor(m => m.form.comment) <br />
+                    <h5>Email: </h5> @Html.TextBoxFor(m => m.form.contactEmail, new { @type = "mail", @required = "required" }) <br />
+                    <h5>Telefoon: </h5> @Html.TextBoxFor(m => m.form.phoneNumber, new { @required = "required" }) <br /><br />
+                    <input type="submit" value="Vraag aan" />
+                }
+            </div>
+        </div>
+        <div class="noResultsDIV" id="test" style="display: none;">
+            <p>Geen resultaten gevonden</p>
+        </div>
+        @foreach (TalkModel talk in talks)
         {
             string thumbnailUrl = "https://localhost:6001" + talk.thumbnail.RelativeUrl;
             // na de || moet eigenijk weg omdat deze niet published zijn.
             if (talk.Type == 1 && talk.Status == 1 || talk.Type == 1 && talk.Status == 0)
             {
                 <div class="container talk">
-                    <h1>@talk.title</h1>
+                    <h1 class="name">@talk.title</h1>
                     <div class="row talkMiddle">
-                        <p class="talkDesc">@talk.description</p>
+                        <p class="talkDesc name2">@talk.description</p>
                         <img class="talkThumbnail" src="@thumbnailUrl" />
                     </div>
                     <div class="row talkBottom">
@@ -88,5 +85,52 @@
                 </div>
             }
         }
+        <div class="topButton">
+            <a id="linksbutton" class="btn buttonTop" data-toggle="collapse" data-target="#Formulier">
+                <p>Talk Aanvragen</p>
+            </a>
+        </div>
+
     </div>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script type="text/javascript">
+        function filter() {
+            var value, name, profile, i, name2, weergave;
+            value = document.getElementById("value").value.toUpperCase();
+            profile = document.getElementsByClassName("talk");
+
+
+            for (i = 0; i < profile.length; i++) {
+                name = profile[i].getElementsByClassName("name");
+                name2 = profile[i].getElementsByClassName("name2");
+                if (name[0].innerHTML.toUpperCase().indexOf(value) > -1 || name2[0].innerHTML.toUpperCase().indexOf(value) > -1) {
+                    profile[i].style.display = "block";
+                }
+                else {
+                    profile[i].style.display = "none";
+                }
+
+            }
+            weergave = false;
+
+            for (i = 0; i < profile.length; i++) {
+
+                if (profile[i].style.display == "block") {
+                    weergave = true;
+                }
+            }
+            console.warn(weergave);
+
+            if (weergave == false) {
+                document.getElementById("test").style.display = "flex";
+            } else {
+                document.getElementById("test").style.display = "none";
+
+            }
+
+
+        }
+
+    </script>
 </body>

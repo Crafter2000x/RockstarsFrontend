@@ -40,6 +40,10 @@ namespace Rockstars_Frontend.Controllers
 
             return View();
         }
+        public IActionResult Podcasts()
+        {
+            return View();
+        }
 
         public IActionResult Artikel(string? title)
         {
@@ -64,6 +68,16 @@ namespace Rockstars_Frontend.Controllers
             return View();
         }
 
+
+        public IActionResult Podcast(string? title)
+        {
+            if (title == null)
+            {
+                return RedirectToAction("Podcasts");
+            }
+            ViewData["ID"] = title;
+            return View();
+        }
 
         [HttpPost]
         public async Task<IActionResult> OnDemand(FormulierEnAanvraagModel model)

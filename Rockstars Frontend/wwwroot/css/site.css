@@ -7,6 +7,12 @@ body {
     font-weight: bold;
 }
 
+body {
+    background-image: url(/Images/defaultOp.png) !important;
+    background-attachment: fixed;
+    font-family: 'DIN 2014';
+}
+
 html {
     font-size: 14px;
 }
@@ -26,6 +32,7 @@ html {
 
 .navigation {
     background-color: #ffe000;
+
 }
 
     .navigation img {
@@ -35,7 +42,7 @@ html {
     }
 
 .nav-link {
-    font-size: 40px;
+    font-size: 25px;
     margin-right: 45px;
 }
 

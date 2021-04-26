@@ -1,0 +1,49 @@
+﻿body {
+    color: white;
+    font-family: 'DIN 2014';
+}
+
+.information {
+
+}
+
+.Auteur {
+    border-bottom: solid 2px #ffe000;
+}
+
+.profilePicture {
+    margin-top: 3%;
+    margin-bottom: 2.5%;
+    margin-left: 3%;
+    height: 15% !important;
+    width: 15% !important;
+}
+
+.profileInfo {
+    margin-top: 3%;
+    margin-bottom: 2.5%;
+    margin-left: 1%;
+    margin-right: 3%;
+    max-width: 73%;
+}
+
+.profileInfo p {
+    font-size: 400%;
+    font-weight: normal;
+}
+
+.podcastInfo {
+    margin-top: 2%;
+    margin-bottom: 3%;
+}
+
+p {
+    font-size: 125%;
+}
+
+.text12 {
+    font-size: 150%;
+    font-weight: normal;
+    color: #b3b3b3;
+}
+

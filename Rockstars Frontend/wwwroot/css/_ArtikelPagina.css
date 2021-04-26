@@ -4,6 +4,10 @@
     font-family: 'DIN 2014';
 }
 
+
+.fullArtikel {
+}
+
 h1 {
     color: white;
     font-weight: bold;
@@ -96,3 +100,34 @@ h3 {
     padding-top: 5%;
     padding-bottom: 5%;
 }
+
+.noResultsDIV {
+    min-height: 588px;
+    min-width: 100%;
+}
+
+.noResultsDIV p{
+    text-align: center;
+    color: white;
+}
+
+.Search {
+    border: solid 1px #ffe000 !important;
+    border-radius: 5px;
+    background-color: #232323;
+    margin-left: 80%;
+    margin-top: 0.25%;
+    color: #ffe000;
+}
+
+input:not([type="button"]):not([type="submit"]):not([type="reset"]):hover, input:not([type="button"]):not([type="submit"]):not([type="reset"]):focus, textarea:hover, textarea:focus, select:hover, select:focus 
+{    
+    border:2px solid #1b2a44;    
+    outline:none;
+}
+
+
+    .Search:active {
+        border: solid 1px #ffe000 !important;
+        border-radius: 5px;
+    }
