@@ -1,12 +1,21 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Rockstars.WebApi.Data;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
-namespace Rockstars.WebApi.Models
+namespace Rockstars_Frontend.Models
 {
-    public class Tribe : IEntity
+    public class Tribe
     {
-        public int Id { get; set; }
+        [Required]
         public string Title { get; set; }
+
+        [Required]
         public string Description { get; set; }
+        
+        public IList<TribeMember> Members { get; set; }
+
+        public DateTime CreatedAt { get; set; }
+        
+        public DateTime? UpdatedAt { get; set; }
     }
 }

@@ -1,5 +1,4 @@
-﻿using Rockstars.WebApi.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -34,6 +33,6 @@ namespace Rockstars_Frontend.Models
 
         public IDictionary<string, string> Attributes { get; set; }
 
-        public DateTime CreatedDate { get; set; }
+        public DateTime CreatedAt { get; set; }
     }
 }

@@ -27,12 +27,17 @@ namespace Rockstars_Frontend.Controllers
             return View();
         }
 
-        public IActionResult ArtikelPagina()
+        public IActionResult ArtikelPagina(string Tribe)
         {
-            return View();
-        }
-        public IActionResult OnDemand()
-        {
+            if (Tribe == null)
+            {
+                ViewData["TRIBE"] = "allen";
+            }
+            else
+            {
+                ViewData["TRIBE"] = Tribe;
+            }
+
             return View();
         }
         public IActionResult Podcasts()
@@ -44,11 +49,25 @@ namespace Rockstars_Frontend.Controllers
         {
             if (title == null)
             {
-                return RedirectToAction("ArtikelPagina");
+                return RedirectToAction("TribeOverzicht");
             }
             ViewData["ID"] = title;
             return View();
         }
+        public IActionResult OnDemand(string Tribe)
+        {
+            if (Tribe == null)
+            {
+                ViewData["TRIBE"] = "allen";
+            }
+            else
+            {
+                ViewData["TRIBE"] = Tribe;
+            }
+
+            return View();
+        }
+
 
         public IActionResult Podcast(string? title)
         {
@@ -129,7 +148,19 @@ namespace Rockstars_Frontend.Controllers
             return View();
         }
 
-
+        public IActionResult TribeOverzicht()
+        {
+            return View();
+        }
+        public IActionResult TribePagina(string? title)
+        {
+            if (title == null)
+            {
+                return RedirectToAction("ArtikelPagina");
+            }
+            ViewData["ID"] = title;
+            return View();
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

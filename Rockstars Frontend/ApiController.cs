@@ -13,6 +13,7 @@ namespace Rockstars_Frontend
     {
         string Baseurl = "https://localhost:6001/";
         public List<ArtikelModel> artikelen = new List<ArtikelModel>();
+        public List<Tribe> AllTribes = new List<Tribe>();
         public List<TalkModel> talks = new List<TalkModel>();
         public List<PodcastModel> podcasts = new List<PodcastModel>();
         public bool connection = false;
@@ -32,6 +33,24 @@ namespace Rockstars_Frontend
                     connection = true;
                     var artikelResponse = Res.Content.ReadAsStringAsync().Result;
                     artikelen = JsonConvert.DeserializeObject<List<ArtikelModel>>(artikelResponse);
+                }
+            }
+        }
+        public async Task TribePaginaAPI()
+        {
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(Baseurl);
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage Res = await client.GetAsync("api/Tribe");
+
+                if (Res.IsSuccessStatusCode)
+                {
+                    connection = true;
+                    var TribeResponse = Res.Content.ReadAsStringAsync().Result;
+                    AllTribes = JsonConvert.DeserializeObject<List<Tribe>>(TribeResponse);
                 }
             }
         }

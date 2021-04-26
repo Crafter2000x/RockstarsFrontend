@@ -1,25 +1,28 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Rockstars.WebApi.Data;
+using System.Text.Json.Serialization;
 
-namespace Rockstars.WebApi.Models
+namespace Rockstars_Frontend.Models
 {
-    public class User : IEntity
+    public class User
     {
-        public int Id { get; set; }
-
         [Required]
         public string Name { get; set; }
 
         public string Biography { get; set; }
 
-        public UserRole Role { get; set; }
-
         public int ImageId { get; set; }
 
-        [BindNever]
         [ForeignKey(nameof(ImageId))]
         public StoredFile Image { get; set; }
+
+        [JsonIgnore]
+        public IEnumerable<TribeMember> MemberOf { get; set; }
+
+        public DateTime CreatedAt { get; set; }
+
+        public DateTime? UpdatedAt { get; set; }
     }
 }

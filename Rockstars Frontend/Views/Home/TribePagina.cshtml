@@ -1,0 +1,147 @@
+﻿@model ArtikelModel
+@{
+    ViewData["Title"] = "TribePagina";
+    List<Tribe> Tribes = new List<Tribe>();
+    ApiController api = new ApiController();
+    await api.TribePaginaAPI();
+    Tribes = api.AllTribes;
+    Tribe Tribeso = new Tribe();
+    foreach (Tribe ar in Tribes)
+    {
+
+        Tribeso = ar;
+
+    }
+    List<ArtikelModel> artikelen = new List<ArtikelModel>();
+    List<TalkModel> webinars = new List<TalkModel>();
+    List<ArtikelModel> drieartikelen = new List<ArtikelModel>();
+    List<TalkModel> driewebinars = new List<TalkModel>();
+    ApiController api2 = new ApiController();
+    await api2.ArtikelPaginaAPI();
+    artikelen = api2.artikelen;
+    await api2.TalkAPI();
+    webinars = api2.talks;
+    int i = 0;
+    FormulierModel form = new FormulierModel();
+}
+
+<link rel="stylesheet" href="~/css/TribePagina.css" />
+
+@*@foreach (TribeMember user in TribeMember)
+    {
+        string Imageurl = "https://localhost:6001" + artikel.Thumbnail.Url;
+        string artikeltitle = artikel.Title;
+        if (artikel.Status == 1 && artikel.Type == 0 || artikel.Status == 0 && artikel.Type == 0)
+        {
+            <div class="col-md-12 col-lg-4 col-sm-3">
+                <div class="beep">
+                    <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle">
+                        <div class="card h-100 artikel">
+                            <img src=@Imageurl class="card-img-top" alt="...">
+                            <div class="card-body info">
+                                <h5 class="card-title Titel text-uppercase">@artikel.Title</h5>
+                                <h3 class="card-text author"><i class="fa fa-pencil"></i>&nbsp; &nbsp;@artikel.Author.Name</h3>
+                                <h3 class="card-text author"><i class="fa fa-users"></i>&nbsp; &nbsp;@artikel.Tribe.Title</h3>
+                            </div>
+                            <div class="card-footer">
+                                <h3><i class="fa fa-calendar-o"></i>&nbsp; &nbsp;@artikel.CreatedDate.ToString("dd-MM-yyyy")</h3>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        }
+    }*@
+
+@*@{string pdfurl = "https://localhost:6001/api/File/" + artikel.Attributes["pdf"] + "/retrieve"; }*@
+
+@*@{ string Imageurl = "https://localhost:6001" + Tribeso.Members[0].User.Image;}*@
+<div class="container">
+    @foreach (ArtikelModel artikel in artikelen)
+    {
+        artikelen = artikelen.OrderByDescending(x => x.CreatedAt).ToList();
+    }
+    @foreach (TalkModel artikel in webinars)
+    {
+        webinars = webinars.OrderByDescending(x => x.createdDate).ToList();
+    }
+
+    @for (int q = 0; q < 3; q++)
+    {
+        if (artikelen[i].Status == 1 && artikelen[i].Type == 0 || artikelen[i].Status == 0 && artikelen[i].Type == 0)
+        {
+            drieartikelen.Add(artikelen[q]);
+        }
+        else
+        {
+            q = q - 1;
+        }
+        i++;
+    }
+    @{i = 0; }
+    @for (int y = 0; y < 3; y++)
+    {
+        if (webinars[i].Status == 1 && webinars[i].Type == 1 || webinars[i].Status == 0 && webinars[i].Type == 1)
+        {
+            driewebinars.Add(webinars[y]);
+        }
+        else
+        {
+            y = y - 1;
+        }
+        i++;
+    }
+
+    <div class="row art">
+        @foreach (ArtikelModel artikel in drieartikelen)
+        {
+            string Imageurl = "https://localhost:6001" + artikel.Thumbnail.RelativeUrl;
+            string artikeltitle = artikel.Title;
+
+            <div class="col-md-12 col-lg-4 col-sm-3">
+                <div class="beep">
+                    <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle">
+                        <div class="card h-100 artikel">
+                            <img src=@Imageurl class="card-img-top" alt="...">
+                            <div class="card-body info">
+                                <h5 class="card-title Titel text-uppercase">@artikel.Title</h5>
+                                <h3 class="card-text author"><i class="fa fa-pencil"></i>&nbsp; &nbsp;@artikel.Author.Name</h3>
+                                <h3 class="card-text author"><i class="fa fa-users"></i>&nbsp; &nbsp;@artikel.Tribe.Title</h3>
+                            </div>
+                            <div class="card-footer">
+                                <h3><i class="fa fa-calendar-o"></i>&nbsp; &nbsp;@artikel.CreatedAt.ToString("dd-MM-yyyy")</h3>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        }
+        <a class="row moreButton" asp-action="ArtikelPagina" asp-controller="Home" asp-route-Tribe="Amazon Web Services Tribe">
+
+            <h2>+</h2>
+
+        </a>
+    </div>
+    @foreach (TalkModel talk in driewebinars)
+    {
+        string thumbnailUrl = "https://localhost:6001" + talk.thumbnail.RelativeUrl;
+        // na de || moet eigenijk weg omdat deze niet published zijn.
+
+        <div class="container talk">
+            <h1>@talk.title</h1>
+            <div class="row talkMiddle">
+                <p class="talkDesc">@talk.description</p>
+                <img class="talkThumbnail" src="@thumbnailUrl" />
+            </div>
+            <div class="row talkBottom">
+                <h2 class="talkTribe">@talk.Tribe.Title</h2>
+            </div>
+        </div>
+    }
+    <a class="row moreButton" asp-action="OnDemand" asp-controller="Home" asp-route-Tribe="Amazon Web Services Tribe">
+
+        <h2>+</h2>
+
+    </a>
+</div>
+

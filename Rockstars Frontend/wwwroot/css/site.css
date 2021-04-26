@@ -50,6 +50,8 @@ html {
 
 .footy {
     background-color: #ffe000;
+    bottom: 0px;
+    height:auto;
 }
 
 #topBtn {

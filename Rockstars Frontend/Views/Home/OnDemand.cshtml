@@ -1,14 +1,26 @@
-﻿@model FormulierEnAanvraagModel; 
+﻿@model FormulierEnAanvraagModel;
 
 @{
     ViewData["Title"] = "OnDemand";
     List<TalkModel> talks = new List<TalkModel>();
+    List<TalkModel> newtalks = new List<TalkModel>();
     ApiController api = new ApiController();
     await api.TalkAPI();
     talks = api.talks;
     int number = 0;
     string id = "1" + number;
- 
+    @foreach (TalkModel artikel in talks)
+    {
+        newtalks.Add(artikel);
+        if (ViewData["TRIBE"].ToString() != "allen")
+        {
+            if (artikel.Tribe.Title != ViewData["TRIBE"].ToString())
+            {
+                newtalks.Remove(artikel);
+            }
+        }
+    }
+
 }
 
 <link rel="stylesheet" href="~/css/_OnDemand_.css" />
@@ -42,7 +54,7 @@
         </div>
         @foreach (TalkModel talk in talks)
         {
-            string thumbnailUrl = "https://localhost:6001" + talk.thumbnail.Url;
+            string thumbnailUrl = "https://localhost:6001" + talk.thumbnail.RelativeUrl;
             // na de || moet eigenijk weg omdat deze niet published zijn.
             if (talk.Type == 1 && talk.Status == 1 || talk.Type == 1 && talk.Status == 0)
             {
