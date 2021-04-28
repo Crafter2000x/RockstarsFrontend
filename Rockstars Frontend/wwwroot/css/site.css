@@ -71,7 +71,7 @@ html {
 
 @media (min-width: 768px) {
     .SearchBar {
-        left: 85%;
+        left: 200%;
         position: relative;
         top: 10%;
     }
