@@ -8,6 +8,7 @@ namespace Rockstars_Frontend.Models
 {
     public class PodcastModel
     {
+        public int Id { get; set; }
         public string title { get; set; } 
         public string description { get; set; } 
         public int ThumbnailId { get; set; }

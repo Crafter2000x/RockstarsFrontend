@@ -38,6 +38,7 @@ h1 {
         content: "";
         text-align: right;
         position: absolute;
+        white-space: nowrap;
         bottom: 0;
         right: 0;
         width: 70%;

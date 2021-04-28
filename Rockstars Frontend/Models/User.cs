@@ -19,7 +19,7 @@ namespace Rockstars_Frontend.Models
         public StoredFile Image { get; set; }
 
         [JsonIgnore]
-        public IEnumerable<TribeMember> MemberOf { get; set; }
+        public List<TribeMember> MemberOf { get; set; }
 
         public DateTime CreatedAt { get; set; }
 

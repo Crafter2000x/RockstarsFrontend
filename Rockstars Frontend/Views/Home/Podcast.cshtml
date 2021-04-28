@@ -8,9 +8,13 @@
 
     foreach (PodcastModel pod in podcasts)
     {
-        if (pod.title.Equals(ViewData["ID"].ToString()))
+        if (pod.title.Equals(ViewData["ID"]))
         {
-            podcast = pod;
+            
+            if (pod.status<=1)
+            {
+                podcast = pod;
+            }
         }
     }
 
@@ -60,11 +64,11 @@
         <img class="profilePicture" src="@profilePicture" />
         <div class="profileInfo">
             <h1>@podcast.Author.Name</h1>
-            <h2><a>@podcast.Tribe.Title</a> - @podcast.Author</h2>
+            <h2><a>@podcast.Tribe.Title</a> - @podcast.Author.Name</h2>
             @if (biotext.Length > 50)
             {
                 <div class="text12">
-                    <p>@bioMultiple <a data-toggle="collapse" data-target="#BioGraphy"><b><u>Read more</u></b></a></p>
+                    <p>@bioMultiple <a data-toggle="collapse" data-target="#BioGraphy"><b><u>Lees meer</u></b></a></p>
                     <p class="collapse" id="BioGraphy">
                         @biotext
                     </p>
@@ -88,7 +92,7 @@
         @if (desctext.Length > 50)
         {
             <div class="text12">
-                <p>@descMultiple <a data-toggle="collapse" data-target="#Description"><b><u>Read more</u></b></a></p>
+                <p>@descMultiple <a data-toggle="collapse" data-target="#Description"><b><u>Lees meer</u></b></a></p>
                 <p class="collapse" id="Description">
                     @desctext
                 </p>

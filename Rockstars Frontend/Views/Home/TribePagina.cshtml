@@ -1,4 +1,4 @@
-﻿@model ArtikelModel
+﻿@model FormulierEnAanvraagModel
 @{
     ViewData["Title"] = "TribePagina";
     List<Tribe> Tribes = new List<Tribe>();
@@ -22,6 +22,7 @@
     await api2.TalkAPI();
     webinars = api2.talks;
     int i = 0;
+    int w = 0;
     FormulierModel form = new FormulierModel();
 }
 
@@ -57,39 +58,68 @@
 
 @*@{ string Imageurl = "https://localhost:6001" + Tribeso.Members[0].User.Image;}*@
 <div class="container">
-    @foreach (ArtikelModel artikel in artikelen)
-    {
-        artikelen = artikelen.OrderByDescending(x => x.CreatedAt).ToList();
-    }
-    @foreach (TalkModel artikel in webinars)
-    {
-        webinars = webinars.OrderByDescending(x => x.createdDate).ToList();
-    }
+
+    @{artikelen = artikelen.OrderByDescending(x => x.CreatedAt).ToList();
+
+        webinars = webinars.OrderByDescending(x => x.CreatedAt).ToList();}
+
 
     @for (int q = 0; q < 3; q++)
     {
-        if (artikelen[i].Status == 1 && artikelen[i].Type == 0 || artikelen[i].Status == 0 && artikelen[i].Type == 0)
+        if (artikelen[i].Type == 0)
         {
-            drieartikelen.Add(artikelen[q]);
+            if (artikelen[i].Tribe.Title==ViewData["ID"].ToString())
+            {
+                if (artikelen[i].Status == 1 && artikelen[i].Type == 0 || artikelen[i].Status == 0 && artikelen[i].Type == 0)
+                {
+                    drieartikelen.Add(artikelen[i]);
+                }
+            }
+
+            else
+            {
+                q = q - 1;
+            }
+
+
         }
         else
         {
             q = q - 1;
+
         }
         i++;
+
+
     }
-    @{i = 0; }
     @for (int y = 0; y < 3; y++)
     {
-        if (webinars[i].Status == 1 && webinars[i].Type == 1 || webinars[i].Status == 0 && webinars[i].Type == 1)
+
+        if (webinars[w].Type == 1)
         {
-            driewebinars.Add(webinars[y]);
+            if (webinars[w].Tribe.Title == ViewData["ID"].ToString())
+            {
+                if (webinars[w].Status == 1 && webinars[w].Type == 1 || webinars[w].Status == 0 && webinars[w].Type == 1)
+                {
+                    driewebinars.Add(webinars[w]);
+                }
+            }
+            else
+            {
+                y = y - 1;
+            }
+
+
         }
         else
         {
             y = y - 1;
+
         }
-        i++;
+        w++;
+
+
+
     }
 
     <div class="row art">
@@ -116,7 +146,7 @@
                 </div>
             </div>
         }
-        <a class="row moreButton" asp-action="ArtikelPagina" asp-controller="Home" asp-route-Tribe="Amazon Web Services Tribe">
+        <a class="row moreButton" asp-area="" asp-action="ArtikelPagina" asp-controller="Home" asp-route-Tribe="@ViewData["ID"].ToString()">
 
             <h2>+</h2>
 
@@ -135,10 +165,11 @@
             </div>
             <div class="row talkBottom">
                 <h2 class="talkTribe">@talk.Tribe.Title</h2>
-            </div>
         </div>
+        
+    </div>
     }
-    <a class="row moreButton" asp-action="OnDemand" asp-controller="Home" asp-route-Tribe="Amazon Web Services Tribe">
+    <a class="row moreButton" asp-area=""asp-action="OnDemand" asp-controller="Home" asp-route-Tribe="@ViewData["ID"].ToString()">
 
         <h2>+</h2>
 

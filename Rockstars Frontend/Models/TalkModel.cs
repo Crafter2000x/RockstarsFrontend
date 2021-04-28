@@ -31,6 +31,6 @@ namespace Rockstars_Frontend.Models
 
         public int thumbnailId { get; set; }
 
-        public DateTime createdDate { get; set; }
+        public DateTime CreatedAt { get; set; }
     }
 }

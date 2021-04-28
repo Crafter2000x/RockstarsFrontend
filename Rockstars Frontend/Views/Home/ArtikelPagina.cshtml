@@ -24,12 +24,12 @@
 }
 <br>
 
-<input class="Search" onkeyup="filter()" type="text" id="value" placeholder="Type to Search" />
+
 
 <div class="container">
-
+    
     <div class="row art">
-
+        <input class="Search" onkeyup="filter()" type="text" id="value" placeholder="Typ hier om te zoeken" />
         @foreach (ArtikelModel artikel in newartikelen)
         {
             string Imageurl = "https://localhost:6001" + artikel.Thumbnail.RelativeUrl;

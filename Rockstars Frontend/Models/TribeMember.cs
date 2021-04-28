@@ -5,17 +5,21 @@ namespace Rockstars_Frontend.Models
 {
     public class TribeMember
     {
+        public int Id { get; set; }
+
         public int UserId { get; set; }
-        
-        [ForeignKey(nameof(UserId))]
+
         public User User { get; set; }
 
         public MemberRole Role { get; set; }
 
         public int TribeId { get; set; }
 
-        [JsonIgnore]
-        [ForeignKey(nameof(TribeId))]
-        public Tribe Tribe { get; set; }
+        public enum MemberRole
+        {
+            Normal = 0,
+            TribeLead = 1,
+            SpecialAgent = 2,
+        }
     }
 }
