@@ -68,3 +68,11 @@ html {
     display: none;
     font-size: 160%;
 }
+
+@media (min-width: 768px) {
+    .SearchBar {
+        left: 85%;
+        position: relative;
+        top: 10%;
+    }
+}

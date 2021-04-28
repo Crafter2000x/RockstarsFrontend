@@ -1,7 +1,10 @@
-﻿@*
+﻿@model FormulierEnAanvraagModel
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    <link rel="stylesheet" href="~/css/Search.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     List<ArtikelModel> Everything = new List<ArtikelModel>();
     ApiController api = new ApiController();
@@ -20,15 +23,15 @@
 
 @foreach (ArtikelModel p in Everything)
 {
-    if(p.Title.ToUpper().Contains(keyword) || p.Author.Name.ToUpper().Contains(keyword) || p.Description.ToUpper().Contains(keyword))
+    if (p.Title.ToUpper().Contains(keyword) || p.Author.Name.ToUpper().Contains(keyword) || p.Description.ToUpper().Contains(keyword))
     {
         EverythingNew.Add(p);
     }
 }
 
-@foreach(ArtikelModel e in EverythingNew)
+@foreach (ArtikelModel e in EverythingNew)
 {
-    switch(e.Type)
+    switch (e.Type)
     {
         case 0:
             artikelen.Add(e);
@@ -41,5 +44,114 @@
             break;
     }
 }
+
+
+@if (artikelen.Count > 0)
+{
+    <div style="width: 100%; border-bottom: solid 2.5px #ffe000;">
+        <h1>Artikelen</h1>
+    </div>
+}
+    <div class="row">
+        @foreach (var artikel in artikelen)
+        {
+            string Imageurl = "https://localhost:6001" + artikel.Thumbnail.RelativeUrl;
+            string artikeltitle = artikel.Title;
+
+            if (artikel.Status == 1 && artikel.Type == 0 || artikel.Status == 0 && artikel.Type == 0)
+            {
+                <div class="col-md-12 col-lg-4 col-sm-3 fullArtikel">
+                    <div class="beep">
+                        <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle">
+                            <div class="card h-100 artikel">
+                                <img src=@Imageurl class="card-img-top" alt="...">
+                                <div class="card-body info">
+                                    <h5 class="card-title Titel text-uppercase name">@artikel.Title</h5>
+                                    <h3 class="card-text author name2"><i class="fa fa-pencil"></i>&nbsp; &nbsp;@artikel.Author.Name</h3>
+                                    <h3 class="card-text author"><i class="fa fa-users"></i>&nbsp; &nbsp;@artikel.Tribe.Title</h3>
+                                    <h3 class="name3" style="display:none">@artikel.Description</h3>
+                                </div>
+                                <div class="card-footer">
+                                    <h3><i class="fa fa-calendar-o"></i>&nbsp; &nbsp;@artikel.CreatedAt.ToString("dd-MM-yyyy")</h3>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+            }
+        }
+    </div>
+
+
+@if (webinars.Count > 0)
+{
+    <div style="width: 100%; border-bottom: solid 2.5px #ffe000;">
+        <h1>Webinars</h1>
+    </div>
+
+}
+<div class="talks">
+    @foreach (var talk in webinars)
+    {
+        string thumbnailUrl = "https://localhost:6001" + talk.Thumbnail.RelativeUrl;
+        // na de || moet eigenijk weg omdat deze niet published zijn.
+        if (talk.Type == 1 && talk.Status == 1 || talk.Type == 1 && talk.Status == 0)
+        {
+            <div class="container talk">
+                <h1 class="name">@talk.Title</h1>
+                <div class="row talkMiddle">
+                    <p class="talkDesc name2">@talk.Description</p>
+                    <img class="talkThumbnail" src="@thumbnailUrl" />
+                </div>
+                <div class="row talkBottom">
+                    <h2 class="talkTribe">@talk.Tribe.Title</h2>
+                    <button class="btn btn-primary btnAanvraag" data-toggle="collapse" data-target="#Aanvragen">Toegang Aanvragen</button>
+                </div>
+                <div class="collapse" id="Aanvragen">
+                    <div class="formulier">
+                        @using (Html.BeginForm("Aanvragen", "Home", FormMethod.Post))
+                        {
+
+                            <h5>Email: </h5> @Html.TextBoxFor(m => m.form.contactEmail, new { @type = "mail", @required = "required" }) <br />
+                            <h5>Bedrijfsnaam: </h5> @Html.TextBoxFor(m => m.form.companyName) <br />
+                            <h5>Rol: </h5> @Html.EditorFor(m => m.form.comment) <br />
+                            <h5>Telefoon: </h5> @Html.TextBoxFor(m => m.form.phoneNumber) <br /><br />
+                            <input type="submit" value="Vraag aan"/><br />
+                        }
+                    </div>
+                </div>
+
+            </div>
+        }
+    }
+</div>
+
+@if (podcasts.Count > 0)
+{
+    <div style="width: 100%; border-bottom: solid 2.5px #ffe000;">
+        <h1>Podcasts</h1>
+    </div>
+
+}
+
+@foreach (var podcast in podcasts)
+{
+    if (podcast.Status == 1 && podcast.Type == 2 || podcast.Status == 0 && podcast.Type == 2)
+    {
+        string profilePicture = baseIP + "/api/File/" + podcast.Author.ImageId + "/retrieve";
+        <a asp-controller="Home" asp-action="Podcast" asp-route-title="@podcast.Title">
+            <div class="container podcast">
+                <div class="row">
+                    <img class="picture" src="@profilePicture" />
+                    <div class="text">
+                        <h1 class="title name">@podcast.Title</h1>
+                    </div>
+                </div>
+            </div>
+        </a>
+    }
+}
+
 
 

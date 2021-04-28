@@ -150,7 +150,7 @@ namespace Rockstars_Frontend.Controllers
                     }
                 }
                 //await api.AddToAPI(model.talk);
-                return View("OnDemand");
+                return RedirectToAction("OnDemand");
             }
             return View();
         }
