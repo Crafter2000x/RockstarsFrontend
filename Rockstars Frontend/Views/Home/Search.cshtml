@@ -1,0 +1,45 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+
+    List<ArtikelModel> Everything = new List<ArtikelModel>();
+    ApiController api = new ApiController();
+    await api.ArtikelPaginaAPI();
+    Everything = api.artikelen;
+    string baseIP = "https://localhost:6001";
+
+    string keyword = ViewData["KeyWord"].ToString().ToUpper();
+
+    List<ArtikelModel> EverythingNew = new List<ArtikelModel>();
+
+    List<ArtikelModel> artikelen = new List<ArtikelModel>();
+    List<ArtikelModel> webinars = new List<ArtikelModel>();
+    List<ArtikelModel> podcasts = new List<ArtikelModel>();
+}
+
+@foreach (ArtikelModel p in Everything)
+{
+    if(p.Title.ToUpper().Contains(keyword) || p.Author.Name.ToUpper().Contains(keyword) || p.Description.ToUpper().Contains(keyword))
+    {
+        EverythingNew.Add(p);
+    }
+}
+
+@foreach(ArtikelModel e in EverythingNew)
+{
+    switch(e.Type)
+    {
+        case 0:
+            artikelen.Add(e);
+            break;
+        case 1:
+            webinars.Add(e);
+            break;
+        case 2:
+            podcasts.Add(e);
+            break;
+    }
+}
+
+
