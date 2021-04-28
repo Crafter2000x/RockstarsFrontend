@@ -27,6 +27,12 @@ namespace Rockstars_Frontend.Controllers
             return View();
         }
 
+        public IActionResult Search(string SearchTerm)
+        {
+            ViewData["KeyWord"] = SearchTerm;
+            return View();
+        }
+
         public IActionResult ArtikelPagina(string Tribe)
         {
             if (Tribe == null)
@@ -40,6 +46,7 @@ namespace Rockstars_Frontend.Controllers
 
             return View();
         }
+
         public IActionResult Podcasts()
         {
             return View();
@@ -143,7 +150,7 @@ namespace Rockstars_Frontend.Controllers
                     }
                 }
                 //await api.AddToAPI(model.talk);
-                return View("OnDemand");
+                return RedirectToAction("OnDemand");
             }
                 return View();
            

@@ -38,6 +38,20 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Podcasts">PODCASTS</a>
                             </li>
+                            <li class="nav-item">
+                                <form id="f_search" method="get" asp-action="Search" class="SearchBar">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <input id="ipt_search" type="search" class="form-control" name="SearchTerm" />
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default">
+                                                    Search
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </form>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -110,6 +124,19 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        $(function () {
+            $('#f_search input').keydown(function (e) {
+
+                var searchTerm = $("#ipt_search").val();
+
+                if (searchTerm == "" && event.keyCode === 13) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+        })
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
 
 
