@@ -11,8 +11,8 @@ namespace Rockstars_Frontend.Models
 
         [Required]
         public string Description { get; set; }
-        
-        public IList<TribeMember> Members { get; set; }
+
+        public IEnumerable<TribeMember> Members { get; set; }
 
         public DateTime CreatedAt { get; set; }
         

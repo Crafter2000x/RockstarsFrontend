@@ -53,7 +53,7 @@
         <div class="noResultsDIV" id="test" style="display: none;">
             <p>Geen resultaten gevonden</p>
         </div>
-        @foreach (TalkModel talk in talks)
+        @foreach (TalkModel talk in newtalks)
         {
             string thumbnailUrl = "https://localhost:6001" + talk.thumbnail.RelativeUrl;
             // na de || moet eigenijk weg omdat deze niet published zijn.

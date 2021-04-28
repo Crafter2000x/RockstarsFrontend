@@ -60,10 +60,6 @@ namespace Rockstars_Frontend.Controllers
             {
                 ViewData["TRIBE"] = "allen";
             }
-            if (Tribe=="Tribe")
-            {
-                ViewData["TRIBE"] = "allen";
-            }
             else
             {
                 ViewData["TRIBE"] = Tribe;

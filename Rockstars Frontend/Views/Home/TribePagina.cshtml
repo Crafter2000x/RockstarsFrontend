@@ -68,10 +68,14 @@
     {
         if (artikelen[i].Type == 0)
         {
-            if (artikelen[i].Status == 1 && artikelen[i].Type == 0 || artikelen[i].Status == 0 && artikelen[i].Type == 0)
+            if (artikelen[i].Tribe.Title==ViewData["ID"].ToString())
             {
-                drieartikelen.Add(artikelen[i]);
+                if (artikelen[i].Status == 1 && artikelen[i].Type == 0 || artikelen[i].Status == 0 && artikelen[i].Type == 0)
+                {
+                    drieartikelen.Add(artikelen[i]);
+                }
             }
+
             else
             {
                 q = q - 1;
@@ -93,10 +97,12 @@
 
         if (webinars[w].Type == 1)
         {
-
-            if (webinars[w].Status == 1 && webinars[w].Type == 1 || webinars[w].Status == 0 && webinars[w].Type == 1)
+            if (webinars[w].Tribe.Title == ViewData["ID"].ToString())
             {
-                driewebinars.Add(webinars[w]);
+                if (webinars[w].Status == 1 && webinars[w].Type == 1 || webinars[w].Status == 0 && webinars[w].Type == 1)
+                {
+                    driewebinars.Add(webinars[w]);
+                }
             }
             else
             {
@@ -140,7 +146,7 @@
                 </div>
             </div>
         }
-        <a class="row moreButton" asp-area="" asp-action="ArtikelPagina" asp-controller="Home" asp-route-Tribe="Amazon Web Services Tribe">
+        <a class="row moreButton" asp-area="" asp-action="ArtikelPagina" asp-controller="Home" asp-route-Tribe="@ViewData["ID"].ToString()">
 
             <h2>+</h2>
 
@@ -163,7 +169,7 @@
         
     </div>
     }
-    <a class="row moreButton" asp-area=""asp-action="OnDemand" asp-controller="Home" asp-route-Tribe="Amazon Web Services Tribe">
+    <a class="row moreButton" asp-area=""asp-action="OnDemand" asp-controller="Home" asp-route-Tribe="@ViewData["ID"].ToString()">
 
         <h2>+</h2>
 
