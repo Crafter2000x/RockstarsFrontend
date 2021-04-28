@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Rockstars.WebApi.Models;
 
 
 namespace Rockstars_Frontend.Models
 {
     public class PodcastModel
     {
+        public int Id { get; set; }
         public string title { get; set; } 
         public string description { get; set; } 
         public int ThumbnailId { get; set; }

@@ -60,6 +60,10 @@ namespace Rockstars_Frontend.Controllers
             {
                 ViewData["TRIBE"] = "allen";
             }
+            if (Tribe=="Tribe")
+            {
+                ViewData["TRIBE"] = "allen";
+            }
             else
             {
                 ViewData["TRIBE"] = Tribe;
@@ -145,7 +149,39 @@ namespace Rockstars_Frontend.Controllers
                 //await api.AddToAPI(model.talk);
                 return View("OnDemand");
             }
+                return View();
+           
+            
+        }
+        [HttpPost]
+        public async Task<IActionResult> vragen(FormulierEnAanvraagModel model)
+        {
+            if (ModelState.IsValid)
+            {
+
+                using (MailMessage mail = new MailMessage())
+                {
+                    mail.From = new MailAddress("RockstarsITFrontEnd@gmail.com");
+                    mail.To.Add(model.form.contactEmail);
+                    mail.Subject = "Aangevraagde Talk";
+                    //deze link moet uiteindelijk uit de api gehaald worden op basis van welke webinar je aanklikt.
+                    mail.Body = "Link naar youtube:  https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+                    mail.IsBodyHtml = true;
+
+                    using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
+                    {
+                        smtp.UseDefaultCredentials = false;
+                        smtp.Credentials = new NetworkCredential("RockstarsITFrontEnd@gmail.com", "DitIsOnzeMail1234");
+                        smtp.EnableSsl = true;
+                        smtp.Send(mail);
+                    }
+                }
+                //await api.AddToAPI(model.talk);
+                return View(OnDemand("Tribe"));
+            }
             return View();
+
+
         }
 
         public IActionResult TribeOverzicht()
