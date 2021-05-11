@@ -25,7 +25,7 @@
     FormulierModel form = new FormulierModel();
 }
 
-<link rel="stylesheet" href="~/css/TribePagina.css" />
+<link rel="stylesheet" href="~/css/_TribePagina.css"/>
 
 @*@foreach (TribeMember user in TribeMember)
     {
@@ -56,6 +56,9 @@
 @*@{string pdfurl = "https://localhost:6001/api/File/" + artikel.Attributes["pdf"] + "/retrieve"; }*@
 
 @*@{ string Imageurl = "https://localhost:6001" + Tribeso.Members[0].User.Image;}*@
+<div>
+    <a class="backButton" asp-controller="Home" asp-action="TribeOverzicht">BACK</a>
+</div>
 <div class="container">
     @foreach (ArtikelModel artikel in artikelen)
     {
@@ -66,7 +69,7 @@
         webinars = webinars.OrderByDescending(x => x.createdDate).ToList();
     }
 
-    @for (int q = 0; q < 3; q++)
+    @for (int q = 0; q < 1; q++)
     {
         if (artikelen[i].Status == 1 && artikelen[i].Type == 0 || artikelen[i].Status == 0 && artikelen[i].Type == 0)
         {
@@ -79,7 +82,7 @@
         i++;
     }
     @{i = 0; }
-    @for (int y = 0; y < 3; y++)
+    @for (int y = 0; y < 1; y++)
     {
         if (webinars[i].Status == 1 && webinars[i].Type == 1 || webinars[i].Status == 0 && webinars[i].Type == 1)
         {

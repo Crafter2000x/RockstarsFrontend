@@ -17,12 +17,16 @@
 
 }
 
-<link rel="stylesheet" href="~/css/_Artikel.css" />
+<link rel="stylesheet" href="~/css/Artikel.css" />
 
- @{string pdfurl = "https://localhost:6001/api/File/" + artikel.Attributes["pdf"] +"/retrieve"; }
+@{string pdfurl = "https://localhost:6001/api/File/" + artikel.Attributes["pdf"] + "/retrieve"; }
 
 @{ string Imageurl = "https://localhost:6001" + artikel.Thumbnail.RelativeUrl;}
+<div>
+    <a class="backButton" asp-controller="Home" asp-action="ArtikelPagina">BACK</a>
+</div>
 <div class="container">
+
     <div class="row artikelInfo">
         <div class="infoBorder">
             <div class="information">
@@ -43,7 +47,7 @@
                 </p>
             </div>
         </div>
-       <embed class="pdfReader" src="@pdfurl#view=FitH&scrollbar=0&toolbar=0&statusbar=0&messages=0&navpanes=0" />
+        <embed class="pdfReader" src="@pdfurl#view=FitH&scrollbar=0&toolbar=0&statusbar=0&messages=0&navpanes=0" />
     </div>
 </div>
 
