@@ -22,9 +22,11 @@
 @{string pdfurl = "https://localhost:6001/api/File/" + artikel.Attributes["pdf"] + "/retrieve"; }
 
 @{ string Imageurl = "https://localhost:6001" + artikel.Thumbnail.RelativeUrl;}
+@*back button, kut*@
 <div>
     <a class="backButton" asp-controller="Home" asp-action="ArtikelPagina">BACK</a>
 </div>
+@*back button, kut*@
 <div class="container">
 
     <div class="row artikelInfo">

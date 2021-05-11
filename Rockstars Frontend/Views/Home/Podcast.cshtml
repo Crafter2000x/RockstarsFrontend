@@ -37,7 +37,7 @@
 
 }
 
-<link rel="stylesheet" href="~/css/Podcast.css" />
+<link rel="stylesheet" href="~/css/_Podcast.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
@@ -56,6 +56,11 @@
 
     @{string profilePicture = baseURL + "/api/File/" + podcast.Author.ImageId + "/retrieve";}
 
+    @*back button, kut*@
+    <div>
+        <a class="backButton" asp-controller="Home" asp-action="Podcasts">BACK</a>
+    </div>
+    @*back button, kut*@
     <div class="row Auteur">
         <img class="profilePicture" src="@profilePicture" />
         <div class="profileInfo">
@@ -75,14 +80,14 @@
             {
                 <div class="text12">@biotext</div>
             }
-            
+
         </div>
     </div>
     <div class="podcastInfo">
         <h1>@podcast.title</h1>
         @foreach (string kword in keywords)
         {
-            
+
             <p><i class="fa fa-caret-right" style="color: #ffe000"></i>&nbsp;@kword</p>
         }
         @if (desctext.Length > 50)
@@ -98,7 +103,7 @@
         else
         {
             <div class="text12">@biotext</div>
-            
+
         }
     </div>
     <iframe src="@goodpodcastURL" width="100%" height="232" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>

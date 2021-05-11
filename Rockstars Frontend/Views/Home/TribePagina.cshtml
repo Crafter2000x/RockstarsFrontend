@@ -25,7 +25,7 @@
     FormulierModel form = new FormulierModel();
 }
 
-<link rel="stylesheet" href="~/css/_TribePagina.css"/>
+<link rel="stylesheet" href="~/css/_TribePagina.css" />
 
 @*@foreach (TribeMember user in TribeMember)
     {
@@ -56,9 +56,11 @@
 @*@{string pdfurl = "https://localhost:6001/api/File/" + artikel.Attributes["pdf"] + "/retrieve"; }*@
 
 @*@{ string Imageurl = "https://localhost:6001" + Tribeso.Members[0].User.Image;}*@
+@*back button, kut*@
 <div>
     <a class="backButton" asp-controller="Home" asp-action="TribeOverzicht">BACK</a>
 </div>
+@*back button, kut*@
 <div class="container">
     @foreach (ArtikelModel artikel in artikelen)
     {
