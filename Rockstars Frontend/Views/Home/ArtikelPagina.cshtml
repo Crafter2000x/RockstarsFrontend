@@ -1,36 +1,20 @@
 ﻿@{
     ViewData["Title"] = "ArtikelPagina";
-
-    List<ArtikelModel> artikelen = new List<ArtikelModel>();
-    List<ArtikelModel> newartikelen = new List<ArtikelModel>();
-
-    ApiController api = new ApiController();
-    await api.ArtikelPaginaAPI();
-    artikelen = api.artikelen;
 }
+
+@model ArtikelenViewModel
+
 
 <link rel="stylesheet" href="~/css/_ArtikelPagina.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-@foreach (ArtikelModel artikel in artikelen)
-{
-    newartikelen.Add(artikel);
-    if(ViewData["TRIBE"].ToString() != "allen")
-    {
-        if(artikel.Tribe.Title != ViewData["TRIBE"].ToString())
-        {
-            newartikelen.Remove(artikel);
-        }
-    }
-}
+
 <br>
 
-
-
 <div class="container">
-    
+
     <div class="row art">
         <input class="Search" onkeyup="filter()" type="text" id="value" placeholder="Typ hier om te zoeken" />
-        @foreach (ArtikelModel artikel in newartikelen)
+        @foreach (ArtikelModel artikel in Model.artikelen)
         {
             string Imageurl = "https://localhost:6001" + artikel.Thumbnail.RelativeUrl;
             string artikeltitle = artikel.Title;
@@ -64,6 +48,11 @@
     </div>
 </div>
 
+@section Scripts
+{
+    <script src="~/js/InfinityScroll.js"></script>
+}
+
 <script type="text/javascript">
     function filter() {
         var value, name, profile, i, name2, name3, weergave;
@@ -89,7 +78,7 @@
 
             if (profile[i].style.display == "block") {
                 weergave = true;
-            } 
+            }
         }
         console.warn(weergave);
 
@@ -100,7 +89,7 @@
 
         }
 
-        
+
     }
-   
+
 </script>
