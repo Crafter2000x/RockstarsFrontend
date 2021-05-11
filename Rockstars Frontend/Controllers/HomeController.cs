@@ -33,18 +33,16 @@ namespace Rockstars_Frontend.Controllers
             return View();
         }
 
-        public IActionResult ArtikelPagina(string Tribe)
+        
+        public async Task <IActionResult> ArtikelPagina()
         {
-            if (Tribe == null)
-            {
-                ViewData["TRIBE"] = "allen";
-            }
-            else
-            {
-                ViewData["TRIBE"] = Tribe;
-            }
+            ApiController api = new ApiController();
+            ArtikelenViewModel artikelen = new ArtikelenViewModel();
 
-            return View();
+            await api.ArtikelPaginaAPI();
+
+            artikelen.artikelen = api.artikelen;
+            return View(artikelen);
         }
 
         public IActionResult Podcasts()
