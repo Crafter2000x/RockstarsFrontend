@@ -44,7 +44,7 @@
                     <h5>Tribe: </h5> @Html.DropDownListFor(m => m.form.tribe.Title, new SelectList(Enum.GetValues(typeof(Tribes)))) <br />
                     <h5>Tribe-Beschrijving: </h5> @Html.TextBoxFor(m => m.form.tribe.Description, new {autocomplete = "off" }) <br />
                     <h5>Opmerking: </h5> @Html.TextBoxFor(m => m.form.comment, new {autocomplete = "off" }) <br />
-                    <h5>Email: </h5> @Html.TextBoxFor(m => m.form.contactEmail, new { @type = "mail", @required = "required", autocomplete = "off" }) <br />
+                    <h5>Email: </h5> @Html.TextBoxFor(m => m.form.contactEmail, new { type = "email", @required = "required", autocomplete = "off" }) <br />
                     <h5>Telefoon: </h5> @Html.TextBoxFor(m => m.form.phoneNumber, new { @required = "required", autocomplete = "off" }) <br /><br />
                     <input type="submit" value="Vraag aan" />
                 }

@@ -63,35 +63,65 @@
 
         webinars = webinars.OrderByDescending(x => x.CreatedAt).ToList();}
 
-
-    @for (int q = 0; q < 3; q++)
+    @if (artikelen.Count >= 3)
     {
-        if (artikelen[i].Type == 0)
+        for (int q = 0; q < 3; q++)
         {
-            if (artikelen[i].Tribe.Title==ViewData["ID"].ToString())
-            {
-                if (artikelen[i].Status == 1 && artikelen[i].Type == 0 || artikelen[i].Status == 0 && artikelen[i].Type == 0)
-                {
-                    drieartikelen.Add(artikelen[i]);
-                }
-            }
 
+            if (artikelen[i].Type == 0)
+            {
+                if (artikelen[i].Tribe.Title == ViewData["ID"].ToString())
+                {
+                    if (artikelen[i].Status == 1 && artikelen[i].Type == 0 || artikelen[i].Status == 0 && artikelen[i].Type == 0)
+                    {
+                        drieartikelen.Add(artikelen[i]);
+                    }
+                }
+
+                else
+                {
+                    q = q - 1;
+                }
+
+
+            }
             else
             {
                 q = q - 1;
+
+            }
+            i++;
+            if (i>=artikelen.Count)
+            {
+                break;
             }
 
 
         }
-        else
+    }
+    else
+    {
+        @for (int q = 0; q < artikelen.Count; q++)
         {
-            q = q - 1;
+
+            if (artikelen[q].Type == 0)
+            {
+                if (artikelen[q].Tribe.Title == ViewData["ID"].ToString())
+                {
+                    if (artikelen[q].Status == 1 && artikelen[q].Type == 0 || artikelen[q].Status == 0 && artikelen[q].Type == 0)
+                    {
+                        drieartikelen.Add(artikelen[i]);
+                    }
+                }
+
+            
+
+
+            }
 
         }
-        i++;
-
-
     }
+
     @for (int y = 0; y < 3; y++)
     {
 
@@ -117,7 +147,10 @@
 
         }
         w++;
-
+        if (w >= webinars.Count)
+        {
+            break;
+        }
 
 
     }
@@ -165,11 +198,11 @@
             </div>
             <div class="row talkBottom">
                 <h2 class="talkTribe">@talk.Tribe.Title</h2>
+            </div>
+
         </div>
-        
-    </div>
     }
-    <a class="row moreButton" asp-area=""asp-action="OnDemand" asp-controller="Home" asp-route-Tribe="@ViewData["ID"].ToString()">
+    <a class="row moreButton" asp-area="" asp-action="OnDemand" asp-controller="Home" asp-route-Tribe="@ViewData["ID"].ToString()">
 
         <h2>+</h2>
 
