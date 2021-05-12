@@ -46,50 +46,54 @@
     <div class="noResultsDIV" id="test" style="display: none;">
         <p>Geen resultaten gevonden</p>
     </div>
+
+    <div id="loadingdiv" style="text-align:center;display:none;margin-bottom:20px;">
+        <img src="~/Images/AjaxLoadingGif.gif" />
+    </div>
 </div>
 
 @section Scripts
 {
     <script src="~/js/InfinityScroll.js"></script>
+
+    <script type="text/javascript">
+        function filter() {
+            var value, name, profile, i, name2, name3, weergave;
+            value = document.getElementById("value").value.toUpperCase();
+            profile = document.getElementsByClassName("fullArtikel");
+
+
+            for (i = 0; i < profile.length; i++) {
+                name = profile[i].getElementsByClassName("name");
+                name2 = profile[i].getElementsByClassName("name2");
+                name3 = profile[i].getElementsByClassName("name3");
+                if (name[0].innerHTML.toUpperCase().indexOf(value) > -1 || name2[0].innerHTML.toUpperCase().indexOf(value) > -1 || name3[0].innerHTML.toUpperCase().indexOf(value) > -1) {
+                    profile[i].style.display = "block";
+                }
+                else {
+                    profile[i].style.display = "none";
+                }
+
+            }
+            weergave = false;
+
+            for (i = 0; i < profile.length; i++) {
+
+                if (profile[i].style.display == "block") {
+                    weergave = true;
+                }
+            }
+            console.warn(weergave);
+
+            if (weergave == false) {
+                document.getElementById("test").style.display = "flex";
+            } else {
+                document.getElementById("test").style.display = "none";
+
+            }
+
+
+        }
+
+    </script>
 }
-
-<script type="text/javascript">
-    function filter() {
-        var value, name, profile, i, name2, name3, weergave;
-        value = document.getElementById("value").value.toUpperCase();
-        profile = document.getElementsByClassName("fullArtikel");
-
-
-        for (i = 0; i < profile.length; i++) {
-            name = profile[i].getElementsByClassName("name");
-            name2 = profile[i].getElementsByClassName("name2");
-            name3 = profile[i].getElementsByClassName("name3");
-            if (name[0].innerHTML.toUpperCase().indexOf(value) > -1 || name2[0].innerHTML.toUpperCase().indexOf(value) > -1 || name3[0].innerHTML.toUpperCase().indexOf(value) > -1) {
-                profile[i].style.display = "block";
-            }
-            else {
-                profile[i].style.display = "none";
-            }
-
-        }
-        weergave = false;
-
-        for (i = 0; i < profile.length; i++) {
-
-            if (profile[i].style.display == "block") {
-                weergave = true;
-            }
-        }
-        console.warn(weergave);
-
-        if (weergave == false) {
-            document.getElementById("test").style.display = "flex";
-        } else {
-            document.getElementById("test").style.display = "none";
-
-        }
-
-
-    }
-
-</script>

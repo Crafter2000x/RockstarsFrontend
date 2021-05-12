@@ -1,13 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Rockstars_Frontend.Models;
+using System.Text.Json;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Rockstars_Frontend.Controllers
 {
@@ -33,8 +34,8 @@ namespace Rockstars_Frontend.Controllers
             return View();
         }
 
-        
-        public async Task <IActionResult> ArtikelPagina()
+
+        public async Task<IActionResult> ArtikelPagina()
         {
             ApiController api = new ApiController();
             ArtikelenViewModel artikelen = new ArtikelenViewModel();
@@ -43,6 +44,34 @@ namespace Rockstars_Frontend.Controllers
 
             artikelen.artikelen = api.artikelen;
             return View(artikelen);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> GetArtikelen(int LastId) 
+        {
+            ApiController api = new ApiController();
+            await api.ArtikelPaginaAPI();
+            List<ArtikelModel> ValidArtikelen = new List<ArtikelModel>();
+
+            foreach (var item in api.artikelen)
+            {
+                //Switch status to 1 in production 
+                if (item.Status == 0 && item.Type == 0)
+                {
+                    if (ValidArtikelen.Count ==6)
+                    {
+                        break;
+                    }
+
+                    if (item.Id > LastId)
+                    {
+                        ValidArtikelen.Add(item);
+                    }
+                }
+            }
+            var json = JsonConvert.SerializeObject(ValidArtikelen);
+
+            return Content(json, "application/json");
         }
 
         public IActionResult Podcasts()
