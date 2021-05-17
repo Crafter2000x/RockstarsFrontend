@@ -3,42 +3,54 @@ var NoMoredata = false;
 var inProgress = false;
 
 $(document).ready(function () {
-    
+
+    LoadPartialViewArtikel();
+
     $(window).on("scroll", function () {
         var docHeight = $(document).height();
         var winScrolled = $(window).height() + $(window).scrollTop();
+
         if ((docHeight - winScrolled) < 1 && NoMoredata == false && inProgress == false) {
+
             console.log("module scrolled to bottom");
+
             inProgress = true;
             $("#loadingdiv").show();
-            ShowMoreData();
+            LoadPartialViewArtikel();
         }
     });
 })
 
-function ShowMoreData()
-{
-    $.ajax({
-        url: '/Home/GetArtikelen/?LastId=' + LastId,
-        type: 'post',
-        contentType: 'application/json',
-        success: function (data)
-        {
-            if (data.length == 0) {
-                NoMoredata = true;
-            }
 
-            console.log(data);
-            $.each(data, function (key, article) {
-                console.log(article.Title);
-                console.log(article.CreatedAt);
-                LastId = article.Id;
-            });
-        }
+function LoadPartialViewArtikel()
+{
+    /* Request the partial view with .get request. */
+    $.get('/Home/RequestArtikelPartial/?LastId=' + LastId, function (data) {
+
+        /* data is the pure html returned from action method, load it to your page */
+        $('#partialPlaceHolder').append(data);
+        /* little fade in effect */
+        $('#partialPlaceHolder').fadeIn('fast');
+
+        GetLastArtikelId();
     });
-    $("#loadingdiv").hide();
-    inProgress = false;
+}
+
+function GetLastArtikelId()
+{
+    var values = $("input[id='ArtikelId']")
+        .map(function () { return $(this).val(); }).get();
+
+    if (values[values.length - 1] == LastId) {
+        NoMoredata = true;
+    }
+
+    values.forEach(function (number) {
+
+        LastId = number; 
+     });
+
     console.log(LastId);
-    console.log(NoMoredata);
-    console.log(inProgress);
+    inProgress = false;
+    $("#loadingdiv").hide();
 }

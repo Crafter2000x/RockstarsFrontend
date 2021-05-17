@@ -35,20 +35,16 @@ namespace Rockstars_Frontend.Controllers
         }
 
 
-        public async Task<IActionResult> ArtikelPagina()
+        public IActionResult ArtikelPagina()
         {
-            ApiController api = new ApiController();
-            ArtikelenViewModel artikelen = new ArtikelenViewModel();
-
-            await api.ArtikelPaginaAPI();
-
-            artikelen.artikelen = api.artikelen;
-            return View(artikelen);
+            return View();
         }
 
-        [HttpPost]
-        public async Task<IActionResult> GetArtikelen(int LastId) 
+        [HttpGet]
+        public async Task<ActionResult> RequestArtikelPartial(int LastId)
         {
+            ArtikelenViewModel artikelenViewModel = new ArtikelenViewModel();
+
             ApiController api = new ApiController();
             await api.ArtikelPaginaAPI();
             List<ArtikelModel> ValidArtikelen = new List<ArtikelModel>();
@@ -58,7 +54,7 @@ namespace Rockstars_Frontend.Controllers
                 //Switch status to 1 in production 
                 if (item.Status == 0 && item.Type == 0)
                 {
-                    if (ValidArtikelen.Count ==6)
+                    if (ValidArtikelen.Count == 6)
                     {
                         break;
                     }
@@ -69,10 +65,12 @@ namespace Rockstars_Frontend.Controllers
                     }
                 }
             }
-            var json = JsonConvert.SerializeObject(ValidArtikelen);
 
-            return Content(json, "application/json");
+            artikelenViewModel.artikelen = ValidArtikelen;
+
+            return PartialView("ArtikelPartialView", artikelenViewModel);
         }
+
 
         public IActionResult Podcasts()
         {
