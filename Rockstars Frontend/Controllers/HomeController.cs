@@ -52,7 +52,7 @@ namespace Rockstars_Frontend.Controllers
             foreach (var item in api.artikelen)
             {
                 //Switch status to 1 in production 
-                if (item.Status == 0 && item.Type == 0)
+                if (item.Status == 1 && item.Type == 0)
                 {
                     if (ValidArtikelen.Count == 6)
                     {

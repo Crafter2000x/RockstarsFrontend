@@ -21,12 +21,12 @@ $(document).ready(function () {
     });
 })
 
-
 function LoadPartialViewArtikel()
 {
     /* Request the partial view with .get request. */
     $.get('/Home/RequestArtikelPartial/?LastId=' + LastId, function (data) {
 
+        $('#WaitingForContent').hide();
         /* data is the pure html returned from action method, load it to your page */
         $('#partialPlaceHolder').append(data);
         /* little fade in effect */

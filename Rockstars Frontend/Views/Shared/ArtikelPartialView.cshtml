@@ -1,31 +1,74 @@
 ﻿@model ArtikelenViewModel
 
-@foreach (ArtikelModel artikel in Model.artikelen)
+@for (int i = 0; i < Model.artikelen.Count; i++)
 {
-    string Imageurl = "https://localhost:6001" + artikel.Thumbnail.RelativeUrl;
-    string artikeltitle = artikel.Title;
+    string Imageurl = "https://localhost:6001" + Model.artikelen[i].Thumbnail.RelativeUrl;
+    string artikeltitle = Model.artikelen[i].Title;
 
-    if (artikel.Status == 1 && artikel.Type == 0 || artikel.Status == 0 && artikel.Type == 0)
-    {
-        <div class="col-md-12 col-lg-4 col-sm-3 fullArtikel">
-            <div class="beep">
-                <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle">
-                    <div class="card h-100 artikel">
-                        <img src=@Imageurl class="card-img-top" alt="...">
-                        <div class="card-body info">
-                            <h5 class="card-title Titel text-uppercase name">@artikel.Title</h5>
-                            <h3 class="card-text author name2"><i class="fa fa-pencil"></i>&nbsp; &nbsp;@artikel.Author.Name</h3>
-                            <h3 class="card-text author"><i class="fa fa-users"></i>&nbsp; &nbsp;@artikel.Tribe.Title</h3>
-                            <h3 class="name3" style="display:none">@artikel.Description</h3>
-                            <input type="hidden" id="ArtikelId" value=@artikel.Id>
-                        </div>
-                        <div class="card-footer">
-                            <h3><i class="fa fa-calendar-o"></i>&nbsp; &nbsp;@artikel.CreatedAt.ToString("dd-MM-yyyy")</h3>
-                        </div>
-                    </div>
-                </a>
+<div class="row">
+
+    <div class="col-md-6">
+        <section class="widget">
+            <div class="widget-controls">
+                <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle" target="_blank"><i class="fa fa-share"></i></a>
             </div>
-        </div>
+            <div class="widget-body">
+                <div class="widget-top-overflow text-white">
+                    <div class="article-title">@Model.artikelen[i].Title</div>
+                    <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle"><img src="@Imageurl"></a>
+                    <ul class="tags text-black-50 pull-right">
+                        <li><a href="tribesearch1">@Model.artikelen[i].Tribe.Title</a></li>
+                    </ul>
+                </div>
+                <div class="post-user mt-sm">
+                    <span class="thumb pull-left mr">
+                        <img class="rounded-circle" src="https://bootdey.com/img/Content/user_1.jpg" alt="...">
+                    </span>
+                    <h5 class="mb-xs mt-xs text-light"><span class="fw-semi-bold">@Model.artikelen[i].Author.Name</span> &nbsp; <span class="fs-mini text-muted"><i class="fa fa-tag"></i>&nbsp;Special agent</span></h5>
+                    <p class="fs-mini text-muted"><i class="fa fa-calendar"></i><time>&nbsp;@Model.artikelen[i].CreatedAt.ToString("dd-MM-yyyy")</time> &nbsp; <i class="fa fa-book"></i>&nbsp;Artikel</p>
+                </div>
+                <p class="text-light fs-mini m">
+                    @Model.artikelen[i].Description
+                </p>
+                <input type="hidden" id="ArtikelId" value=@Model.artikelen[i].Id>
+            </div>
+        </section>
+    </div>
 
+    @if (@Model.artikelen[@Model.artikelen.Count -1] != @Model.artikelen[i])
+    {
+        i++;
+        string Imageurl2 = "https://localhost:6001" + Model.artikelen[i].Thumbnail.RelativeUrl;
+        string artikeltitle2 = Model.artikelen[i].Title;
+
+        <div class="col-md-6">
+            <section class="widget">
+                <div class="widget-controls">
+                    <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle2" target="_blank"><i class="fa fa-share"></i></a>
+                </div>
+                <div class="widget-body">
+                    <div class="widget-top-overflow text-white">
+                        <div class="article-title">@Model.artikelen[i].Title</div>
+                        <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle2"><img src="@Imageurl2"></a>
+                        <ul class="tags text-black-50 pull-right">
+                            <li><a href="tribesearch1">@Model.artikelen[i].Tribe.Title</a></li>
+                        </ul>
+                    </div>
+                    <div class="post-user mt-sm">
+                        <span class="thumb pull-left mr">
+                            <img class="rounded-circle" src="https://bootdey.com/img/Content/user_1.jpg" alt="...">
+                        </span>
+                        <h5 class="mb-xs mt-xs text-light"><span class="fw-semi-bold">@Model.artikelen[i].Author.Name</span> &nbsp; <span class="fs-mini text-muted"><i class="fa fa-tag"></i>&nbsp;Special agent</span></h5>
+                        <p class="fs-mini text-muted"><i class="fa fa-calendar"></i><time>&nbsp;@Model.artikelen[i].CreatedAt.ToString("dd-MM-yyyy")</time> &nbsp; <i class="fa fa-book"></i>&nbsp;Artikel</p>
+                    </div>
+                    <p class="text-light fs-mini m">
+                        @Model.artikelen[i].Description
+                    </p>
+                    <input type="hidden" id="ArtikelId" value=@Model.artikelen[i].Id>
+                </div>
+            </section>
+        </div>
     }
-}
+</div>
+ }
+
