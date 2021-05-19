@@ -6,49 +6,27 @@
 
     <div class="modal-dialog">
         <div class="modal-content" style="background-color: rgb(34,34,34); border: solid 3px #ffe000">
-            <div class="modal-header">
-                <h4 class="modal-title" id="addEventLabel">Talk Aanvragen</h4>
-                <button type="button" style="color: white;" class="close" data-dismiss="modal">
-                    <span>x</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="Edit">
-                    <div class="form-group">
-                        <label asp-for="form.companyName">Bedrijfsnaam</label>
-                        <input asp-for="form.companyName" class="form-control textBox" required="required" />
-                        <span asp-validation-for="form.companyName" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="form.preferredDateTime">Voorkeursdag</label>
-                        <input asp-for="form.preferredDateTime" class="form-control textBox" required="required" />
-                        <span asp-validation-for="form.preferredDateTime" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="form.amountOfPeople">Aantal aanwezige</label>
-                        <input asp-for="form.amountOfPeople" class="form-control textBox" required="required" />
-                        <span asp-validation-for="form.amountOfPeople" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="form.contactEmail">Email</label>
-                        <input asp-for="form.contactEmail" class="form-control textBox" required="required" />
-                        <span asp-validation-for="form.contactEmail" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="form.phoneNumber">PhoneNumber</label>
-                        <input asp-for="form.phoneNumber" class="form-control textBox" required="required"/>
-                        <span asp-validation-for="form.phoneNumber" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="form.comment">Opmerking</label>
-                        <input asp-for="form.comment" class="form-control textBox" required="required" />
-                        <span asp-validation-for="form.comment" class="text-danger"></span>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary mr-auto" style="background-color: #ffe000 !important" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-save="modal">Update</button>
-            </div>
+            @using (Html.BeginForm("TalkAanvraag", "Home", new { Form = @Model }, FormMethod.Post))
+            {
+                <div class="modal-header">
+                    <h4 class="modal-title" id="addEventLabel">Talk Aanvragen</h4>
+                    <button type="button" style="color: white;" class="close" data-dismiss="modal">
+                        <span>x</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h5>Bedrijfsnaam: </h5> @Html.TextBoxFor(m => m.form.companyName, new { @required = "required", autocomplete = "off" }) <br />
+                    <h5>Voorkeursdag: </h5> @Html.EditorFor(m => m.form.preferredDateTime, new { @type = "date", @required = "required", autocomplete = "off" }) <br />
+                    @Html.ValidationSummary()
+                    <h5>Aantal mensen aanwezig: </h5> @Html.TextBoxFor(m => m.form.amountOfPeople, new { @type = "number", min = 1, max = 100, @required = "required", autocomplete = "off" }) <br />
+                    <h5>Email: </h5> @Html.TextBoxFor(m => m.form.contactEmail, new { @type = "mail", @required = "required", autocomplete = "off" }) <br />
+                    <h5>Telefoon: </h5> @Html.TextBoxFor(m => m.form.phoneNumber, new { @required = "required", autocomplete = "off" }) <br /><br />
+                    <h5>Opmerking: </h5> @Html.TextBoxFor(m => m.form.comment, new { autocomplete = "off" }) <br />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary mr-auto" style="background-color: #ffe000 !important" data-dismiss="modal">Close</button>
+                    <input type="submit" value="Vraag aan" class="btn btn-primary" />
+                </div>
+            }
         </div>
     </div>
