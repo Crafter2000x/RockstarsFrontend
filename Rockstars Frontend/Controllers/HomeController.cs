@@ -27,10 +27,30 @@ namespace Rockstars_Frontend.Controllers
             return View();
         }
 
-        public IActionResult Search(string SearchTerm)
+        public IActionResult Search(string SearchTerm, string type = "ALL", string tribe = "ALL")
         {
+            ViewData["Type"] = type;
+            ViewData["Tribe"] = tribe;
             ViewData["KeyWord"] = SearchTerm;
             return View();
+        }
+
+        public IActionResult ArtikelSearch(string term, string type)
+        {
+            ViewBag.Type = type;
+            return RedirectToAction("Search", new { SearchTerm = term});
+        }
+
+        public IActionResult WebinarSearch(string term, string type)
+        {
+            ViewBag.Type = type;
+            return RedirectToAction("Search", new { SearchTerm = term });
+        }
+
+        public IActionResult PodcastSearch(string term, string type)
+        {
+           ViewBag.Type = type;
+            return RedirectToAction("Search", new { SearchTerm = term });
         }
 
         public IActionResult ArtikelPagina(string Tribe)

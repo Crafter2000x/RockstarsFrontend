@@ -29,7 +29,7 @@
 <div class="container">
     
     <div class="row art">
-        <input class="Search" onkeyup="filter()" type="text" id="value" placeholder="Zoek voor artikelen" />
+        @*<input class="Search" onkeyup="filter()" type="text" id="value" placeholder="Zoek voor artikelen" />*@
         @foreach (ArtikelModel artikel in newartikelen)
         {
             string Imageurl = "https://localhost:6001" + artikel.Thumbnail.RelativeUrl;
