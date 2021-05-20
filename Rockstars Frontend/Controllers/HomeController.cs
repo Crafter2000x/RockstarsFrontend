@@ -152,6 +152,11 @@ namespace Rockstars_Frontend.Controllers
         {
             return View();
         }
+
+        public IActionResult SpecialAgents()
+        {
+            return View();
+        }
         public IActionResult TribePagina(string? title)
         {
             if (title == null)

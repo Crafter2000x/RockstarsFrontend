@@ -14,9 +14,9 @@
 @foreach (ArtikelModel artikel in artikelen)
 {
     newartikelen.Add(artikel);
-    if(ViewData["TRIBE"].ToString() != "allen")
+    if (ViewData["TRIBE"].ToString() != "allen")
     {
-        if(artikel.Tribe.Title != ViewData["TRIBE"].ToString())
+        if (artikel.Tribe.Title != ViewData["TRIBE"].ToString())
         {
             newartikelen.Remove(artikel);
         }
@@ -89,7 +89,7 @@
 
             if (profile[i].style.display == "block") {
                 weergave = true;
-            } 
+            }
         }
         console.warn(weergave);
 
@@ -100,7 +100,7 @@
 
         }
 
-        
+
     }
-   
+
 </script>
