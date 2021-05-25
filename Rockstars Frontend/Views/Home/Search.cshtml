@@ -16,6 +16,8 @@
     string type = ViewData["Type"].ToString();
     string tribe = ViewData["Tribe"].ToString();
 
+    List<Tribe> tribes = ViewData["Tribes"] as List<Tribe>;
+
 
     List<ArtikelModel> EverythingNew = new List<ArtikelModel>();
 
@@ -48,22 +50,24 @@
     }
 }
 
+
 <div class="dropdown">
     <button class="btn btn-primary dropdown-toggle DropdownButton shadow-none" type="button" data-toggle="dropdown">
         <i class="fa fa-filter" style="color: #ffe000"></i>
         <span class="caret"></span>
     </button>
     <ul class="dropdown-menu Options">
-        <li class="dropdown-header">Type</li>
-        <li class="dropdown-item"><a asp-controller="Home" asp-action="Search" asp-route-SearchTerm="@keyword" asp-route-type="Artikel">Artikelen</a></li>
-        <li class="dropdown-item"><a asp-controller="Home" asp-action="Search" asp-route-SearchTerm="@keyword" asp-route-type="Webinar">Webinars</a></li>
-        <li class="dropdown-item"><a asp-controller="Home" asp-action="Search" asp-route-SearchTerm="@keyword" asp-route-type="Podcast">Podcasts</a></li>
-        <li class="dropdown-header">Tribe</li>
-        <li class="dropdown-item"><a asp-controller="Home" asp-action="Search" asp-route-SearchTerm="@keyword" asp-route-tribe="Cloud">Cloud & DEVOPS</a></li>
-        <li class="dropdown-item"><a asp-controller="Home" asp-action="Search" asp-route-SearchTerm="@keyword" asp-route-tribe="Microsoft">Microsoft</a></li>
-        <li class="dropdown-item"><a asp-controller="Home" asp-action="Search" asp-route-SearchTerm="@keyword" asp-route-tribe="Java">JAVA</a></li>
-        <li class="dropdown-item"><a asp-controller="Home" asp-action="Search" asp-route-SearchTerm="@keyword" asp-route-tribe="Automated">Automated Testing</a></li>
-        <li class="dropdown-item"><a asp-controller="Home" asp-action="Search" asp-route-SearchTerm="@keyword" asp-route-tribe="Front-end">Front-end & Mobile</a></li>
+        <a asp-controller="Home" asp-action="Search" asp-route-SearchTerm="@keyword" asp-route-type="ALL"><li class="dropdown-item DropdownItem">Alles</li></a>
+        <li class="dropdown-header DropdownHeader">Type</li>
+        <a asp-controller="Home" asp-action="Search" asp-route-SearchTerm="@keyword" asp-route-type="Artikel"><li class="dropdown-item DropdownItem">Artikelen</li></a>
+        <a asp-controller="Home" asp-action="Search" asp-route-SearchTerm="@keyword" asp-route-type="Webinar"><li class="dropdown-item DropdownItem">Webinars</li></a>
+        <a asp-controller="Home" asp-action="Search" asp-route-SearchTerm="@keyword" asp-route-type="Podcast"><li class="dropdown-item DropdownItem">Podcasts</li></a>
+        <li class="dropdown-header DropdownHeader">Tribe</li>
+        @foreach (Tribe t in tribes)
+        {
+            var title = t.Title.Replace("Tribe", "");
+            <a asp-controller="Home" asp-action="Search" asp-route-SearchTerm="@keyword" asp-route-tribe="@t.Title"><li class="dropdown-item DropdownItem">@title</li></a>
+        }
     </ul>
 </div>
 

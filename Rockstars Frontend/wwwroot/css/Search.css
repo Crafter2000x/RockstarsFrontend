@@ -288,3 +288,12 @@ a:hover {
 textarea:focus, input:focus {
     outline: none;
 }
+
+.DropdownItem:hover {
+    background-color: rgb(83, 83, 83);
+}
+
+.DropdownHeader {
+    font-size: 20px;
+    text-decoration: underline #ffe000;
+}
