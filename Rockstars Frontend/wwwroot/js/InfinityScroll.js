@@ -1,4 +1,4 @@
-﻿var LastId = 0;
+﻿var Page = 0;
 var NoMoredata = false;
 var inProgress = false;
 
@@ -15,7 +15,6 @@ $(document).ready(function () {
             console.log("module scrolled to bottom");
 
             inProgress = true;
-            $("#loadingdiv").show();
             LoadPartialViewArtikel();
         }
     });
@@ -24,33 +23,24 @@ $(document).ready(function () {
 function LoadPartialViewArtikel()
 {
     /* Request the partial view with .get request. */
-    $.get('/Home/RequestArtikelPartial/?LastId=' + LastId, function (data) {
+    $.get('/Home/RequestArtikelPartial/?Page=' + Page, function (data) {
 
-        $('#WaitingForContent').hide();
-        /* data is the pure html returned from action method, load it to your page */
-        $('#partialPlaceHolder').append(data);
-        /* little fade in effect */
-        $('#partialPlaceHolder').fadeIn('fast');
+        if (data.trim() == '') {
 
-        GetLastArtikelId();
+            NoMoredata = true;
+
+        } else {
+
+            $("#loadingdiv").show();
+            $('#WaitingForContent').hide();
+            /* data is the pure html returned from action method, load it to your page */
+            $('#partialPlaceHolder').append(data);
+            /* little fade in effect */
+            $('#partialPlaceHolder').fadeIn('fast');
+            console.log(Page);
+            Page++;
+            inProgress = false;
+            $("#loadingdiv").hide();
+        }  
     });
-}
-
-function GetLastArtikelId()
-{
-    var values = $("input[id='ArtikelId']")
-        .map(function () { return $(this).val(); }).get();
-
-    if (values[values.length - 1] == LastId) {
-        NoMoredata = true;
-    }
-
-    values.forEach(function (number) {
-
-        LastId = number; 
-     });
-
-    console.log(LastId);
-    inProgress = false;
-    $("#loadingdiv").hide();
 }

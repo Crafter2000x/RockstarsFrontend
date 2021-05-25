@@ -34,39 +34,19 @@ namespace Rockstars_Frontend.Controllers
             return View();
         }
 
-
         public IActionResult ArtikelPagina()
         {
             return View();
         }
 
         [HttpGet]
-        public async Task<ActionResult> RequestArtikelPartial(int LastId)
+        public async Task<ActionResult> RequestArtikelPartial(int Page)
         {
             ArtikelenViewModel artikelenViewModel = new ArtikelenViewModel();
 
             ApiController api = new ApiController();
-            await api.ArtikelPaginaAPI();
-            List<ArtikelModel> ValidArtikelen = new List<ArtikelModel>();
-
-            foreach (var item in api.artikelen)
-            {
-                //Switch status to 1 in production 
-                if (item.Status == 1 && item.Type == 0)
-                {
-                    if (ValidArtikelen.Count == 6)
-                    {
-                        break;
-                    }
-
-                    if (item.Id > LastId)
-                    {
-                        ValidArtikelen.Add(item);
-                    }
-                }
-            }
-
-            artikelenViewModel.artikelen = ValidArtikelen;
+            await api.PostOverzichtAPI(0,6,Page);
+            artikelenViewModel.artikelen = api.artikelen;
 
             return PartialView("ArtikelPartialView", artikelenViewModel);
         }

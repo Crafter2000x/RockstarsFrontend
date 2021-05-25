@@ -29,11 +29,17 @@ input:not([type="button"]):not([type="submit"]):not([type="reset"]):hover, input
     position: relative;
     margin-bottom: 30px;
     margin-top: 30px;
-    padding: 0px 20px;
+    padding-bottom: 10px;
+    padding-right: 20px;
+    padding-left: 20px;
     background: #fff;
-    border-radius: 3px;
-    border: 5px solid #ffe000;
+    background-color: rgba(35, 35, 35, 1);
 }
+
+    .widget:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 35px #000000;
+    }
 
 .widget-controls {
     position: absolute;
@@ -53,9 +59,6 @@ input:not([type="button"]):not([type="submit"]):not([type="reset"]):hover, input
     transition: color 0.15s ease-in-out;
 }
 
-.widget{
-    background-color: rgba(35, 35, 35, 1);
-}
 
 .widget > footer {
     background-color: rgba(35, 35, 35, 1);
@@ -94,14 +97,13 @@ input:not([type="button"]):not([type="submit"]):not([type="reset"]):hover, input
 
 .article-title {
     font-size: 24px;
-    display:inline-block;
+    display: inline-block;
     text-align: center;
     position: absolute;
     color: #ffe000;
-    background-color: rgba(35, 35, 35, 0.5);
     padding: 4px;
-    border: 2px solid #ffe000;
     margin: 8px;
+    text-shadow: 4px 4px 2px rgba(0,0,0,0.6);
 }
 
 @media only screen and (max-width: 768px) {
@@ -180,22 +182,21 @@ input:not([type="button"]):not([type="submit"]):not([type="reset"]):hover, input
 }
 
 .widget > footer {
-    margin: 0 -20px -15px;
-    padding: 30px 20px;
-}
-
-.bg-body-light {
-    background-color: #f6f6f6;
+    margin: 0 -20px -15px ;
+    padding: 15px 20px;
+    background-color: #323334;
 }
 
 .post-links {
-    margin-bottom: 0;
+    margin-bottom: 0px;
+    margin-top: -15px;
     font-size: 12px;
-    padding-left: 0;
+    margin-left: -45px;
+    color: #ffe000;
 }
 
 .post-links > li {
     float: left;
     list-style: none;
-    margin: 4px;
+    margin: 4px ;
 }
