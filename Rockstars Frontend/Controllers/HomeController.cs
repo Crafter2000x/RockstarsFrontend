@@ -134,7 +134,7 @@ namespace Rockstars_Frontend.Controllers
         }
 
         [HttpPost]
-        public ActionResult TalkAanvraag(FormulierEnAanvraagModel model)
+        public async Task<ActionResult> TalkAanvraag(FormulierEnAanvraagModel model)
         {
                     model.form.tribeId = 1;
                 using (MailMessage mail = new MailMessage())
@@ -160,7 +160,7 @@ namespace Rockstars_Frontend.Controllers
                         smtp.Send(mail);
                     }
                 }
-                //api.AddToAPI(model.form);
+                await api.AddToAPI(model.form);
                 return RedirectToAction("OnDemand");
         }
 

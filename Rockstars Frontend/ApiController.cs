@@ -90,16 +90,15 @@ namespace Rockstars_Frontend
             }
         }
 
-        public void AddToAPI(FormulierModel form)
+        public async Task AddToAPI(FormulierModel form)
         {
             using (var client = new HttpClient())
             {
               client.BaseAddress= new Uri(Baseurl);
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-                var json = System.Text.Json.JsonSerializer.Serialize(form);
                 
 
-              HttpResponseMessage Res = client.PostAsJsonAsync("api/Appointment", json).Result;
+                HttpResponseMessage Res = await client.PostAsJsonAsync("api/Appointment", form);
                 if (Res.IsSuccessStatusCode)
                 {
                     connection = true;
