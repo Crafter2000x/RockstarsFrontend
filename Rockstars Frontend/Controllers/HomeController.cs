@@ -1,13 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Rockstars_Frontend.Models;
+using System.Text.Json;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Rockstars_Frontend.Controllers
 {
@@ -27,29 +28,48 @@ namespace Rockstars_Frontend.Controllers
             return View();
         }
 
-        public IActionResult Search(string SearchTerm)
+        public async Task<IActionResult> Search(string SearchTerm, string type = "ALL", string tribe = "ALL")
         {
+            ViewData["Type"] = type;
+            ViewData["Tribe"] = tribe;
             ViewData["KeyWord"] = SearchTerm;
+            await api.TribePaginaAPI();
+            ViewData["Tribes"] = api.AllTribes;
             return View();
         }
 
-        public IActionResult ArtikelPagina(string Tribe)
+        public IActionResult ArtikelPagina()
         {
-            if (Tribe == null)
-            {
-                ViewData["TRIBE"] = "allen";
-            }
-            else
-            {
-                ViewData["TRIBE"] = Tribe;
-            }
-
             return View();
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> RequestArtikelPartial(int Page)
+        {
+            ArtikelenViewModel artikelenViewModel = new ArtikelenViewModel();
+
+            ApiController api = new ApiController();
+            await api.PostOverzichtAPI(0,6,Page);
+            artikelenViewModel.artikelen = api.artikelen;
+
+            return PartialView("ArtikelPartialView", artikelenViewModel);
         }
 
         public IActionResult Podcasts()
         {
             return View();
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> RequestPodcastPartial(int Page)
+        {
+            PodcastsViewModel podcastsViewModel = new PodcastsViewModel();
+
+            ApiController api = new ApiController();
+            await api.PostOverzichtAPI(2, 4, Page);
+            podcastsViewModel.podcasts = api.podcasts;
+
+            return PartialView("PodcastPartialView", podcastsViewModel);
         }
 
         public IActionResult Artikel(string? title)
@@ -126,6 +146,81 @@ namespace Rockstars_Frontend.Controllers
             //await api.AddToAPI(model.form);
             return View("OnDemand");
         }
+
+        public IActionResult TalkAanvraagPartial() 
+        {
+            var e = new FormulierEnAanvraagModel();
+            return PartialView(e);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> TalkAanvraag(FormulierEnAanvraagModel model)
+        {
+                    model.form.tribeId = 1;
+                using (MailMessage mail = new MailMessage())
+                {
+                    mail.From = new MailAddress("RockstarsITFrontEnd@gmail.com");
+                    mail.To.Add(model.form.contactEmail);
+                    mail.Subject = "Bevestiging";
+                    mail.Body = "<h1>Hierbij krijgt u de bevestiging van uw talkaanvraag.</h1><br/>" +
+                    "voorkeursdag:  " + model.form.preferredDateTime.ToString("dd-MM-yyyy") +
+                    "<br/>bedrijfsnaam:  " + model.form.companyName +
+                    "<br/>aantal mensen aanwezig:  " + model.form.amountOfPeople +
+/*                    "<br/>tribe:  " + f.form.tribe.Title +
+*/                    "<br/>opmerking:  " + model.form.comment +
+                    "<br/>nummer:  " + model.form.phoneNumber;
+
+                    mail.IsBodyHtml = true;
+
+                    using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
+                    {
+                        smtp.UseDefaultCredentials = false;
+                        smtp.Credentials = new NetworkCredential("RockstarsITFrontEnd@gmail.com", "DitIsOnzeMail1234");
+                        smtp.EnableSsl = true;
+                        smtp.Send(mail);
+                    }
+                }
+                await api.AddToAPI(model.form);
+                return RedirectToAction("OnDemand");
+        }
+
+
+        [HttpPost]
+        public IActionResult TalkAanvraagPartial(FormulierEnAanvraagModel model)
+        {
+            Console.Write("Baanad");
+            if (ModelState.IsValid)
+            {
+                using (MailMessage mail = new MailMessage())
+                {
+                    mail.From = new MailAddress("RockstarsITFrontEnd@gmail.com");
+                    mail.To.Add(model.form.contactEmail);
+                    mail.Subject = "Bevestiging";
+                    mail.Body = "<h1>Hierbij krijgt u de bevestiging van uw talkaanvraag.</h1><br/>" +
+                    "voorkeursdag:  " + model.form.preferredDateTime.ToString("dd-MM-yyyy") +
+                    "<br/>bedrijfsnaam:  " + model.form.companyName +
+                    "<br/>aantal mensen aanwezig:  " + model.form.amountOfPeople +
+/*                    "<br/>tribe:  " + f.form.tribe.Title +
+*/                    "<br/>opmerking:  " + model.form.comment +
+                    "<br/>nummer:  " + model.form.phoneNumber;
+
+                    mail.IsBodyHtml = true;
+
+                    using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
+                    {
+                        smtp.UseDefaultCredentials = false;
+                        smtp.Credentials = new NetworkCredential("RockstarsITFrontEnd@gmail.com", "DitIsOnzeMail1234");
+                        smtp.EnableSsl = true;
+                        smtp.Send(mail);
+                    }
+                }
+                return View("OnDemand");
+            }
+
+            //await api.AddToAPI(model.form);
+            return View("OnDemand");
+        }
+
         [HttpPost]
         public async Task<IActionResult> Aanvragen(FormulierEnAanvraagModel model)
         {

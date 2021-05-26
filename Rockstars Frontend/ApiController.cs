@@ -19,6 +19,41 @@ namespace Rockstars_Frontend
         public List<PodcastModel> podcasts = new List<PodcastModel>();
         public bool connection = false;
 
+        public async Task PostOverzichtAPI(int PostType, int PageSize, int Page)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(Baseurl);
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage Res = await client.GetAsync("api/Post/type?type=" + PostType + "&pagesize=" + PageSize + "&page=" + Page + "");
+
+                if (Res.IsSuccessStatusCode)
+                {
+                    switch (PostType)
+                    {
+                        case 0:
+                            connection = true;
+                            var artikelResponse = Res.Content.ReadAsStringAsync().Result;
+                            artikelen = JsonConvert.DeserializeObject<List<ArtikelModel>>(artikelResponse);
+                            break;
+
+                        case 1:
+                            connection = true;
+                            var talkResponse = Res.Content.ReadAsStringAsync().Result;
+                            talks = JsonConvert.DeserializeObject<List<TalkModel>>(talkResponse);
+                            break;
+
+                        case 2:
+                            connection = true;
+                            var podcastResponse = Res.Content.ReadAsStringAsync().Result;
+                            podcasts = JsonConvert.DeserializeObject<List<PodcastModel>>(podcastResponse);
+                            break;
+                    }          
+                }
+            }
+        }
+
         public async Task ArtikelPaginaAPI()
         {
 
@@ -115,11 +150,10 @@ namespace Rockstars_Frontend
             using (var client = new HttpClient())
             {
               client.BaseAddress= new Uri(Baseurl);
-              client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-              var json = System.Text.Json.JsonSerializer.Serialize(form);
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
                 
 
-              HttpResponseMessage Res = await client.PostAsJsonAsync("api/Appointment",json);
+                HttpResponseMessage Res = await client.PostAsJsonAsync("api/Appointment", form);
                 if (Res.IsSuccessStatusCode)
                 {
                     connection = true;

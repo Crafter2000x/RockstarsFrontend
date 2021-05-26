@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Rockstars_Frontend.Models
 {
+    [Serializable]
     public class ArtikelModel
     {
         public int Id { get; set; }
