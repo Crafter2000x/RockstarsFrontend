@@ -136,6 +136,7 @@ namespace Rockstars_Frontend.Controllers
         [HttpPost]
         public ActionResult TalkAanvraag(FormulierEnAanvraagModel model)
         {
+                    model.form.tribeId = 1;
                 using (MailMessage mail = new MailMessage())
                 {
                     mail.From = new MailAddress("RockstarsITFrontEnd@gmail.com");
@@ -159,10 +160,8 @@ namespace Rockstars_Frontend.Controllers
                         smtp.Send(mail);
                     }
                 }
-               // await api.AddToAPI(model.form);
+                //api.AddToAPI(model.form);
                 return RedirectToAction("OnDemand");
-
-            return RedirectToAction("OnDemand");
         }
 
 
