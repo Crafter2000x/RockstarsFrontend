@@ -142,6 +142,81 @@ namespace Rockstars_Frontend.Controllers
             //await api.AddToAPI(model.form);
             return View("OnDemand");
         }
+
+        public IActionResult TalkAanvraagPartial() 
+        {
+            var e = new FormulierEnAanvraagModel();
+            return PartialView(e);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> TalkAanvraag(FormulierEnAanvraagModel model)
+        {
+                    model.form.tribeId = 1;
+                using (MailMessage mail = new MailMessage())
+                {
+                    mail.From = new MailAddress("RockstarsITFrontEnd@gmail.com");
+                    mail.To.Add(model.form.contactEmail);
+                    mail.Subject = "Bevestiging";
+                    mail.Body = "<h1>Hierbij krijgt u de bevestiging van uw talkaanvraag.</h1><br/>" +
+                    "voorkeursdag:  " + model.form.preferredDateTime.ToString("dd-MM-yyyy") +
+                    "<br/>bedrijfsnaam:  " + model.form.companyName +
+                    "<br/>aantal mensen aanwezig:  " + model.form.amountOfPeople +
+/*                    "<br/>tribe:  " + f.form.tribe.Title +
+*/                    "<br/>opmerking:  " + model.form.comment +
+                    "<br/>nummer:  " + model.form.phoneNumber;
+
+                    mail.IsBodyHtml = true;
+
+                    using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
+                    {
+                        smtp.UseDefaultCredentials = false;
+                        smtp.Credentials = new NetworkCredential("RockstarsITFrontEnd@gmail.com", "DitIsOnzeMail1234");
+                        smtp.EnableSsl = true;
+                        smtp.Send(mail);
+                    }
+                }
+                await api.AddToAPI(model.form);
+                return RedirectToAction("OnDemand");
+        }
+
+
+        [HttpPost]
+        public IActionResult TalkAanvraagPartial(FormulierEnAanvraagModel model)
+        {
+            Console.Write("Baanad");
+            if (ModelState.IsValid)
+            {
+                using (MailMessage mail = new MailMessage())
+                {
+                    mail.From = new MailAddress("RockstarsITFrontEnd@gmail.com");
+                    mail.To.Add(model.form.contactEmail);
+                    mail.Subject = "Bevestiging";
+                    mail.Body = "<h1>Hierbij krijgt u de bevestiging van uw talkaanvraag.</h1><br/>" +
+                    "voorkeursdag:  " + model.form.preferredDateTime.ToString("dd-MM-yyyy") +
+                    "<br/>bedrijfsnaam:  " + model.form.companyName +
+                    "<br/>aantal mensen aanwezig:  " + model.form.amountOfPeople +
+/*                    "<br/>tribe:  " + f.form.tribe.Title +
+*/                    "<br/>opmerking:  " + model.form.comment +
+                    "<br/>nummer:  " + model.form.phoneNumber;
+
+                    mail.IsBodyHtml = true;
+
+                    using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
+                    {
+                        smtp.UseDefaultCredentials = false;
+                        smtp.Credentials = new NetworkCredential("RockstarsITFrontEnd@gmail.com", "DitIsOnzeMail1234");
+                        smtp.EnableSsl = true;
+                        smtp.Send(mail);
+                    }
+                }
+                return View("OnDemand");
+            }
+
+            //await api.AddToAPI(model.form);
+            return View("OnDemand");
+        }
+
         [HttpPost]
         public async Task<IActionResult> Aanvragen(FormulierEnAanvraagModel model)
         {

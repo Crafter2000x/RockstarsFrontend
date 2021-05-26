@@ -130,11 +130,10 @@ namespace Rockstars_Frontend
             using (var client = new HttpClient())
             {
               client.BaseAddress= new Uri(Baseurl);
-              client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-              var json = System.Text.Json.JsonSerializer.Serialize(form);
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
                 
 
-              HttpResponseMessage Res = await client.PostAsJsonAsync("api/Appointment",json);
+                HttpResponseMessage Res = await client.PostAsJsonAsync("api/Appointment", form);
                 if (Res.IsSuccessStatusCode)
                 {
                     connection = true;

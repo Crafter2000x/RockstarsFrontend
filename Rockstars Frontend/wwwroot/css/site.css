@@ -8,8 +8,8 @@ body {
 }
 
 body {
-    background-image: url(/Images/defaultOp.png) !important;
-    background-attachment: fixed;
+/*    background-image: url(/Images/defaultOp.png);
+    background-attachment: fixed;*/
     font-family: 'DIN 2014';
 }
 
