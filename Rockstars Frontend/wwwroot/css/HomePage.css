@@ -1,0 +1,90 @@
+﻿
+.PartInformation {
+    margin-left: -33.33%;
+    margin-right: -33.33%;
+    border-bottom: solid 2px white;
+}
+
+.InformationPage {
+    margin-top: 5%;
+}
+
+.TextPart {
+    margin-top: 3%;
+    width: 50%;
+    margin-bottom: 15%;
+}
+
+.QuoteText {
+    
+}
+
+.QuoteText h1 {
+    color: white;
+    font-weight: bold;
+    font-size: 360%;
+}
+
+.InfoText {
+    margin-top: 3%;
+    color: white;
+}
+
+.ImagePart {
+    width: 50%;
+}
+.ImagePart img {
+    width: 60%;
+    margin-left: 30%;
+}
+
+.PartOnDemand {
+    margin-left: -33.33%;
+    margin-right: -33.33%;
+}
+
+.OnDemandInformation {
+    margin-top: 2.5%;
+}
+
+.OnDemandInformation h1 {
+    color: white;
+    font-size: 300%;
+}
+
+.OnDemandInformation p {
+    color: white;
+    width: 40%;
+    margin-left: 30%;
+    font-size: 100%;
+    font-weight: normal;
+    margin-top: 1%;
+    margin-bottom: 3%;
+}
+
+
+.PartPage {
+    margin-right: 30%;
+    margin-left: 30%;
+    margin-bottom: 3%;
+}
+
+.PartPage h1 {
+    color: white;
+    margin-bottom: 3%;
+}
+
+.MoreArtikelButton {
+
+}
+.MoreArtikelButton a {
+    width: 70%;
+    margin-top: 4%;
+    margin-bottom: 3%;
+    margin-left: 15%;
+    font-size: 120%;
+}
+
+.MoreArtikelButton a:hover {
+    border: solid 1px #232323;
+}

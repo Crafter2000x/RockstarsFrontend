@@ -26,14 +26,14 @@
 
 <link rel="stylesheet" href="~/css/_OnDemand_.css" />
 <link rle="stylesheet" href="https://use.fontawesome.com/release/v5.4.1/css/all.css" />
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>
 
 <body>
     @*<input class="Search" onkeyup="filter()" type="text" id="value" placeholder="Zoek voor webinars" />*@
 
     <div class="talks">
-        <div class="collapse" id="Formulier">
+@*        <div class="collapse" id="Formulier">
             <div class="formulier">
                 @using (Html.BeginForm("OnDemand", "Home", FormMethod.Post))
                 {
@@ -49,7 +49,7 @@
                     <input type="submit" value="Vraag aan" />
                 }
             </div>
-        </div>
+        </div>*@
         <div class="noResultsDIV" id="test" style="display: none;">
             <p>Geen resultaten gevonden</p>
         </div>
@@ -87,13 +87,15 @@
             }
         }
         <div class="topButton">
-            <a id="linksbutton" class="btn buttonTop" data-toggle="collapse" data-target="#Formulier">
+            <button type="button" class="btn-block buttonTop">Talk Aanvragen</button>
+            <div class="modal fade" id="addEvent" role="dialog" data-url="@Url.Action("TalkAanvraagPartial", "Home")"></div>
+@*            <a id="linksbutton" class="btn buttonTop" data-toggle="collapse" data-target="#Formulier">
                 <p>Talk Aanvragen</p>
-            </a>
-        </div>
+            </a>*@
+@*            <a id="linksbutton" class="btn buttonTop" asp-controller="Home" asp-action="TalkAanvraag"></a>
+*@        </div>
 
     </div>
-    <script src="~/js/site.js" asp-append-version="true"></script>
 
     <script type="text/javascript">
         function filter() {
@@ -132,6 +134,17 @@
 
 
         }
+
+        $(document).ready(function () {
+
+            $('.btn-block').click(function () {
+                var url = $("#addEvent").data('url');
+                $.get(url, function (data) {
+                    $("#addEvent").html(data);
+                    $("#addEvent").modal('show');
+                })
+            })
+        })
 
     </script>
 </body>
