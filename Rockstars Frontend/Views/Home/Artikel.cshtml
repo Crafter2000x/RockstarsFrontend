@@ -18,6 +18,9 @@
 }
 
 <link rel="stylesheet" href="~/css/_Artikel.css" />
+<div>
+    <a class="backButton" asp-controller="Home" asp-action="ArtikelPagina">Terug</a>
+</div>
 
  @{string pdfurl = "https://localhost:6001/api/File/" + artikel.Attributes["pdf"] +"/retrieve"; }
 

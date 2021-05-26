@@ -13,13 +13,16 @@ namespace Rockstars_Frontend.Models
 
         public MemberRole Role { get; set; }
 
+        public bool IsSpecialAgent { get; set; }
+
         public int TribeId { get; set; }
+
+        public Tribe Tribe { get; set; }
 
         public enum MemberRole
         {
             Normal = 0,
             TribeLead = 1,
-            SpecialAgent = 2,
         }
     }
 }
