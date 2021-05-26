@@ -3,6 +3,7 @@
     background-attachment: fixed;
     font-family: 'DIN 2014';
 }
+
 .artikelInfo {
     width: 100%;
     margin-bottom: 10%;
@@ -72,6 +73,7 @@ h1 {
 }
 
 .artikel {
+    display: inline-block;
     border: solid 1px black;
     background-color: rgba(35, 35, 35, 1);
 }
@@ -153,6 +155,7 @@ h3 {
     padding-top: 5%;
     padding-bottom: 5%;
 }
+
 .talks h5 {
     color: white;
 }
@@ -212,7 +215,7 @@ h3 {
     color: white;
     border: solid 2px #ffe000;
     margin-top: 4%;
-    background-color:#232323;
+    background-color: #232323;
 }
 
     .talk h1 {
@@ -240,6 +243,7 @@ h3 {
     height: auto;
     border: solid 1.5px #ffe000;
 }
+
 .backButton {
     background-color: #ffe000;
     color: #232323;
@@ -308,34 +312,29 @@ h3 {
 .moreButton {
     width: 100%;
     height: 100%;
+    background-color: grey;
     margin-left: 5%;
     margin-right: 5%;
-    background-color: #ffe000;
-    color: #232323;
-    font-size: 150%;
-    font-family: 'DIN 2014';
-    font-weight: bold;
-    border: solid 1px #232323;
+    font-size: 22px;
+    text-decoration: none;
+    color: white;
     justify-content: center;
-    padding: 10px;
-    margin-top: 10px;
 }
 
     .moreButton:hover {
-        transition:0.5s;
-        background-color: #232323;
-        color: white;
-        border: solid 1px #ffe000;
         text-decoration: none;
+        color: white;
     }
+
 .hulpknop {
     width: 100%;
     height: 10%;
     background-color: #ffe000;
     outline: none !important;
     border: 1px solid #ffe000 !important;
-    color:black;
+    color: black;
 }
+
     .hulpknop:hover {
         width: 100%;
         height: 10%;
@@ -343,6 +342,7 @@ h3 {
         outline: none !important;
         border: 1px solid #ffe000 !important;
     }
+
     .hulpknop:focus {
         width: 100%;
         height: 10%;
@@ -352,6 +352,7 @@ h3 {
         border: 1px solid #ffe000 !important;
         box-shadow: none;
     }
+
     .hulpknop:active {
         width: 100%;
         height: 10%;
@@ -360,4 +361,11 @@ h3 {
         background-color: #ffe000 !important;
         border: 1px solid #ffe000 !important;
         box-shadow: none;
+    }
+
+    .beschrijving {
+        width: 70%;
+        height: 500px;
+        border: solid 1px black;
+        display: inline-block;
     }
