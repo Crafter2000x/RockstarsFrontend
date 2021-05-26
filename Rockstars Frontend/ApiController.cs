@@ -29,9 +29,26 @@ namespace Rockstars_Frontend
 
                 if (Res.IsSuccessStatusCode)
                 {
-                    connection = true;
-                    var artikelResponse = Res.Content.ReadAsStringAsync().Result;
-                    artikelen = JsonConvert.DeserializeObject<List<ArtikelModel>>(artikelResponse);
+                    switch (PostType)
+                    {
+                        case 0:
+                            connection = true;
+                            var artikelResponse = Res.Content.ReadAsStringAsync().Result;
+                            artikelen = JsonConvert.DeserializeObject<List<ArtikelModel>>(artikelResponse);
+                            break;
+
+                        case 1:
+                            connection = true;
+                            var talkResponse = Res.Content.ReadAsStringAsync().Result;
+                            talks = JsonConvert.DeserializeObject<List<TalkModel>>(talkResponse);
+                            break;
+
+                        case 2:
+                            connection = true;
+                            var podcastResponse = Res.Content.ReadAsStringAsync().Result;
+                            podcasts = JsonConvert.DeserializeObject<List<PodcastModel>>(podcastResponse);
+                            break;
+                    }          
                 }
             }
         }

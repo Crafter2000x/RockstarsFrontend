@@ -1,79 +1,30 @@
 ﻿@{
     ViewData["Title"] = "Podcasts";
-
-    List<PodcastModel> podcasts = new List<PodcastModel>();
-    ApiController api = new ApiController();
-    await api.PodcastAPI();
-    podcasts = api.podcasts;
-    string baseIP = "https://localhost:6001";
-    int id = 1;
 }
 <link rel="stylesheet" href="~/css/_Podcasts.css" />
 
 <div class="container">
-    <row>
-        <div class="col-md-12">
-            
-            
-            <div class="podcastbox">
-                <div class="widget-share">
-                    <a asp-controller="Home" asp-action="Artikel" asp-route-title="#" target="_blank"><i class="fa fa-share" style="color:#ffe000"></i></a>
-                </div>
-                <a href="#">
-                    <img class="thumbnailimage" src="https://uonam1hug0i75oy12t2nhi2t-wpengine.netdna-ssl.com/wp-content/uploads/2019/01/image-placeholder-500x500.jpg" />
-                    <div class="podcast-title">Let's talk about all going on</div>
 
-                    <div class="podcast-user user-sm">
-                        <span class="userimage pull-left mr">
-                            <img class="rounded-circle" src="https://bootdey.com/img/Content/user_1.jpg" alt="...">
-                        </span>
-                        <h5 class="mt-xs text-light"><span class="fw-semi-bold">Jelle Maas</span></h5>
-                        <p class="fs-role text-muted"><span class="fs-role text-muted"><i class="fa fa-tag"></i>&nbsp;Special agent</span></p>
-                    </div>
-                    <p class="text-light podcast-disc">
-                        I'm very sure this isn't going to go well, but here I am still try to test this out and see if it will actually work
-                    </p>
-                    <ul class="tags text-black-50 pull-right">
-                        <li><a href="tribesearch1"></a>Microsoft Tribe</li>
-                    </ul>
-                    <footer class="podcastboxfooter">
-                        <ul class="podcast-links">
-                            <li><i class="fa fa-calendar"></i><time>&nbsp;21-5-2021</time>&nbsp;</li>
-                            <li><i class="fa fa-hashtag"></i>&nbsp;Add some tags here</li>
-                        </ul>
-                    </footer>
-                </a>
-            </div>
-            
+    <div id="WaitingForContent" style="display:normal;">
+        <div class="container" style="width: 750px; height: 750px; margin: 0 auto;">
+
+
         </div>
-    </row>
+    </div>
+
+    <div class="container" id="partialPlaceHolder" style="display:none;">
+
+    </div>
+
+    <div id="loadingdiv" style="text-align:center;display:none;margin-bottom:20px;">
+        <img src="~/Images/AjaxLoadingGif.gif" />
+    </div>
+
 </div>
 
-
-
-
-
-@*<body>
-    @foreach (PodcastModel podcast in podcasts)
-    {
-        if (podcast.status == 1 && podcast.type == 2 || podcast.status == 0 && podcast.type == 2)
-        {
-            string profilePicture = baseIP + "/api/File/" + podcast.Author.ImageId + "/retrieve";
-
-            <a asp-controller="Home" asp-action="Podcast" asp-route-title="@podcast.title">
-                <div class="container podcast">
-                    <div class="row">
-                        <img class="picture" src="@profilePicture" />
-                        <div class="text">
-                            <h2 class="number">PODCAST #@id</h2>
-                            <h1 class="title name">@podcast.title</h1>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            id++;
-        }
-    }
-</body>*@
+@section Scripts
+{
+    <script src="~/js/InfinityScrollB.js"></script>
+}
 
 

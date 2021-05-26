@@ -51,10 +51,21 @@ namespace Rockstars_Frontend.Controllers
             return PartialView("ArtikelPartialView", artikelenViewModel);
         }
 
-
         public IActionResult Podcasts()
         {
             return View();
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> RequestPodcastPartial(int Page)
+        {
+            PodcastsViewModel podcastsViewModel = new PodcastsViewModel();
+
+            ApiController api = new ApiController();
+            await api.PostOverzichtAPI(2, 4, Page);
+            podcastsViewModel.podcasts = api.podcasts;
+
+            return PartialView("PodcastPartialView", podcastsViewModel);
         }
 
         public IActionResult Artikel(string? title)

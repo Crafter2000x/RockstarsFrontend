@@ -23,9 +23,6 @@ namespace Rockstars_Frontend.Models
         public int type { get; set; }
         public int status { get; set; }
         public IDictionary<string, string> attributes { get; set; }
-
-
+        public DateTime CreatedAt { get; set; }
     }
-
-
 }
