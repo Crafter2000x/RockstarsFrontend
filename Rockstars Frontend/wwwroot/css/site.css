@@ -71,9 +71,36 @@ html {
 
 @media (min-width: 768px) {
     .SearchBar {
-        left: 200%;
+        left: 300%;
         position: relative;
         top: 10%;
+        min-height: 40px;
+        border: solid 1px #ffe000 !important;
+        border-radius: 5px;
+        background-color: #232323;
+        color: #ffe000;
     }
 }
 
+/*.SearchBar:active {
+    left: 300%;
+    position: relative;
+    top: 10%;
+    min-height: 40px;
+    border: solid 1px #ffe000 !important;
+    border-radius: 5px;
+    background-color: #232323;
+    color: #ffe000;
+}*/
+
+.Filter {
+    background-color: #232323;
+    color: #ffe000;
+    height: 50px;
+    width: 50px;
+    left: 225%;
+    position: relative;
+    border: solid 1px #ffe000 !important;
+    font-size: 30px;
+    top: 5px;
+}

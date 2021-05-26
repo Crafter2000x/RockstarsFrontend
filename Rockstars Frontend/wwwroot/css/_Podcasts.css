@@ -223,6 +223,7 @@ a:hover {
 }
 
 .podcast {
+    margin-top: 50px;
     background-color: #232323;
     border-bottom: solid 2px #ffe000;
     box-shadow: inset 0 -3px 0 -1px #333333;
@@ -275,11 +276,12 @@ a:hover {
 .Search {
     border: solid 1px #ffe000 !important;
     border-radius: 5px;
+    max-height: 30px;
+    position: relative;
     background-color: #232323;
-    margin-left: 80%;
-    margin-top: 2.5%;
-    margin-bottom: 2.5%;
     color: #ffe000;
+    margin-left: 0px;
+    top: 20px;
 }
 
 input:not([type="button"]):not([type="submit"]):not([type="reset"]):hover, input:not([type="button"]):not([type="submit"]):not([type="reset"]):focus, textarea:hover, textarea:focus, select:hover, select:focus {

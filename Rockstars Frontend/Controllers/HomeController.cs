@@ -28,9 +28,13 @@ namespace Rockstars_Frontend.Controllers
             return View();
         }
 
-        public IActionResult Search(string SearchTerm)
+        public async Task<IActionResult> Search(string SearchTerm, string type = "ALL", string tribe = "ALL")
         {
+            ViewData["Type"] = type;
+            ViewData["Tribe"] = tribe;
             ViewData["KeyWord"] = SearchTerm;
+            await api.TribePaginaAPI();
+            ViewData["Tribes"] = api.AllTribes;
             return View();
         }
 
