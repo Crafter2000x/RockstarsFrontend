@@ -67,9 +67,9 @@
                     </div>
                     <div class="row talkBottom">
                         <h2 class="talkTribe">@talk.Tribe.Title</h2>
-                        <button class="btn btn-primary btnAanvraag" data-toggle="collapse" data-target="#Aanvragen">Toegang Aanvragen</button>
+                        <button class="btn btn-primary btnAanvraag" data-toggle="collapse" data-target="#Aanvragen-@talk.id">Toegang Aanvragen</button>
                     </div>
-                    <div class="collapse" id="Aanvragen">
+                    <div class="collapse" id="Aanvragen-@talk.id">
                         <div class="formulier">
                             @using (Html.BeginForm("Aanvragen", "Home", FormMethod.Post))
                             {

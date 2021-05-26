@@ -240,7 +240,30 @@ h3 {
     height: auto;
     border: solid 1.5px #ffe000;
 }
+.backButton {
+    background-color: #ffe000;
+    color: #232323;
+    font-size: 150%;
+    line-height: 30px;
+    font-family: 'DIN 2014';
+    font-weight: bold;
+    cursor: pointer;
+    border: solid 1px #232323;
+    width: 110px;
+    height: 50px;
+    text-align: center;
+    padding: 10px;
+    position: absolute;
+    margin-left: -150px;
+    margin-top: 20px;
+}
 
+    .backButton:hover {
+        background-color: #232323;
+        color: white;
+        border: solid 1px #ffe000;
+        text-decoration: none;
+    }
 
 .talkBottom {
     width: 100%;
@@ -296,4 +319,37 @@ h3 {
     .moreButton:hover {
         text-decoration: none;
         color: white;
+    }
+.hulpknop {
+    width: 100%;
+    height: 10%;
+    background-color: #ffe000;
+    outline: none !important;
+    border: 1px solid #ffe000 !important;
+    color:black;
+}
+    .hulpknop:hover {
+        width: 100%;
+        height: 10%;
+        background-color: #ffe000;
+        outline: none !important;
+        border: 1px solid #ffe000 !important;
+    }
+    .hulpknop:focus {
+        width: 100%;
+        height: 10%;
+        background-color: #ffe000;
+        outline: none !important;
+        background-color: #ffe000 !important;
+        border: 1px solid #ffe000 !important;
+        box-shadow: none;
+    }
+    .hulpknop:active {
+        width: 100%;
+        height: 10%;
+        background-color: #ffe000;
+        outline: none !important;
+        background-color: #ffe000 !important;
+        border: 1px solid #ffe000 !important;
+        box-shadow: none;
     }

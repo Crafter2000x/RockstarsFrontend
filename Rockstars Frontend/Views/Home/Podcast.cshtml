@@ -59,7 +59,9 @@
         }*@
 
     @{string profilePicture = baseURL + "/api/File/" + podcast.Author.ImageId + "/retrieve";}
-
+    <div>
+        <a class="backButton" asp-controller="Home" asp-action="Podcasts">Terug</a>
+    </div>
     <div class="row Auteur">
         <img class="profilePicture" src="@profilePicture" />
         <div class="profileInfo">
@@ -79,14 +81,14 @@
             {
                 <div class="text12">@biotext</div>
             }
-            
+
         </div>
     </div>
     <div class="podcastInfo">
         <h1>@podcast.title</h1>
         @foreach (string kword in keywords)
         {
-            
+
             <p><i class="fa fa-caret-right" style="color: #ffe000"></i>&nbsp;@kword</p>
         }
         @if (desctext.Length > 50)
@@ -102,7 +104,7 @@
         else
         {
             <div class="text12">@desctext</div>
-            
+
         }
     </div>
     <iframe src="@goodpodcastURL" width="100%" height="232" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>

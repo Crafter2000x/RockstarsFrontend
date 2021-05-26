@@ -37,6 +37,29 @@
     margin-right: 5%;
     border: solid 1px #ffe000;
 }
+.backButton {
+    background-color: #ffe000;
+    color: #232323;
+    font-size: 150%;
+    line-height: 30px;
+    font-family: 'DIN 2014';
+    font-weight: bold;
+    cursor: pointer;
+    border: solid 1px #232323;
+    width: 110px;
+    height: 50px;
+    text-align: center;
+    padding: 10px;
+    position: absolute;
+    margin-left: -150px;
+}
+
+    .backButton:hover {
+        background-color: #232323;
+        color: white;
+        border: solid 1px #ffe000;
+        text-decoration: none;
+    }
 
 .thumbnail img {
     width: 100%;

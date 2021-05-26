@@ -186,10 +186,43 @@ namespace Rockstars_Frontend.Controllers
 
 
         }
+        [HttpPost]
+        public async Task<IActionResult> HulpAanvragen(FormulierEnAanvraagModel model)
+        {
+            if (ModelState.IsValid)
+            {
+
+                using (MailMessage mail = new MailMessage())
+                {
+                    mail.From = new MailAddress("RockstarsITFrontEnd@gmail.com");
+                    mail.To.Add(model.form.contactEmail);
+                    mail.Subject = "Aangevraagde hulp";
+                    mail.Body = model.form.comment;
+                    mail.IsBodyHtml = true;
+
+                    using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
+                    {
+                        smtp.UseDefaultCredentials = false;
+                        smtp.Credentials = new NetworkCredential("RockstarsITFrontEnd@gmail.com", "DitIsOnzeMail1234");
+                        smtp.EnableSsl = true;
+                        smtp.Send(mail);
+                    }
+                }
+                return RedirectToAction("SpecialAgent");
+            }
+            return RedirectToAction("SpecialAgent");
+
+        }
 
         public IActionResult TribeOverzicht()
         {
             return View();
+        }
+        public async Task<IActionResult> SpecialAgent(FormulierEnAanvraagModel f)
+        {
+            await api.TribeleadsAPI();
+            f.userlist = api.Tribeleads;
+            return View(f);
         }
         public IActionResult TribePagina(string? title)
         {

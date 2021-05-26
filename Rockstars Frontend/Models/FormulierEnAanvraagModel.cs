@@ -11,5 +11,7 @@ namespace Rockstars_Frontend.Models
         public TalkModel talk { get; set; }
 
         public ArtikelModel art { get; set; }
+
+        public List<User> userlist { get; set; }
     }
 }

@@ -17,6 +17,7 @@ namespace Rockstars_Frontend.Models
 
         [ForeignKey(nameof(ImageId))]
         public StoredFile Image { get; set; }
+        public string LinkedIn { get; set; }
 
         [JsonIgnore]
         public List<TribeMember> MemberOf { get; set; }
