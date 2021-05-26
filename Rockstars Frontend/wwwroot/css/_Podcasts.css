@@ -1,4 +1,10 @@
-﻿.podcastbox {
+﻿body {
+    background-image: url(/Images/defaultOp.png) !important;
+    background-attachment: fixed;
+    font-family: 'DIN 2014';
+}
+
+.podcastbox {
     position: relative;
     margin-bottom: 30px;
     margin-top: 30px;
