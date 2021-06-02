@@ -49,7 +49,7 @@ namespace Rockstars_Frontend.Controllers
             ArtikelenViewModel artikelenViewModel = new ArtikelenViewModel();
 
             ApiController api = new ApiController();
-            await api.PostOverzichtAPI(0,6,Page);
+            await api.PostOverzichtAPI(0,1,6,Page);
             artikelenViewModel.artikelen = api.artikelen;
 
             return PartialView("ArtikelPartialView", artikelenViewModel);
@@ -66,7 +66,7 @@ namespace Rockstars_Frontend.Controllers
             PodcastsViewModel podcastsViewModel = new PodcastsViewModel();
 
             ApiController api = new ApiController();
-            await api.PostOverzichtAPI(2, 4, Page);
+            await api.PostOverzichtAPI(2,1,4, Page);
             podcastsViewModel.podcasts = api.podcasts;
 
             return PartialView("PodcastPartialView", podcastsViewModel);

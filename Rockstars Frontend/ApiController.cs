@@ -19,14 +19,14 @@ namespace Rockstars_Frontend
         public List<PodcastModel> podcasts = new List<PodcastModel>();
         public bool connection = false;
 
-        public async Task PostOverzichtAPI(int PostType, int PageSize, int Page)
+        public async Task PostOverzichtAPI(int PostType, int PostStatus, int PageSize, int Page)
         {
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(Baseurl);
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
-                HttpResponseMessage Res = await client.GetAsync("api/Post/type?type=" + PostType + "&pagesize=" + PageSize + "&page=" + Page + "");
+                HttpResponseMessage Res = await client.GetAsync("api/Post/paginate?type=" + PostType + "&status=" + PostStatus + "&pagesize=" + PageSize + "&page=" + Page + "");
 
                 if (Res.IsSuccessStatusCode)
                 {
