@@ -28,171 +28,181 @@
             </div>
         </div>
     </div>
-    <div class="PartOnDemand">
-        <div class="OnDemandInformation">
-            <h1 class="text-center"><b>ROCKSTARS ON DEMAND</b></h1>
-            <p class="text-center">On Demand zijn artikelen, webinars en podcasts van onze developers. Zij zijn experts binnen hun vakgebied en delen graag hun kennis met andere programmeurs. Don’t keep it in the bubble, burst it!</p>
-        </div>
-        <div class="PartPage">
-            <h1 class="text-center">ARTIKELEN</h1>
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="height: 50%; border: solid 2px #ffe000;">
-                <ol class="carousel-indicators">
-                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                </ol>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <a href="https://google.com">
-                            <img class="d-block w-100" src="~/Images/defaultOp.png" alt="First slide">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>ARTIKEL TITEL</h5>
-                                <p>ARTIKEL DESCRIPTION</p>
-                                <p>ARTIKEL AUTEUR</p>
+    <div class="row SecondPart">
+        <div class="PartOnDemand">
+            <div class="OnDemandInformation">
+                <h1 class="text-center"><b>ROCKSTARS ON DEMAND</b></h1>
+                <p class="text-center">On Demand zijn artikelen, webinars en podcasts van onze developers. Zij zijn experts binnen hun vakgebied en delen graag hun kennis met andere programmeurs. Don’t keep it in the bubble, burst it!</p>
+            </div>
+            <div class="PartPage ArtikelPart">
+                <div class="row">
+                    <div class="ArtikelCarousel">
+                        <h1 class="text-center">ARTIKELEN</h1>
+                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="height: 100%; border: solid 2px #ffe000;">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <a href="https://google.com">
+                                        <img class="d-block w-100" src="~/Images/defaultOp.png" alt="First slide">
+                                        <div class="carousel-caption d-none d-md-block">
+                                            <h5>ARTIKEL TITEL</h5>
+                                            <p>ARTIKEL DESCRIPTION</p>
+                                            <p>ARTIKEL AUTEUR</p>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="carousel-item">
+                                    <a href="https://google.com">
+                                        <img class="d-block w-100" src="~/Images/defaultOp.png" alt="Second slide">
+                                        <div class="carousel-caption d-none d-md-block">
+                                            <h5>ARTIKEL TITEL</h5>
+                                            <p>ARTIKEL DESCRIPTION</p>
+                                            <p>ARTIKEL AUTEUR</p>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="carousel-item">
+                                    <a href="https://google.com">
+                                        <img class="d-block w-100" src="~/Images/defaultOp.png" alt="Third slide">
+                                        <div class="carousel-caption d-none d-md-block">
+                                            <h5>ARTIKEL TITEL</h5>
+                                            <p>ARTIKEL DESCRIPTION</p>
+                                            <p>ARTIKEL AUTEUR</p>
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
-                        </a>
+                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
                     </div>
-                    <div class="carousel-item">
-                        <a href="https://google.com">
-                            <img class="d-block w-100" src="~/Images/defaultOp.png" alt="Second slide">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>ARTIKEL TITEL</h5>
-                                <p>ARTIKEL DESCRIPTION</p>
-                                <p>ARTIKEL AUTEUR</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="carousel-item">
-                        <a href="https://google.com">
-                            <img class="d-block w-100" src="~/Images/defaultOp.png" alt="Third slide">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>ARTIKEL TITEL</h5>
-                                <p>ARTIKEL DESCRIPTION</p>
-                                <p>ARTIKEL AUTEUR</p>
-                            </div>
-                        </a>
+                    <div class="ArtikelInformation">
+                        <a type="button" class="btn btn-light text-center" href="@baseURL/Home/ArtikelPagina">Meer Artikelen</a>
                     </div>
                 </div>
-                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
             </div>
-            <div class="MoreArtikelButton">
-                <a type="button" class="btn btn-light text-center" href="@baseURL/Home/ArtikelPagina">Meer Artikelen</a>
+            <div class="PartPage">
+                <h1 class="text-center">WEBINARS</h1>
+                <div id="WebinarExample" class="carousel slide" data-ride="carousel" style="height: 50%; border: solid 2px #ffe000;">
+                    <ol class="carousel-indicators">
+                        <li data-target="#WebinarExample" data-slide-to="0" class="active"></li>
+                        <li data-target="#WebinarExample" data-slide-to="1"></li>
+                        <li data-target="#WebinarExample" data-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <a href="https://google.com">
+                                <img class="d-block w-100" src="~/Images/defaultOp.png" alt="First slide">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>WEBINAR TITEL</h5>
+                                    <p>WEBINAR DESCRIPTION</p>
+                                    <p>WEBINAR AUTEUR</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="https://google.com">
+                                <img class="d-block w-100" src="~/Images/defaultOp.png" alt="Second slide">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>WEBINAR TITEL</h5>
+                                    <p>WEBINAR DESCRIPTION</p>
+                                    <p>WEBINAR AUTEUR</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="https://google.com">
+                                <img class="d-block w-100" src="~/Images/defaultOp.png" alt="Third slide">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>WEBINAR TITEL</h5>
+                                    <p>WEBINAR DESCRIPTION</p>
+                                    <p>WEBINAR AUTEUR</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#WebinarExample" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#WebinarExample" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+                <div class="MoreArtikelButton">
+                    <a type="button" class="btn btn-light text-center" href="@baseURL/Home/OnDemand">Meer Webinars</a>
+                </div>
+            </div>
+            <div class="PartPage">
+                <h1 class="text-center">Podcasts</h1>
+                <div id="PodcastExample" class="carousel slide" data-ride="carousel" style="height: 50%;  border: solid 2px #ffe000;">
+                    <ol class="carousel-indicators">
+                        <li data-target="#PodcastExample" data-slide-to="0" class="active"></li>
+                        <li data-target="#PodcastExample" data-slide-to="1"></li>
+                        <li data-target="#PodcastExample" data-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <a href="https://google.com">
+                                <img class="d-block w-100" src="~/Images/defaultOp.png" alt="First slide">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>PODCAST TITEL</h5>
+                                    <p>PODCAST DESCRIPTION</p>
+                                    <p>PODCAST AUTEUR</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="https://google.com">
+                                <img class="d-block w-100" src="~/Images/defaultOp.png" alt="Second slide">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>PODCAST TITEL</h5>
+                                    <p>PODCAST DESCRIPTION</p>
+                                    <p>PODCAST AUTEUR</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="https://google.com">
+                                <img class="d-block w-100" src="~/Images/defaultOp.png" alt="Third slide">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>PODCAST TITEL</h5>
+                                    <p>PODCAST DESCRIPTION</p>
+                                    <p>PODCAST AUTEUR</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#PodcastExample" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#PodcastExample" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+                <div class="MoreArtikelButton">
+                    <a type="button" class="btn btn-light text-center" href="@baseURL/Home/Podcasts">Meer Podcasts</a>
+                </div>
             </div>
         </div>
-        <div class="PartPage">
-            <h1 class="text-center">WEBINARS</h1>
-            <div id="WebinarExample" class="carousel slide" data-ride="carousel" style="height: 50%; border: solid 2px #ffe000;">
-                <ol class="carousel-indicators">
-                    <li data-target="#WebinarExample" data-slide-to="0" class="active"></li>
-                    <li data-target="#WebinarExample" data-slide-to="1"></li>
-                    <li data-target="#WebinarExample" data-slide-to="2"></li>
-                </ol>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <a href="https://google.com">
-                            <img class="d-block w-100" src="~/Images/defaultOp.png" alt="First slide">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>WEBINAR TITEL</h5>
-                                <p>WEBINAR DESCRIPTION</p>
-                                <p>WEBINAR AUTEUR</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="carousel-item">
-                        <a href="https://google.com">
-                            <img class="d-block w-100" src="~/Images/defaultOp.png" alt="Second slide">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>WEBINAR TITEL</h5>
-                                <p>WEBINAR DESCRIPTION</p>
-                                <p>WEBINAR AUTEUR</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="carousel-item">
-                        <a href="https://google.com">
-                            <img class="d-block w-100" src="~/Images/defaultOp.png" alt="Third slide">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>WEBINAR TITEL</h5>
-                                <p>WEBINAR DESCRIPTION</p>
-                                <p>WEBINAR AUTEUR</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <a class="carousel-control-prev" href="#WebinarExample" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#WebinarExample" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </div>
-            <div class="MoreArtikelButton">
-                <a type="button" class="btn btn-light text-center" href="@baseURL/Home/OnDemand">Meer Webinars</a>
-            </div>
-        </div>
-        <div class="PartPage">
-            <h1 class="text-center">Podcasts</h1>
-            <div id="PodcastExample" class="carousel slide" data-ride="carousel" style="height: 50%;  border: solid 2px #ffe000;">
-                <ol class="carousel-indicators">
-                    <li data-target="#PodcastExample" data-slide-to="0" class="active"></li>
-                    <li data-target="#PodcastExample" data-slide-to="1"></li>
-                    <li data-target="#PodcastExample" data-slide-to="2"></li>
-                </ol>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <a href="https://google.com">
-                            <img class="d-block w-100" src="~/Images/defaultOp.png" alt="First slide">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>PODCAST TITEL</h5>
-                                <p>PODCAST DESCRIPTION</p>
-                                <p>PODCAST AUTEUR</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="carousel-item">
-                        <a href="https://google.com">
-                            <img class="d-block w-100" src="~/Images/defaultOp.png" alt="Second slide">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>PODCAST TITEL</h5>
-                                <p>PODCAST DESCRIPTION</p>
-                                <p>PODCAST AUTEUR</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="carousel-item">
-                        <a href="https://google.com">
-                            <img class="d-block w-100" src="~/Images/defaultOp.png" alt="Third slide">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>PODCAST TITEL</h5>
-                                <p>PODCAST DESCRIPTION</p>
-                                <p>PODCAST AUTEUR</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <a class="carousel-control-prev" href="#PodcastExample" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#PodcastExample" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </div>
-            <div class="MoreArtikelButton">
-                <a type="button" class="btn btn-light text-center" href="@baseURL/Home/Podcasts">Meer Podcasts</a>
-            </div>
+        <div class="SpecialAgents">
+
         </div>
     </div>
+
 </body>
 
 
