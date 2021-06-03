@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -42,12 +42,15 @@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="SpecialAgent">SPECIAL AGENTS</a>
                             </li>
                             <li class="nav-item">
-                                <form id="f_search" method="get" asp-action="Search">
-                                    <input id="ipt_search" type="search" class="SearchBar" name="SearchTerm" placeholder="Zoek over de hele site" />
-                                </form>
+                                <div class="searchb">
+                                    <form id="f_search" method="get" asp-action="Search" class="searchForm">
+                                        <input id="ipt_search" type="text" class="SearchBar" name="SearchTerm" placeholder="" pattern="\S+.*" autocomplete="off" />
+                                        <button class="btn"><i class="searchIcon fa fa-search"></i></button>
+                                    </form>
+                                </div>
                             </li>
-                        </ul>
-                    </div>
+                    </ul>
+                </div>
                 </div>
             </nav>
         </div>
