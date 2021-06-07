@@ -9,6 +9,7 @@ using System.Net.Mail;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Rockstars_Frontend.Controllers
 {
@@ -23,8 +24,11 @@ namespace Rockstars_Frontend.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            await api.ArtikelPaginaAPI();
+            List<ArtikelModel> artikels = api.artikelen;
+            ViewData["Artikelen"] = artikels;
             return View();
         }
 
