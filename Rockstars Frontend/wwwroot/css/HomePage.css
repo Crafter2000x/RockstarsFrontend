@@ -53,19 +53,37 @@
 }
 
 .ArtikelCarousel {
+    margin-top: 1%;
     width: 50%;
 }
 
-.carousel-caption h5 {  
-    text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+.carousel-caption h5 {
+    color: #ffe000;
+    text-shadow: 3px 3px 2px rgba(0,0,0,1);
+    font-weight: bold;
 }
 .carousel-caption p {
-    text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+    color: #ffe000;
+    text-shadow: 4px 4px 2px rgba(0,0,0,0.6);
 }
 
 .ArtikelInformation {
+    margin-top: 1%;
     width: 50%;
-    background-color: blue;
+}
+
+.ArtikelInformation p {
+    color: white;
+    margin-top: 14%;
+    margin-left: 7%;
+    margin-right: 5%;
+}
+
+.ArtikelInformation a {
+    width: 40%;
+    margin-left: 7%;
+    font-size: 120%;
+    margin-bottom: 3.5%;
 }
 
 .carousel-item img {
@@ -84,6 +102,7 @@
 
 .OnDemandInformation {
     margin-top: 2.5%;
+    margin-bottom: 5%;
 }
 
     .OnDemandInformation h1 {
@@ -114,12 +133,14 @@
     }
 
 .MoreArtikelButton {
+    margin-left: 10%;
 }
 
     .MoreArtikelButton a {
         width: 70%;
         margin-top: 4%;
         margin-bottom: 3%;
+
         margin-left: 15%;
         font-size: 120%;
     }

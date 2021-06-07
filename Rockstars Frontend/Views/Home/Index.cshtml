@@ -3,7 +3,8 @@
 
 @{
     ViewData["Title"] = "Home Page";
-    string baseURL = "Https://localhost:5001";
+    string baseURL = "Https://localhost:6001"; // API
+    string websiteURL = "Https://localhost:5001"; // FRONTEND
 }
 
 <link rel="stylesheet" href="~/css/HomePage.css" />
@@ -33,32 +34,41 @@
     </div>
     <div class="row SecondPart">
         <div class="PartOnDemand">
+            @{List<ArtikelModel> podcasts = ViewData["podcasts"] as List<ArtikelModel>;}
+            @{List<ArtikelModel> artikelen = ViewData["artikelen"] as List<ArtikelModel>;}
+            @{List<ArtikelModel> talks = ViewData["talks"] as List<ArtikelModel>;}
             <div class="OnDemandInformation">
                 <h1 class="text-center"><b>ROCKSTARS ON DEMAND</b></h1>
                 <p class="text-center">On Demand zijn artikelen, webinars en podcasts van onze developers. Zij zijn experts binnen hun vakgebied en delen graag hun kennis met andere programmeurs. Don’t keep it in the bubble, burst it!</p>
             </div>
-            <div class="PartPage ArtikelPart">
-                <div class="row ArtikelSplit">
-                    @{List<ArtikelModel> artikelen = ViewData["artikelen"] as List<ArtikelModel>;}
-                    <div class="ArtikelCarousel">
-@*                        <h1 class="text-center">ARTIKELEN</h1>
-                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="height: 100%;">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    @{string Imageurl = "https://localhost:6001" + artikelen[2].Thumbnail.RelativeUrl; }
+            @if (artikelen.Count > 0)
+            {
+                <div class="PartPage ArtikelPart">
+                    <div class="row ArtikelSplit">
+                        <div class="ArtikelCarousel">
+                            <h1 class="text-center">ARTIKELEN</h1>
+                            <div id="Artikel" class="carousel slide" data-ride="carousel" style="height: 84.3%;">
+                                <div class="carousel-inner">
+                                    @if (artikelen.Count >= 1)
+                                    {
+                                        <div class="carousel-item active">
+                                            @{string Imageurl = baseURL + artikelen[0].Thumbnail.RelativeUrl; }
 
-                                    <a href="https://google.com">
-                                        <img class="d-block w-100" src="@Imageurl" alt="First slide">
-                                        <div class="carousel-caption d-none d-md-block">
-                                            <h5>@artikelen[0].Title.ToUpper()</h5>
-                                            <p>@artikelen[0].Author.Name.ToUpper()</p>
+                                            <a asp-action="Artikel" asp-route-title="@artikelen[0].Title">
+                                                <img class="d-block w-100" src="@Imageurl" alt="First slide">
+                                                <div class="carousel-caption d-none d-md-block">
+                                                    <h5>@artikelen[0].Title.ToUpper()</h5>
+                                                    <p>@artikelen[0].Author.Name.ToUpper()</p>
+                                                </div>
+                                            </a>
                                         </div>
-                                    </a>
-                                </div>
+                                    }
+                                    @if (artikelen.Count >= 2)
+                                    {
                                 <div class="carousel-item">
-                                    @{string Imageurl2 = "https://localhost:6001" + artikelen[5].Thumbnail.RelativeUrl; }
+                                    @{string Imageurl2 = baseURL + artikelen[1].Thumbnail.RelativeUrl; }
 
-                                    <a href="https://google.com">
+                                    <a asp-action="Artikel" asp-route-title="@artikelen[1].Title">
                                         <img class="d-block w-100" src="@Imageurl2" alt="Second slide">
                                         <div class="carousel-caption d-none d-md-block">
                                             <h5>@artikelen[1].Title.ToUpper()</h5>
@@ -66,10 +76,13 @@
                                         </div>
                                     </a>
                                 </div>
+                                    }
+                                    @if (artikelen.Count >= 3)
+                                    {
                                 <div class="carousel-item">
-                                    @{string Imageurl3 = "https://localhost:6001" + artikelen[6].Thumbnail.RelativeUrl; }
+                                    @{string Imageurl3 = baseURL + artikelen[2].Thumbnail.RelativeUrl; }
 
-                                    <a href="https://google.com">
+                                    <a asp-action="Artikel" asp-route-title="@artikelen[2].Title">
                                         <img class="d-block w-100" src="@Imageurl3" alt="Third slide">
                                         <div class="carousel-caption d-none d-md-block">
                                             <h5>@artikelen[2].Title.ToUpper()</h5>
@@ -77,128 +90,176 @@
                                         </div>
                                     </a>
                                 </div>
+                                    }
+
+                                </div>
+                                @if (artikelen.Count > 1)
+                                {
+                                    <a class="carousel-control-prev" href="#Artikel" role="button" data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#Artikel" role="button" data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                }
+
                             </div>
-                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        </div>*@
-                    </div>
-                    <div class="ArtikelInformation">
-                        <a type="button" class="btn btn-light text-center" href="@baseURL/Home/ArtikelPagina">Meer Artikelen</a>
-                    </div>
-                </div>
-            </div>
-            <div class="PartPage">
-                <h1 class="text-center">WEBINARS</h1>
-                <div id="WebinarExample" class="carousel slide" data-ride="carousel" style="height: 50%; border: solid 2px #ffe000;">
-                    <ol class="carousel-indicators">
-                        <li data-target="#WebinarExample" data-slide-to="0" class="active"></li>
-                        <li data-target="#WebinarExample" data-slide-to="1"></li>
-                        <li data-target="#WebinarExample" data-slide-to="2"></li>
-                    </ol>
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <a href="https://google.com">
-                                <img class="d-block w-100" src="~/Images/defaultOp.png" alt="First slide">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h5>WEBINAR TITEL</h5>
-                                    <p>WEBINAR DESCRIPTION</p>
-                                    <p>WEBINAR AUTEUR</p>
-                                </div>
-                            </a>
                         </div>
-                        <div class="carousel-item">
-                            <a href="https://google.com">
-                                <img class="d-block w-100" src="~/Images/defaultOp.png" alt="Second slide">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h5>WEBINAR TITEL</h5>
-                                    <p>WEBINAR DESCRIPTION</p>
-                                    <p>WEBINAR AUTEUR</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="carousel-item">
-                            <a href="https://google.com">
-                                <img class="d-block w-100" src="~/Images/defaultOp.png" alt="Third slide">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h5>WEBINAR TITEL</h5>
-                                    <p>WEBINAR DESCRIPTION</p>
-                                    <p>WEBINAR AUTEUR</p>
-                                </div>
-                            </a>
+                        <div class="ArtikelInformation d-flex flex-column">
+                            <p >Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam sequi asperiores ipsa, et cupiditate vitae atque? Sapiente repudiandae pariatur obcaecati? Atque qui officia debitis molestias fugiat sapiente Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam sequi asperiores ipsa, et cupiditate vitae atque? Sapiente repudiandae pariatur obcaecati? Atque qui officia debitis molestias fugiat sapiente nesciuntnesciunt distinctio. Expedita!</p>
+                            <a type="button" class="btn btn-light text-center mt-auto p-2" href="@websiteURL/Home/ArtikelPagina">Meer Artikelen</a>
                         </div>
                     </div>
-                    <a class="carousel-control-prev" href="#WebinarExample" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#WebinarExample" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
                 </div>
-                <div class="MoreArtikelButton">
-                    <a type="button" class="btn btn-light text-center" href="@baseURL/Home/OnDemand">Meer Webinars</a>
+            }
+            @if (talks.Count > 0)
+            {
+                <div class="PartPage ArtikelPart">
+                    <div class="row ArtikelSplit"  style="border-top: solid 1px white;">
+                        <div class="ArtikelInformation d-flex flex-column">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam sequi asperiores ipsa, et cupiditate vitae atque? Sapiente repudiandae pariatur obcaecati? Atque qui officia debitis molestias fugiat sapiente Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam sequi asperiores ipsa, et cupiditate vitae atque? Sapiente repudiandae pariatur obcaecati? Atque qui officia debitis molestias fugiat sapiente nesciuntnesciunt distinctio. Expedita!</p>
+                            <a type="button" class="btn btn-light text-center mt-auto p-2" style="" href="@websiteURL/Home/OnDemand">Meer Webinars</a>
+                        </div>
+                        <div class="ArtikelCarousel">
+                            <h1 class="text-center">WEBINARS</h1>
+                            <div id="Webinars" class="carousel slide" data-ride="carousel" style="height: 84.3%;">
+                                <div class="carousel-inner">
+                                    @if (talks.Count >= 1)
+                                    {
+                                        <div class="carousel-item active">
+                                            @{string Imageurl = baseURL + talks[0].Thumbnail.RelativeUrl; }
+
+                                            <a asp-action="Search" asp-route-SearchTerm="@talks[0].Title" asp-route-type="Webinar">
+                                                <img class="d-block w-100" src="@Imageurl" alt="First slide">
+                                                <div class="carousel-caption d-none d-md-block">
+                                                    <h5>@talks[0].Title.ToUpper()</h5>
+                                                    <p>@talks[0].Author.Name.ToUpper()</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    }
+                                    @if (talks.Count >= 2)
+                                    {
+                                        <div class="carousel-item">
+                                            @{string Imageurl2 = baseURL + talks[1].Thumbnail.RelativeUrl; }
+
+                                            <a asp-action="Search" asp-route-SearchTerm="@talks[1].Title" asp-route-type="Webinar">
+                                                <img class="d-block w-100" src="@Imageurl2" alt="Second slide">
+                                                <div class="carousel-caption d-none d-md-block">
+                                                    <h5>@talks[1].Title.ToUpper()</h5>
+                                                    <p>@talks[1].Author.Name.ToUpper()</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    }
+                                    @if (talks.Count >= 3)
+                                    {
+                                        <div class="carousel-item">
+                                            @{string Imageurl3 = baseURL + talks[2].Thumbnail.RelativeUrl; }
+
+                                            <a asp-action="Search" asp-route-SearchTerm="@talks[2].Title" asp-route-type="Webinar">
+                                                <img class="d-block w-100" src="@Imageurl3" alt="Third slide">
+                                                <div class="carousel-caption d-none d-md-block">
+                                                    <h5>@talks[2].Title.ToUpper()</h5>
+                                                    <p>@talks[2].Author.Name.ToUpper()</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    }
+
+                                </div>
+                                @if (talks.Count > 1)
+                                {
+                                    <a class="carousel-control-prev" href="#Webinars" role="button" data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#Webinars" role="button" data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                }
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-            </div>
-            <div class="PartPage">
-                <h1 class="text-center">Podcasts</h1>
-                <div id="PodcastExample" class="carousel slide" data-ride="carousel" style="height: 50%;  border: solid 2px #ffe000;">
-                    <ol class="carousel-indicators">
-                        <li data-target="#PodcastExample" data-slide-to="0" class="active"></li>
-                        <li data-target="#PodcastExample" data-slide-to="1"></li>
-                        <li data-target="#PodcastExample" data-slide-to="2"></li>
-                    </ol>
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <a href="https://google.com">
-                                <img class="d-block w-100" src="~/Images/defaultOp.png" alt="First slide">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h5>PODCAST TITEL</h5>
-                                    <p>PODCAST DESCRIPTION</p>
-                                    <p>PODCAST AUTEUR</p>
+            }
+            @if (podcasts.Count > 0)
+            {
+                <div class="PartPage ArtikelPart">
+                    <div class="row ArtikelSplit" style="border-top: solid 1px white;">
+                        <div class="ArtikelCarousel">
+                            <h1 class="text-center">PODCASTS</h1>
+                            <div id="Podcast" class="carousel slide" data-ride="carousel" style="height: 84.3%;">
+                                <div class="carousel-inner">
+                                    @if (podcasts.Count >= 1)
+                                    {
+                                        <div class="carousel-item active">
+                                            @{string Imageurl = baseURL + podcasts[0].Thumbnail.RelativeUrl; }
+
+                                            <a asp-action="Podcast" asp-route-title="@podcasts[0].Title">
+                                                <img class="d-block w-100" src="@Imageurl" alt="First slide">
+                                                <div class="carousel-caption d-none d-md-block">
+                                                    <h5>@podcasts[0].Title.ToUpper()</h5>
+                                                    <p>@podcasts[0].Author.Name.ToUpper()</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    }
+                                    @if (podcasts.Count >= 2)
+                                    {
+                                        <div class="carousel-item">
+                                            @{string Imageurl2 = baseURL + podcasts[1].Thumbnail.RelativeUrl; }
+
+                                            <a asp-action="Podcast" asp-route-title="@podcasts[1].Title">
+                                                <img class="d-block w-100" src="@Imageurl2" alt="Second slide">
+                                                <div class="carousel-caption d-none d-md-block">
+                                                    <h5>@podcasts[1].Title.ToUpper()</h5>
+                                                    <p>@podcasts[1].Author.Name.ToUpper()</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    }
+                                    @if (podcasts.Count >= 3)
+                                    {
+                                        <div class="carousel-item">
+                                            @{string Imageurl3 = baseURL + podcasts[2].Thumbnail.RelativeUrl; }
+
+                                            <a asp-action="Podcast" asp-route-title="@podcasts[2].Title">
+                                                <img class="d-block w-100" src="@Imageurl3" alt="Third slide">
+                                                <div class="carousel-caption d-none d-md-block">
+                                                    <h5>@podcasts[2].Title.ToUpper()</h5>
+                                                    <p>@podcasts[2].Author.Name.ToUpper()</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    }
                                 </div>
-                            </a>
+                                @if (podcasts.Count > 1)
+                                {
+                                    <a class="carousel-control-prev" href="#Podcast" role="button" data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#Podcast" role="button" data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                }
+
+                            </div>
                         </div>
-                        <div class="carousel-item">
-                            <a href="https://google.com">
-                                <img class="d-block w-100" src="~/Images/defaultOp.png" alt="Second slide">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h5>PODCAST TITEL</h5>
-                                    <p>PODCAST DESCRIPTION</p>
-                                    <p>PODCAST AUTEUR</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="carousel-item">
-                            <a href="https://google.com">
-                                <img class="d-block w-100" src="~/Images/defaultOp.png" alt="Third slide">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h5>PODCAST TITEL</h5>
-                                    <p>PODCAST DESCRIPTION</p>
-                                    <p>PODCAST AUTEUR</p>
-                                </div>
-                            </a>
+                        <div class="ArtikelInformation d-flex flex-column">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam sequi asperiores ipsa, et cupiditate vitae atque? Sapiente repudiandae pariatur obcaecati? Atque qui officia debitis molestias fugiat sapiente Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam sequi asperiores ipsa, et cupiditate vitae atque? Sapiente repudiandae pariatur obcaecati? Atque qui officia debitis molestias fugiat sapiente nesciuntnesciunt distinctio. Expedita!</p>
+                            <a type="button" class="btn btn-light text-center mt-auto p-2" href="@websiteURL/Home/Podcasts">Meer Podcasts</a>
                         </div>
                     </div>
-                    <a class="carousel-control-prev" href="#PodcastExample" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#PodcastExample" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
                 </div>
-                <div class="MoreArtikelButton">
-                    <a type="button" class="btn btn-light text-center" href="@baseURL/Home/Podcasts">Meer Podcasts</a>
-                </div>
-            </div>
+
+            }
         </div>
         <div class="SpecialAgents">
 

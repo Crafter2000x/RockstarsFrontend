@@ -27,8 +27,17 @@ namespace Rockstars_Frontend.Controllers
         public async Task<IActionResult> Index()
         {
             await api.ArtikelPaginaAPI();
-            List<ArtikelModel> artikels = api.artikelen;
-            ViewData["Artikelen"] = artikels;
+
+            List<ArtikelModel> data = api.artikelen;
+
+            List<ArtikelModel> artikelen = data.Where(datas => datas.Type == 0).ToList();
+            List<ArtikelModel> talks = data.Where(datas => datas.Type == 1).ToList();
+            List<ArtikelModel> podcasts = data.Where(datas => datas.Type == 2).ToList();
+
+            ViewData["artikelen"] = artikelen;
+            ViewData["talks"] = talks;
+            ViewData["podcasts"] = podcasts;
+
             return View();
         }
 
