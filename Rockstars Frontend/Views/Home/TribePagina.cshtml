@@ -30,6 +30,7 @@
 }
 
 <link rel="stylesheet" href="~/css/TribePagina.css" />
+<link rel="stylesheet" href="~/css/_ArtikelPagina.css" />
 <div>
     <a class="backButton" asp-controller="Home" asp-action="TribeOverzicht">Terug</a>
 </div>
@@ -190,26 +191,50 @@
         <h1>Artikelen</h1>
     </div>
     <div class="row art">
-        @foreach (ArtikelModel artikel in drieartikelen)
+        @for (int g = 0; g < artikelen.Count; g++)
         {
-            string Imageurl = "https://localhost:6001" + artikel.Thumbnail.RelativeUrl;
-            string artikeltitle = artikel.Title;
+            string Imageurl = "https://localhost:6001" + artikelen[g].Thumbnail.RelativeUrl;
+            string artikeltitle = artikelen[g].Title;
+            <div class="container">
+                <div class="container">
 
-            <div class="col-md-12 col-lg-4 col-sm-3">
-                <div class="beep">
-                    <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle">
-                        <div class="card h-100 artikel">
-                            <img src=@Imageurl class="card-img-top" alt="...">
-                            <div class="card-body info">
-                                <h5 class="card-title Titel text-uppercase">@artikel.Title</h5>
-                                <h3 class="card-text author"><i class="fa fa-pencil"></i>&nbsp; &nbsp;@artikel.Author.Name</h3>
-                                <h3 class="card-text author"><i class="fa fa-users"></i>&nbsp; &nbsp;@artikel.Tribe.Title</h3>
-                            </div>
-                            <div class="card-footer">
-                                <h3><i class="fa fa-calendar-o"></i>&nbsp; &nbsp;@artikel.CreatedAt.ToString("dd-MM-yyyy")</h3>
-                            </div>
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <section class="widget">
+                                <div class="widget-controls">
+                                    <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle" target="_blank"><i class="fa fa-share" style="color:#ffe000"></i></a>
+                                </div>
+                                <div class="widget-body">
+                                    <div class="widget-top-overflow text-white">
+                                        <div class="article-title">@artikelen[g].Title</div>
+                                        <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle"><img src="@Imageurl"></a>
+                                        <ul class="tags text-black-50 pull-right">
+                                            <li><a href="tribesearch1">@artikelen[g].Tribe.Title</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="post-user mt-sm">
+                                        <span class="thumb pull-left mr">
+                                            <img class="rounded-circle" src="https://bootdey.com/img/Content/user_1.jpg" alt="...">
+                                        </span>
+                                        <h5 class="mb-xs mt-xs text-light"><span class="fw-semi-bold">@artikelen[g].Author.Name</span></h5>
+                                        <p class="fs-mini text-muted"><span class="fs-mini text-muted"><i class="fa fa-tag"></i>&nbsp;Special agent</span></p>
+                                    </div>
+                                    <p class="text-light fs-mini m">
+                                        @artikelen[g].Description
+                                    </p>
+                                    <input type="hidden" id="ArtikelId" value=@artikelen[g].Id>
+                                </div>
+                                <footer class="bg-body-light">
+                                    <ul class="post-links">
+                                        <li><i class="fa fa-calendar"></i><time>&nbsp;@artikelen[g].CreatedAt.ToString("dd-MM-yyyy")</time>&nbsp;</li>
+                                        <li><i class="fa fa-hashtag"></i>&nbsp;Add some tags here</li>
+                                    </ul>
+                                </footer>
+                            </section>
                         </div>
-                    </a>
+                    </div>
                 </div>
             </div>
         }

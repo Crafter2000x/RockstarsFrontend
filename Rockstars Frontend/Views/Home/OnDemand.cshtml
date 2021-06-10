@@ -10,19 +10,19 @@
     int number = 0;
     string id = "1" + number;
     @foreach (TalkModel artikel in talks)
+    {
+        newtalks.Add(artikel);
+
+        if (ViewData["TRIBE"].ToString() != "allen")
         {
-            newtalks.Add(artikel);
-           
-            if(ViewData["TRIBE"].ToString() != "allen")
+            if (artikel.Tribe.Title != ViewData["TRIBE"].ToString())
             {
-                if (artikel.Tribe.Title != ViewData["TRIBE"].ToString())
-                {
-                    newtalks.Remove(artikel);
-                }
+                newtalks.Remove(artikel);
             }
         }
-
     }
+
+}
 
 <link rel="stylesheet" href="~/css/_OnDemand_.css" />
 <link rle="stylesheet" href="https://use.fontawesome.com/release/v5.4.1/css/all.css" />
@@ -33,23 +33,23 @@
     @*<input class="Search" onkeyup="filter()" type="text" id="value" placeholder="Zoek voor webinars" />*@
 
     <div class="talks">
-@*        <div class="collapse" id="Formulier">
-            <div class="formulier">
-                @using (Html.BeginForm("OnDemand", "Home", FormMethod.Post))
-                {
-                    <h5>Voorkeursdag: </h5> @Html.EditorFor(m => m.form.preferredDateTime, new { @type = "date", @required = "required", autocomplete = "off" }) <br />
-                    @Html.ValidationSummary()
-                    <h5>Bedrijfsnaam: </h5> @Html.TextBoxFor(m => m.form.companyName, new { @required = "required", autocomplete = "off" }) <br />
-                    <h5>Aantal mensen aanwezig: </h5> @Html.TextBoxFor(m => m.form.amountOfPeople, new { @type = "number", min = 1, max = 100, @required = "required", autocomplete = "off" }) <br />
-                    <h5>Tribe: </h5> @Html.DropDownListFor(m => m.form.tribe.Title, new SelectList(Enum.GetValues(typeof(Tribes)))) <br />
-                    <h5>Tribe-Beschrijving: </h5> @Html.TextBoxFor(m => m.form.tribe.Description, new {autocomplete = "off" }) <br />
-                    <h5>Opmerking: </h5> @Html.TextBoxFor(m => m.form.comment, new {autocomplete = "off" }) <br />
-                    <h5>Email: </h5> @Html.TextBoxFor(m => m.form.contactEmail, new { type = "email", @required = "required", autocomplete = "off" }) <br />
-                    <h5>Telefoon: </h5> @Html.TextBoxFor(m => m.form.phoneNumber, new { @required = "required", autocomplete = "off" }) <br /><br />
-                    <input type="submit" value="Vraag aan" />
-                }
-            </div>
-        </div>*@
+        @*        <div class="collapse" id="Formulier">
+                <div class="formulier">
+                    @using (Html.BeginForm("OnDemand", "Home", FormMethod.Post))
+                    {
+                        <h5>Voorkeursdag: </h5> @Html.EditorFor(m => m.form.preferredDateTime, new { @type = "date", @required = "required", autocomplete = "off" }) <br />
+                        @Html.ValidationSummary()
+                        <h5>Bedrijfsnaam: </h5> @Html.TextBoxFor(m => m.form.companyName, new { @required = "required", autocomplete = "off" }) <br />
+                        <h5>Aantal mensen aanwezig: </h5> @Html.TextBoxFor(m => m.form.amountOfPeople, new { @type = "number", min = 1, max = 100, @required = "required", autocomplete = "off" }) <br />
+                        <h5>Tribe: </h5> @Html.DropDownListFor(m => m.form.tribe.Title, new SelectList(Enum.GetValues(typeof(Tribes)))) <br />
+                        <h5>Tribe-Beschrijving: </h5> @Html.TextBoxFor(m => m.form.tribe.Description, new {autocomplete = "off" }) <br />
+                        <h5>Opmerking: </h5> @Html.TextBoxFor(m => m.form.comment, new {autocomplete = "off" }) <br />
+                        <h5>Email: </h5> @Html.TextBoxFor(m => m.form.contactEmail, new { type = "email", @required = "required", autocomplete = "off" }) <br />
+                        <h5>Telefoon: </h5> @Html.TextBoxFor(m => m.form.phoneNumber, new { @required = "required", autocomplete = "off" }) <br /><br />
+                        <input type="submit" value="Vraag aan" />
+                    }
+                </div>
+            </div>*@
         <div class="noResultsDIV" id="test" style="display: none;">
             <p>Geen resultaten gevonden</p>
         </div>
@@ -67,21 +67,45 @@
                     </div>
                     <div class="row talkBottom">
                         <h2 class="talkTribe">@talk.Tribe.Title</h2>
-                        <button class="btn btn-primary btnAanvraag" data-toggle="collapse" data-target="#Aanvragen-@talk.id">Toegang Aanvragen</button>
-                    </div>
-                    <div class="collapse" id="Aanvragen-@talk.id">
-                        <div class="formulier">
-                            @using (Html.BeginForm("Aanvragen", "Home", FormMethod.Post))
-                            {
+                        <button type="button" class="btn btn-primary btnAanvraag" data-target="#PopupUpdatetabel1" data-toggle="modal">Toegang aanvragen</button>
 
-                                <h5>Email: </h5> @Html.TextBoxFor(m => m.form.contactEmail, new { @type = "mail", @required = "required", autocomplete = "off" }) <br />
-                                <h5>Bedrijfsnaam: </h5> @Html.TextBoxFor(m => m.form.companyName, new { autocomplete = "off" }) <br />
-                                <h5>Rol: </h5> @Html.TextBoxFor(m => m.form.comment, new { autocomplete = "off" }) <br />
-                                <h5>Telefoon: </h5> @Html.TextBoxFor(m => m.form.phoneNumber, new { autocomplete = "off" }) <br /><br />
-                                <input type="submit" value="Vraag aan" /><br />
-                            }
+                        <div class="modal" id="PopupUpdatetabel1" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content" style="background-color: rgb(34,34,34); border: solid 1px #ffe000">
+                                    <div class="modal-header" style="border-bottom:1px solid #ffe000!important">
+                                        <h4 class="modal-title titlecolor" id="addEventLabel">Toegang aanvragen</h4>
+                                        <button class="close" data-dismiss="modal" style="color:#ffe000"><i class="fa fa-times"></i></button>
+                                    </div>
+                                    @using (Html.BeginForm("Aanvragen", "Home", FormMethod.Post))
+                                    {
+                                        <div class="modal-body">
+                                            <h5>Email* &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Bedrijfsnaam* </h5> @Html.TextBoxFor(m => m.form.contactEmail, new { @type = "mail", @required = "required", autocomplete = "off" })&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#8239; @Html.TextBoxFor(m => m.form.companyName, new { autocomplete = "off", @required = "required" })
+                                            <br />
+                                            <h5>Rol &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Telefoon* </h5> @Html.TextBoxFor(m => m.form.comment, new { autocomplete = "off" }) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#8239; @Html.TextBoxFor(m => m.form.phoneNumber, new { autocomplete = "off", @required = "required" })
+                                            <br />
+                                            <h6>*Verplicht in te vullen</h6>
+                                        </div>
+                                        <div class="modal-footer" style="border-top:1px solid #ffe000!important">
+                                            <input type="submit" style="width:25%;" class="btn btn-block buttonaanvraag btn-primary" value="Vraag aan" />
+                                        </div>
+                                    }
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    @*<div class="collapse" id="Aanvragen-@talk.id">
+                            <div class="formulier">
+                                @using (Html.BeginForm("Aanvragen", "Home", FormMethod.Post))
+                                {
+
+                                    <h5>Email: </h5> @Html.TextBoxFor(m => m.form.contactEmail, new { @type = "mail", @required = "required", autocomplete = "off" }) <br />
+                                    <h5>Bedrijfsnaam: </h5> @Html.TextBoxFor(m => m.form.companyName, new { autocomplete = "off" }) <br />
+                                    <h5>Rol: </h5> @Html.TextBoxFor(m => m.form.comment, new { autocomplete = "off" }) <br />
+                                    <h5>Telefoon: </h5> @Html.TextBoxFor(m => m.form.phoneNumber, new { autocomplete = "off" }) <br /><br />
+                                    <input type="submit" value="Vraag aan" /><br />
+                                }
+                            </div>
+                        </div>*@
 
                 </div>
             }
@@ -89,11 +113,12 @@
         <div class="topButton">
             <button type="button" class="btn-block buttonTop">Talk Aanvragen</button>
             <div class="modal fade" id="addEvent" role="dialog" data-url="@Url.Action("TalkAanvraagPartial", "Home")"></div>
-@*            <a id="linksbutton" class="btn buttonTop" data-toggle="collapse" data-target="#Formulier">
-                <p>Talk Aanvragen</p>
-            </a>*@
-@*            <a id="linksbutton" class="btn buttonTop" asp-controller="Home" asp-action="TalkAanvraag"></a>
-*@        </div>
+            @*            <a id="linksbutton" class="btn buttonTop" data-toggle="collapse" data-target="#Formulier">
+                    <p>Talk Aanvragen</p>
+                </a>*@
+            @*            <a id="linksbutton" class="btn buttonTop" asp-controller="Home" asp-action="TalkAanvraag"></a>
+            *@
+        </div>
 
     </div>
 
