@@ -1,0 +1,24 @@
+﻿@model TalksViewModel
+
+<div class="talks">
+    @for (int i = 0; i < Model.talks.Count; i++)
+    {
+        string thumbnailUrl = "https://localhost:6001" + @Model.talks[i].thumbnail.RelativeUrl;
+
+        <div class="container talk">
+            <h1 class="name">@Model.talks[i].title</h1>
+            <div class="row talkMiddle">
+                <p class="talkDesc name2">@Model.talks[i].description</p>
+                <img class="talkThumbnail" src="@thumbnailUrl" />
+            </div>
+            <div class="row talkBottom">
+                <h2 class="talkTribe">@Model.talks[i].Tribe.Title</h2>
+                <button class="btn btn-primary btnAanvraag" data-toggle="collapse" data-target="#Aanvragen-@Model.talks[i].id">Toegang Aanvragen</button>
+            </div>
+            <div class="collapse" id="Aanvragen-@Model.talks[i].id">
+
+            </div>
+
+        </div>
+    }
+</div>
