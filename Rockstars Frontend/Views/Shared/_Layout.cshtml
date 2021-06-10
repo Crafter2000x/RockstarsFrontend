@@ -44,7 +44,7 @@
                             <li class="nav-item">
                                 <div class="searchb">
                                     <form id="f_search" method="get" asp-action="Search" class="searchForm">
-                                        <input id="ipt_search" type="text" class="SearchBar" name="SearchTerm" placeholder="" pattern="\S+.*" autocomplete="off" />
+                                        <input id="ipt_search" type="text" class="SearchBar" name="SearchTerm" placeholder="" pattern="\S+.*" autocomplete="off" value="@ViewData["KeyWord"]"/>
                                         <button class="btn"><i class="searchIcon fa fa-search"></i></button>
                                     </form>
                                 </div>

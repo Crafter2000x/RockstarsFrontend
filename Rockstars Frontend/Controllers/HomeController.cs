@@ -72,15 +72,56 @@ namespace Rockstars_Frontend.Controllers
             return PartialView("PodcastPartialView", podcastsViewModel);
         }
 
-        public IActionResult Artikel(string? title)
+        public async Task<IActionResult> Artikel(string? title)
         {
             if (title == null)
             {
                 return RedirectToAction("TribeOverzicht");
             }
             ViewData["ID"] = title;
-            return View();
+            List<ArtikelModel> artikelen = new List<ArtikelModel>();
+            ApiController api = new ApiController();
+            await api.ArtikelPaginaAPI();
+            artikelen = api.artikelen;
+            ArtikelModel artikel = new ArtikelModel();
+            Console.WriteLine(ViewData["ID"].ToString());
+            foreach (ArtikelModel ar in artikelen)
+            {
+                if (ar.Title.Equals(ViewData["ID"].ToString()))
+                {
+                    artikel = ar;
+                }
+            }
+            string contentValue;
+            artikel.Attributes.TryGetValue("content", out contentValue);
+            if (contentValue != null)
+            {
+                ViewData["Content"] = Base64Decode(contentValue);
+            }
+            else
+            {
+                ViewData["Content"] = "";
+            }
+            string PdfUrlvalue;
+            artikel.Attributes.TryGetValue("pdf", out PdfUrlvalue);
+            if (PdfUrlvalue != null)
+            {
+                ViewData["PdfUrl"] = "https://localhost:6001/api/File/" + artikel.Attributes["pdf"] + "/retrieve";
+            }
+            else
+            {
+                ViewData["PdfUrl"] = "";
+            }
+
+            return View(artikel);
         }
+
+        private static string Base64Decode(string base64EncodedData)
+        {
+            var base64EncodedBytes = Convert.FromBase64String(base64EncodedData);
+            return System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
+        }
+
         public IActionResult OnDemand(string Tribe)
         {
             if (Tribe == null)
