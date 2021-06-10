@@ -32,7 +32,7 @@
             </div>
         </div>
     </div>
-    <div class="row SecondPart">
+    <div class="SecondPart">
         <div class="PartOnDemand">
             @{List<ArtikelModel> podcasts = ViewData["podcasts"] as List<ArtikelModel>;}
             @{List<ArtikelModel> artikelen = ViewData["artikelen"] as List<ArtikelModel>;}
@@ -62,7 +62,7 @@
                                                 </div>
                                             </a>
                                         </div>
-                                    }
+                                                }
                                     @if (artikelen.Count >= 2)
                                     {
                                 <div class="carousel-item">
@@ -76,7 +76,7 @@
                                         </div>
                                     </a>
                                 </div>
-                                    }
+                                        }
                                     @if (artikelen.Count >= 3)
                                     {
                                 <div class="carousel-item">
@@ -90,7 +90,7 @@
                                         </div>
                                     </a>
                                 </div>
-                                    }
+                                        }
 
                                 </div>
                                 @if (artikelen.Count > 1)
@@ -113,7 +113,7 @@
                         </div>
                     </div>
                 </div>
-            }
+                                        }
             @if (talks.Count > 0)
             {
                 <div class="PartPage ArtikelPart">
@@ -139,7 +139,7 @@
                                                 </div>
                                             </a>
                                         </div>
-                                    }
+                                                }
                                     @if (talks.Count >= 2)
                                     {
                                         <div class="carousel-item">
@@ -153,7 +153,7 @@
                                                 </div>
                                             </a>
                                         </div>
-                                    }
+                                                }
                                     @if (talks.Count >= 3)
                                     {
                                         <div class="carousel-item">
@@ -167,7 +167,7 @@
                                                 </div>
                                             </a>
                                         </div>
-                                    }
+                                                }
 
                                 </div>
                                 @if (talks.Count > 1)
@@ -186,7 +186,7 @@
 
                     </div>
                 </div>
-            }
+                                                }
             @if (podcasts.Count > 0)
             {
                 <div class="PartPage ArtikelPart">
@@ -208,7 +208,7 @@
                                                 </div>
                                             </a>
                                         </div>
-                                    }
+                                                }
                                     @if (podcasts.Count >= 2)
                                     {
                                         <div class="carousel-item">
@@ -222,7 +222,7 @@
                                                 </div>
                                             </a>
                                         </div>
-                                    }
+                                                }
                                     @if (podcasts.Count >= 3)
                                     {
                                         <div class="carousel-item">
@@ -236,7 +236,7 @@
                                                 </div>
                                             </a>
                                         </div>
-                                    }
+                                                }
                                 </div>
                                 @if (podcasts.Count > 1)
                                 {
@@ -259,10 +259,7 @@
                     </div>
                 </div>
 
-            }
-        </div>
-        <div class="SpecialAgents">
-
+                                                }
         </div>
     </div>
 
