@@ -91,23 +91,79 @@
 }
 
 
-h1 {
+.information h1 {
     font-size: 150%;
     font-weight: normal;
     color: #ffe000;
 }
 
-h2 {
+.information h2 {
     font-size: 135%;
     font-weight: normal;
     color: #ffe000;
     text-decoration: underline;
 }
 
-h2:hover {
+.information h2:hover {
     font-size: 135%;
     font-weight: normal;
     color: grey;
     text-decoration: underline;
     cursor: pointer;
 }
+
+.Content {
+    left: 0;
+    top: 0;
+    position: relative;
+    width: 100%;
+    text-align: center;
+    background-color: rgba(50, 50, 50, 0.8);
+    border: 1px solid #232323;
+    margin-bottom: 70px;
+}
+
+.Content p {
+    color: whitesmoke;
+    line-height: 1.6;
+}
+
+.Content div {
+    border-bottom: 1px solid #ffe000;
+    padding: 30px;
+}
+
+.Content div:last-child {
+    border: none;
+}
+
+.Content h1 {
+    color: #ffe000;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.Content h2 {
+    color: whitesmoke;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.Content h3 {
+    color: #ffe000;
+    font-family: 'Harlow Solid'
+}
+
+.Content h4 {
+    color: whitesmoke;
+    font-family: 'Harlow Solid'
+}
+
+.Content h5 {
+    color: #ffe000;
+}
+
+.Content h6 {
+    color: whitesmoke;
+}
+
