@@ -136,6 +136,17 @@ namespace Rockstars_Frontend.Controllers
             return View();
         }
 
+        [HttpGet]
+        public async Task<ActionResult> RequestOnDemandPartial(int Page)
+        {
+            TalksViewModel talksviewmodel = new TalksViewModel();
+
+            ApiController api = new ApiController();
+            await api.PostOverzichtAPI(1, 1, 3, Page);
+            talksviewmodel.talks = api.talks;
+
+            return PartialView("OnDemandPartialView", talksviewmodel);
+        }
 
         public IActionResult Podcast(string? title)
         {

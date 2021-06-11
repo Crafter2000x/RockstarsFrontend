@@ -1,0 +1,45 @@
+﻿@model TalksViewModel
+
+
+<div class="talks">
+    @for (int i = 0; i < Model.talks.Count; i++)
+    {
+        string thumbnailUrl = "https://localhost:6001" + @Model.talks[i].thumbnail.RelativeUrl;
+
+        <div class="container talk">
+            <h1 class="name">@Model.talks[i].title</h1>
+            <div class="row talkMiddle">
+                <p class="talkDesc name2">@Model.talks[i].description</p>
+                <img class="talkThumbnail" src="@thumbnailUrl" />
+            </div>
+            <div class="row talkBottom">
+                <h2 class="talkTribe">@Model.talks[i].Tribe.Title</h2>
+                <button type="button" class="btn btn-primary btnAanvraag" data-target="#PopupUpdatetabel1" data-toggle="modal">Toegang aanvragen</button>
+
+                <div class="modal" id="PopupUpdatetabel1" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content" style="background-color: rgb(34,34,34); border: solid 1px #ffe000">
+                            <div class="modal-header" style="border-bottom:1px solid #ffe000!important">
+                                <h4 class="modal-title titlecolor" id="addEventLabel">Toegang aanvragen</h4>
+                                <button class="close" data-dismiss="modal" style="color:#ffe000"><i class="fa fa-times"></i></button>
+                            </div>
+                            @using (Html.BeginForm("Aanvragen", "Home", FormMethod.Post))
+                            {
+                                <div class="modal-body">
+                                    <h5>Email<span style="color:#ff000d;">*</span> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Bedrijfsnaam<span style="color:#ff000d;">*</span> </h5> @Html.TextBoxFor(m => m.form.contactEmail, new { @type = "mail", @required = "required", autocomplete = "off" })&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#8239; @Html.TextBoxFor(m => m.form.companyName, new { autocomplete = "off", @required = "required" })
+                                    <br />
+                                    <h5>Rol &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Telefoon<span style="color:#ff000d;">*</span> </h5> @Html.TextBoxFor(m => m.form.comment, new { autocomplete = "off" }) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#8239; @Html.TextBoxFor(m => m.form.phoneNumber, new { autocomplete = "off", @required = "required" })
+                                    <br />
+                                    <h6 style="color:#ff000d;">*Verplicht in te vullen</h6>
+                                </div>
+                                <div class="modal-footer" style="border-top:1px solid #ffe000!important">
+                                    <input type="submit" style="width:25%;" class="btn btn-block buttonaanvraag btn-primary" value="Vraag aan" />
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
