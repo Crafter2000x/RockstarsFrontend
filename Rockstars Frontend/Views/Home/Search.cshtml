@@ -101,16 +101,12 @@
 {
     
 <div class="row">
-    @foreach (var artikel in artikelen)
-    {
-        <div style="width: 100%; border-bottom: solid 2.5px #ffe000;">
-            <h1>Artikelen</h1>
-        </div>
-    }
     @for (int i = 0; i < artikelen.Count; i++)
     {
-        string Imageurl = "https://localhost:6001" + artikelen[i].Thumbnail.RelativeUrl;
-        string artikeltitle = artikelen[i].Title;
+        if (artikelen[i].Tribe.Title.Contains(tribe) || tribe == "ALL")
+        {
+            string Imageurl = "https://localhost:6001" + artikelen[i].Thumbnail.RelativeUrl;
+            string artikeltitle = artikelen[i].Title;
         <div class="container">
             <div class="container">
 
@@ -194,6 +190,7 @@
                 </div>
             </div>
         </div>
+        }
     }
     @*<div class="row">*@
     @*@foreach (var artikel in artikelen)
@@ -223,9 +220,9 @@
                             </a>
                         </div>
                     </div>
-            }
-        }*@
-    @*</div>*@
+            }*@
+       }
+    </div>
 }
 
 @if (type == "Webinar" || type == "ALL")
