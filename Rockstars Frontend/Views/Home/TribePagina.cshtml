@@ -191,10 +191,10 @@
         <h1>Artikelen</h1>
     </div>
     <div class="row art">
-        @for (int g = 0; g < artikelen.Count; g++)
+        @for (int g = 0; g < drieartikelen.Count; g++)
         {
-            string Imageurl = "https://localhost:6001" + artikelen[g].Thumbnail.RelativeUrl;
-            string artikeltitle = artikelen[g].Title;
+            string Imageurl = "https://localhost:6001" + drieartikelen[g].Thumbnail.RelativeUrl;
+            string artikeltitle = drieartikelen[g].Title;
             <div class="container">
                 <div class="container">
 
@@ -208,27 +208,27 @@
                                 </div>
                                 <div class="widget-body">
                                     <div class="widget-top-overflow text-white">
-                                        <div class="article-title">@artikelen[g].Title</div>
+                                        <div class="article-title">@drieartikelen[g].Title</div>
                                         <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle"><img src="@Imageurl"></a>
                                         <ul class="tags text-black-50 pull-right">
-                                            <li><a href="tribesearch1">@artikelen[g].Tribe.Title</a></li>
+                                            <li><a href="tribesearch1">@drieartikelen[g].Tribe.Title</a></li>
                                         </ul>
                                     </div>
                                     <div class="post-user mt-sm">
                                         <span class="thumb pull-left mr">
                                             <img class="rounded-circle" src="https://bootdey.com/img/Content/user_1.jpg" alt="...">
                                         </span>
-                                        <h5 class="mb-xs mt-xs text-light"><span class="fw-semi-bold">@artikelen[g].Author.Name</span></h5>
+                                        <h5 class="mb-xs mt-xs text-light"><span class="fw-semi-bold">@drieartikelen[g].Author.Name</span></h5>
                                         <p class="fs-mini text-muted"><span class="fs-mini text-muted"><i class="fa fa-tag"></i>&nbsp;Special agent</span></p>
                                     </div>
                                     <p class="text-light fs-mini m">
-                                        @artikelen[g].Description
+                                        @drieartikelen[g].Description
                                     </p>
-                                    <input type="hidden" id="ArtikelId" value=@artikelen[g].Id>
+                                    <input type="hidden" id="ArtikelId" value=@drieartikelen[g].Id>
                                 </div>
                                 <footer class="bg-body-light">
                                     <ul class="post-links">
-                                        <li><i class="fa fa-calendar"></i><time>&nbsp;@artikelen[g].CreatedAt.ToString("dd-MM-yyyy")</time>&nbsp;</li>
+                                        <li><i class="fa fa-calendar"></i><time>&nbsp;@drieartikelen[g].CreatedAt.ToString("dd-MM-yyyy")</time>&nbsp;</li>
                                         <li><i class="fa fa-hashtag"></i>&nbsp;Add some tags here</li>
                                     </ul>
                                 </footer>
@@ -237,6 +237,7 @@
                     </div>
                 </div>
             </div>
+
         }
         <a class="row moreButton " style="width: 100%;" asp-area="" asp-action="ArtikelPagina" asp-controller="Home" asp-route-Tribe="@ViewData["ID"].ToString()">
 

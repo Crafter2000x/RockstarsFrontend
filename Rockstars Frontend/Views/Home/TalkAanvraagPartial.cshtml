@@ -2,7 +2,7 @@
 
 
 <link rel="stylesheet" href="~/css/TalkAanvraagPartial.css" />
-
+<link rel="stylesheet" href="~/css/_OnDemand_.css" />
 
 <div class="modal-dialog">
     <div class="modal-content" style="background-color: rgb(34,34,34); border: solid 1px #ffe000">
@@ -13,14 +13,14 @@
                 <button class="close" data-dismiss="modal" style="color:#ffe000"><i class="fa fa-times"></i></button>
             </div>
             <div class="modal-body">
-                <h5>Bedrijfsnaam* &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Voorkeursdag*  </h5> @Html.TextBoxFor(m => m.form.companyName, new { style = "width:50%", @required = "required", autocomplete = "off" })&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#8239;@Html.EditorFor(m => m.form.preferredDateTime, new { style = "width:50%", @type = "date", @required = "required", autocomplete = "off" }) <br />
+                <h5 style="color:white;margin-top: 15px;">Bedrijfsnaam<span style="color:#ff000d;">*</span> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Voorkeursdag<span style="color:#ff000d;">*</span>  </h5> @Html.TextBoxFor(m => m.form.companyName, new { style = "width:50%", @required = "required", autocomplete = "off" })&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#8239;@Html.EditorFor(m => m.form.preferredDateTime, new { style = "width:50%", @type = "date", @required = "required", autocomplete = "off" }) <br />
                 @Html.ValidationSummary()
 
 
-                <h5>Email* &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &#8239; Aantal aanwezigen* </h5> @Html.TextBoxFor(m => m.form.contactEmail, new { style = "width:50%", @type = "mail", @required = "required", autocomplete = "off" }) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#8239; @Html.TextBoxFor(m => m.form.amountOfPeople, new { style = "width:40.6%", @type = "number", min = 1, max = 100, @required = "required", autocomplete = "off" }) <br />
-                <h5>Telefoonnummer* </h5> @Html.TextBoxFor(m => m.form.phoneNumber, new { style = "width:100%;", @required = "required", autocomplete = "off" }) <br />
-                <h5>Opmerking </h5> @Html.TextAreaFor(m => m.form.comment, new { style = "width:100%; min-height:180px; max-height:180px;", autocomplete = "off" }) <br />
-                <h6>*Verplicht in te vullen</h6>
+                <h5 style="color:white;margin-top: 15px;">Email<span style="color:#ff000d;">*</span> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &#8239; Aantal aanwezigen<span style="color:#ff000d;">*</span> </h5> @Html.TextBoxFor(m => m.form.contactEmail, new { style = "width:50%", @type = "mail", @required = "required", autocomplete = "off" }) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#8239; @Html.TextBoxFor(m => m.form.amountOfPeople, new { style = "width:40.6%", @type = "number", min = 1, max = 100, @required = "required", autocomplete = "off" }) <br />
+                <h5 style="color:white;margin-top: 15px;" >Telefoonnummer<span style="color:#ff000d;">*</span> </h5> @Html.TextBoxFor(m => m.form.phoneNumber, new { style = "width:100%;", @required = "required", autocomplete = "off" }) <br />
+                <h5 style="color:white;margin-top: 15px;">Opmerking </h5> @Html.TextAreaFor(m => m.form.comment, new { style = "width:100%; min-height:180px; max-height:180px;", autocomplete = "off" }) <br />
+                <h6 style="color:#ff000d;margin-top: 15px;">*Verplicht in te vullen</h6>
             </div>
             <div class="modal-footer" style="border-top:1px solid #ffe000!important">
                 <input type="submit" style="width:25%;" value="Vraag aan" class="btn btn-block buttonaanvraag btn-primary" />

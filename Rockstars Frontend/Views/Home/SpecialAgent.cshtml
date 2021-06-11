@@ -51,11 +51,11 @@
                                                             @using (Html.BeginForm("HulpAanvragen", "Home", FormMethod.Post))
                                                             {
                                                         <div class="modal-body">
-                                                            <h5 style="color:white; margin-top: 15px; margin-bottom: 15px;">Email special agent* </h5> @Html.TextBoxFor(m => Model.form.contactEmail, new { style = "width:100%", @autocomplete = "off", @required = "required" })
+                                                            <h5 style="color:white; margin-top: 15px; margin-bottom: 15px;">Email special agent<span style="color:#ff000d;">*</span> </h5> @Html.TextBoxFor(m => Model.form.contactEmail, new { style = "width:100%", @autocomplete = "off", @required = "required" })
                                                             <br />
-                                                            <h5 style="color:white; margin-top: 15px;margin-bottom: 15px;">Uw vraag* </h5> @Html.TextAreaFor(m => Model.form.comment, new { style = "width:100%; min-height:150px; max-height:150px;", @autocomplete = "off", @required = "required"})
+                                                            <h5 style="color:white; margin-top: 15px;margin-bottom: 15px;">Uw vraag<span style="color:#ff000d;">*</span> </h5> @Html.TextAreaFor(m => Model.form.comment, new { style = "width:100%; min-height:150px; max-height:150px;", @autocomplete = "off", @required = "required"})
                                                             <br />
-                                                            <h6 style="color:white; margin-top: 15px;margin-bottom: 15px;">*Verplicht in te vullen</h6>
+                                                            <h6 style="color:#ff000d;" margin-top: 15px;margin-bottom: 15px;">*Verplicht in te vullen</h6>
                                                         </div>
                                                                 <div class="modal-footer" style="border-top:1px solid #ffe000!important">
                                                                     <input type="submit" style="width:25%;" class="btn btn-block btnspecial btn-primary" value="Stel je vraag" />
