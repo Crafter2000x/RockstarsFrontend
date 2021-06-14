@@ -30,36 +30,38 @@
 @{ string Imageurl = "https://localhost:6001" + Model.Thumbnail.RelativeUrl;}
 <div class="container">
     <div class="row artikelInfo">
-        <div class="infoBorder">
             <div class="information">
                 <div class="artikelTitle">
                     <h1>@Model.Title</h1>
                 </div>
-                <h1><i class="fa fa-pencil"></i>&nbsp; &nbsp;@Model.Author.Name</h1>
-                <h1><i class="fa fa-calendar-o"></i>&nbsp; &nbsp;@Model.CreatedAt.ToString("dd-MM-yyyy")</h1>
-                <h1><i class="fa fa-users"></i>&nbsp; &nbsp;@Model.Tribe.Title</h1><br />
+                <h3><i class="fa fa-pencil"></i>&nbsp; &nbsp;@Model.Author.Name</h3>
+                <h3><i class="fa fa-calendar-o"></i>&nbsp; &nbsp;@Model.CreatedAt.ToString("dd-MM-yyyy")</h3>
+                <h3><i class="fa fa-users"></i>&nbsp; &nbsp;@Model.Tribe.Title</h3><br />
                 @if (pdfurl != "")
                 {
                 <a href="@pdfurl" download><h2>Download als PDF</h2></a>
                 }
             </div>
             <div class="thumbnail">
-                <img src="@Imageurl" />
+                <img class="img-fluid" src="@Imageurl" />
             </div>
             <div class="description">
                 <p>
                     @Model.Description
                 </p>
             </div>
-        </div>
+        
         @if (pdfurl != "")
         {
         <embed class="pdfReader" src="@pdfurl#view=FitH&scrollbar=0&toolbar=0&statusbar=0&messages=0&navpanes=0" />
         }
     </div>
+    @if (content != "")
+    {
     <div class="container Content">
         @Html.Raw(content)
     </div>
+    }
 </div>
 
 @section Scripts
