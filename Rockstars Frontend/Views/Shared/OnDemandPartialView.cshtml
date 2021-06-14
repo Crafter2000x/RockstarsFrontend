@@ -10,7 +10,7 @@
                 <div class="widgetweb-body">
                     <div class="widgetweb-top-overflow text-white">
                         <div class="web-title">@Model.talks[i].title</div>
-                        <a><img src="https://support.staffbase.com/hc/article_attachments/115002764411/AndroidFeatureGraphic_1024x500px.png"></a>
+                        <a><img src="@thumbnailUrl"></a>
                         <ul class="webtags text-black-50 pull-right">
                             <li><a href="tribesearch1">@Model.talks[i].Tribe.Title</a></li>
                         </ul>
@@ -47,13 +47,13 @@
                 <div class="modal-dialog">
                     <div class="modal-content" style="background-color: rgb(34,34,34); border: solid 1px #ffe000">
                         <div class="modal-header" style="border-bottom:1px solid #ffe000!important">
-                            <h4 class="modal-title titlecolor" id="addEventLabel">Toegang aanvragen</h4>
+                            <h4 class="modal-title titlecolor" style="color:white;" id="addEventLabel">Toegang aanvragen</h4>
                             <button class="close" data-dismiss="modal" style="color:#ffe000"><i class="fa fa-times"></i></button>
                         </div>
 
                         @using (Html.BeginForm("Aanvragen", "Home", FormMethod.Post))
                         {
-                            <div class="modal-body">
+                            <div class="modal-body"style="color:white;">
                                 <h5>Email<span style="color:#ff000d;">*</span> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Bedrijfsnaam<span style="color:#ff000d;">*</span> </h5> @Html.TextBoxFor(m => m.form.contactEmail, new { @type = "mail", @required = "required", autocomplete = "off" })&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#8239; @Html.TextBoxFor(m => m.form.companyName, new { autocomplete = "off", @required = "required" })
                                 <br />
                                 <h5>Rol &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Telefoon<span style="color:#ff000d;">*</span> </h5> @Html.TextBoxFor(m => m.form.comment, new { autocomplete = "off" }) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#8239; @Html.TextBoxFor(m => m.form.phoneNumber, new { autocomplete = "off", @required = "required" })
