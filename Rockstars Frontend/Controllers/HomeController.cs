@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Rockstars_Frontend.Models;
-using System.Text.Json;
 using System;
 using System.Diagnostics;
 using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 
 namespace Rockstars_Frontend.Controllers
 {
@@ -17,29 +17,60 @@ namespace Rockstars_Frontend.Controllers
         private readonly ILogger<HomeController> _logger;
 
         ApiController api = new ApiController();
+        Telemetry tel = new Telemetry();
 
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            await api.ArtikelPaginaAPI();
+            await api.TribeleadsAPI();
+
+            List<ArtikelModel> data = api.artikelen;
+
+            List<ArtikelModel> artikelen = data.Where(datas => datas.Type == 0).ToList();
+            List<ArtikelModel> talks = data.Where(datas => datas.Type == 1).ToList();
+            List<ArtikelModel> podcasts = data.Where(datas => datas.Type == 2).ToList();
+
+            FormulierEnAanvraagModel f = new FormulierEnAanvraagModel();
+            f.userlist = api.Tribeleads;
+
+            ViewData["artikelen"] = artikelen;
+            ViewData["talks"] = talks;
+            ViewData["podcasts"] = podcasts;
+            ViewData["Users"] = f;
+
+            var remoteIpAddress = HttpContext.Connection.RemoteIpAddress.MapToIPv4();
+            string browser = Request.Headers["User-Agent"];
+            await tel.TelemetryReady(remoteIpAddress, browser, TelemetryType.GeneralView);
+
             return View();
         }
 
         public async Task<IActionResult> Search(string SearchTerm, string type = "ALL", string tribe = "ALL")
         {
+
             ViewData["Type"] = type;
             ViewData["Tribe"] = tribe;
             ViewData["KeyWord"] = SearchTerm;
             await api.TribePaginaAPI();
             ViewData["Tribes"] = api.AllTribes;
+
+            var remoteIpAddress = HttpContext.Connection.RemoteIpAddress.MapToIPv4();
+            string browser = Request.Headers["User-Agent"];
+            await tel.TelemetryReady(remoteIpAddress, browser, TelemetryType.GeneralView);
+
             return View();
         }
 
-        public IActionResult ArtikelPagina()
+        public async Task<IActionResult> ArtikelPagina()
         {
+            var remoteIpAddress = HttpContext.Connection.RemoteIpAddress.MapToIPv4();
+            string browser = Request.Headers["User-Agent"];
+            await tel.TelemetryReady(remoteIpAddress, browser, TelemetryType.GeneralView);
             return View();
         }
 
@@ -55,8 +86,11 @@ namespace Rockstars_Frontend.Controllers
             return PartialView("ArtikelPartialView", artikelenViewModel);
         }
 
-        public IActionResult Podcasts()
+        public async Task<IActionResult> Podcasts()
         {
+            var remoteIpAddress = HttpContext.Connection.RemoteIpAddress.MapToIPv4();
+            string browser = Request.Headers["User-Agent"];
+            await tel.TelemetryReady(remoteIpAddress, browser, TelemetryType.GeneralView);
             return View();
         }
 
@@ -72,12 +106,16 @@ namespace Rockstars_Frontend.Controllers
             return PartialView("PodcastPartialView", podcastsViewModel);
         }
 
-        public async Task<IActionResult> Artikel(string? title)
+        public async Task<IActionResult>Artikel(string? title)
         {
             if (title == null)
             {
                 return RedirectToAction("TribeOverzicht");
             }
+            var remoteIpAddress = HttpContext.Connection.RemoteIpAddress.MapToIPv4();
+            string browser = Request.Headers["User-Agent"];
+            await tel.TelemetryReady(remoteIpAddress, browser, TelemetryType.PostView, title);
+
             ViewData["ID"] = title;
             List<ArtikelModel> artikelen = new List<ArtikelModel>();
             ApiController api = new ApiController();
@@ -133,6 +171,10 @@ namespace Rockstars_Frontend.Controllers
                 ViewData["TRIBE"] = Tribe;
             }
 
+            var remoteIpAddress = HttpContext.Connection.RemoteIpAddress.MapToIPv4();
+            string browser = Request.Headers["User-Agent"];
+            await tel.TelemetryReady(remoteIpAddress, browser, TelemetryType.GeneralView);
+
             return View();
         }
 
@@ -148,12 +190,17 @@ namespace Rockstars_Frontend.Controllers
             return PartialView("OnDemandPartialView", talksviewmodel);
         }
 
-        public IActionResult Podcast(string? title)
+        public async Task<IActionResult> Podcast(string? title)
         {
             if (title == null)
             {
                 return RedirectToAction("Podcasts");
             }
+            var remoteIpAddress = HttpContext.Connection.RemoteIpAddress.MapToIPv4();
+            string browser = Request.Headers["User-Agent"];
+            await tel.TelemetryReady(remoteIpAddress, browser, TelemetryType.PostView, title);
+
+
             ViewData["ID"] = title;
             return View();
         }
@@ -361,14 +408,23 @@ namespace Rockstars_Frontend.Controllers
 
         }
 
-        public IActionResult TribeOverzicht()
+        public async Task<IActionResult> TribeOverzicht()
         {
+            var remoteIpAddress = HttpContext.Connection.RemoteIpAddress.MapToIPv4();
+            string browser = Request.Headers["User-Agent"];
+            await tel.TelemetryReady(remoteIpAddress, browser, TelemetryType.GeneralView);
+
             return View();
         }
         public async Task<IActionResult> SpecialAgent(FormulierEnAanvraagModel f)
         {
             await api.TribeleadsAPI();
             f.userlist = api.Tribeleads;
+
+            var remoteIpAddress = HttpContext.Connection.RemoteIpAddress.MapToIPv4();
+            string browser = Request.Headers["User-Agent"];
+            await tel.TelemetryReady(remoteIpAddress, browser, TelemetryType.GeneralView);
+
             return View(f);
         }
         public IActionResult TribePagina(string? title)
