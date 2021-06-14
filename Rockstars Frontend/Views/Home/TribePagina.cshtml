@@ -30,6 +30,8 @@
 }
 
 <link rel="stylesheet" href="~/css/TribePagina.css" />
+<link rel="stylesheet" href="~/css/_ArtikelPagina.css" />
+<link rel="stylesheet" href="~/css/_OnDemand_.css" />
 <div>
     <a class="backButton" asp-controller="Home" asp-action="TribeOverzicht">Terug</a>
 </div>
@@ -190,28 +192,53 @@
         <h1>Artikelen</h1>
     </div>
     <div class="row art">
-        @foreach (ArtikelModel artikel in drieartikelen)
+        @for (int g = 0; g < drieartikelen.Count; g++)
         {
-            string Imageurl = "https://localhost:6001" + artikel.Thumbnail.RelativeUrl;
-            string artikeltitle = artikel.Title;
+            string Imageurl = "https://localhost:6001" + drieartikelen[g].Thumbnail.RelativeUrl;
+            string artikeltitle = drieartikelen[g].Title;
+            <div class="container">
+                <div class="container">
 
-            <div class="col-md-12 col-lg-4 col-sm-3">
-                <div class="beep">
-                    <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle">
-                        <div class="card h-100 artikel">
-                            <img src=@Imageurl class="card-img-top" alt="...">
-                            <div class="card-body info">
-                                <h5 class="card-title Titel text-uppercase">@artikel.Title</h5>
-                                <h3 class="card-text author"><i class="fa fa-pencil"></i>&nbsp; &nbsp;@artikel.Author.Name</h3>
-                                <h3 class="card-text author"><i class="fa fa-users"></i>&nbsp; &nbsp;@artikel.Tribe.Title</h3>
-                            </div>
-                            <div class="card-footer">
-                                <h3><i class="fa fa-calendar-o"></i>&nbsp; &nbsp;@artikel.CreatedAt.ToString("dd-MM-yyyy")</h3>
-                            </div>
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <section class="widget">
+                                <div class="widget-controls">
+                                    <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle" target="_blank"><i class="fa fa-share" style="color:#ffe000"></i></a>
+                                </div>
+                                <div class="widget-body">
+                                    <div class="widget-top-overflow text-white">
+                                        <div class="article-title">@drieartikelen[g].Title</div>
+                                        <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle"><img src="@Imageurl"></a>
+                                        <ul class="tags text-black-50 pull-right">
+                                            <li><a href="tribesearch1">@drieartikelen[g].Tribe.Title</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="post-user mt-sm">
+                                        <span class="thumb pull-left mr">
+                                            <img class="rounded-circle" src="https://bootdey.com/img/Content/user_1.jpg" alt="...">
+                                        </span>
+                                        <h5 class="mb-xs mt-xs text-light"><span class="fw-semi-bold">@drieartikelen[g].Author.Name</span></h5>
+                                        <p class="fs-mini text-muted"><span class="fs-mini text-muted"><i class="fa fa-tag"></i>&nbsp;Special agent</span></p>
+                                    </div>
+                                    <p class="text-light fs-mini m">
+                                        @drieartikelen[g].Description
+                                    </p>
+                                    <input type="hidden" id="ArtikelId" value=@drieartikelen[g].Id>
+                                </div>
+                                <footer class="bg-body-light">
+                                    <ul class="post-links">
+                                        <li><i class="fa fa-calendar"></i><time>&nbsp;@drieartikelen[g].CreatedAt.ToString("dd-MM-yyyy")</time>&nbsp;</li>
+                                        <li><i class="fa fa-hashtag"></i>&nbsp;Add some tags here</li>
+                                    </ul>
+                                </footer>
+                            </section>
                         </div>
-                    </a>
+                    </div>
                 </div>
             </div>
+
         }
         <a class="row moreButton " style="width: 100%;" asp-area="" asp-action="ArtikelPagina" asp-controller="Home" asp-route-Tribe="@ViewData["ID"].ToString()">
 
@@ -225,19 +252,69 @@
     <div class="row art">
         @foreach (TalkModel talk in driewebinars)
         {
-            string thumbnailUrl = "https://localhost:6001" + talk.thumbnail.RelativeUrl;
-            // na de || moet eigenijk weg omdat deze niet published zijn.
+            string thumbnailUrl = "https://localhost:6001" + @talk.thumbnail.RelativeUrl;
+            <div class="col-md-12">
+                <section class="widgetweb">
+                    <div class="widgetweb-body">
+                        <div class="widgetweb-top-overflow text-white">
+                            <div class="web-title">@talk.title</div>
+                            <a><img src="@thumbnailUrl"></a>
+                            <ul class="webtags text-black-50 pull-right">
+                                <li><a href="tribesearch1">@talk.Tribe.Title</a></li>
+                            </ul>
+                        </div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="postweb-user mt-sm">
+                                        <span class="thumb pull-left mr">
+                                            <img class="rounded-circle" src="https://bootdey.com/img/Content/user_1.jpg" alt="...">
+                                        </span>
+                                        <h5 class="mb-xs mt-xs text-light"><span class="fw-semi-bold">@talk.author.Name</span></h5>
+                                        <p class="fsweb-mini text-muted"><span class="fsweb-mini text-muted"><i class="fa fa-tag"></i>&nbsp;Special agent</span></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="text-light fsweb-mini web-desc">
+                                        @talk.description
+                                    </p>
+                                    <input type="hidden" id="ArtikelId" value=@talk.id>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <footer class="bg-body-light">
+                        <ul class="postweb-links">
+                            <li><i class="fa fa-calendar"></i><time>&nbsp;@talk.CreatedAt.ToString("dd-MM-yyyy")</time>&nbsp;</li>
+                            <li><i class="fa fa-hashtag"></i>&nbsp;Add some tags here</li>
+                        </ul>
+                    </footer>
+                    <button type="button" class="btn btn-primary btnAanvraag" data-target="#PopupUpdatetabel1" data-toggle="modal">Toegang aanvragen</button>
+                </section>
+                <div class="modal" id="PopupUpdatetabel1" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content" style="background-color: rgb(34,34,34); border: solid 1px #ffe000">
+                            <div class="modal-header" style="border-bottom:1px solid #ffe000!important">
+                                <h4 class="modal-title titlecolor" style="color:white;" id="addEventLabel">Toegang aanvragen</h4>
+                                <button class="close" data-dismiss="modal" style="color:#ffe000"><i class="fa fa-times"></i></button>
+                            </div>
 
-            <div class="container talk">
-                <h1>@talk.title</h1>
-                <div class="row talkMiddle">
-                    <p class="talkDesc">@talk.description</p>
-                    <img class="talkThumbnail" src="@thumbnailUrl" />
+                            @using (Html.BeginForm("Aanvragen", "Home", FormMethod.Post))
+                            {
+                                <div class="modal-body" style="color:white;">
+                                    <h5>Email<span style="color:#ff000d;">*</span> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Bedrijfsnaam<span style="color:#ff000d;">*</span> </h5> @Html.TextBoxFor(m => m.form.contactEmail, new { @type = "mail", @required = "required", autocomplete = "off" })&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#8239; @Html.TextBoxFor(m => m.form.companyName, new { autocomplete = "off", @required = "required" })
+                                    <br />
+                                    <h5>Rol &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Telefoon<span style="color:#ff000d;">*</span> </h5> @Html.TextBoxFor(m => m.form.comment, new { autocomplete = "off" }) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#8239; @Html.TextBoxFor(m => m.form.phoneNumber, new { autocomplete = "off", @required = "required" })
+                                    <br />
+                                    <h6 style="color:#ff000d;">*Verplicht in te vullen</h6>
+                                </div>
+                                <div class="modal-footer" style="border-top:1px solid #ffe000!important">
+                                    <input type="submit" style="width:25%;" class="btn btn-block buttonaanvraag btn-primary" value="Vraag aan" />
+                                </div>
+                            }
+                        </div>
+                    </div>
                 </div>
-                <div class="row talkBottom">
-                    <h2 class="talkTribe">@talk.Tribe.Title</h2>
-                </div>
-
             </div>
         }
         <a class="row moreButton" style="width:100%;" asp-area="" asp-action="OnDemand" asp-controller="Home" asp-route-Tribe="@ViewData["ID"].ToString()">

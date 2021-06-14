@@ -117,9 +117,50 @@ namespace Rockstars_Frontend.Controllers
             await tel.TelemetryReady(remoteIpAddress, browser, TelemetryType.PostView, title);
 
             ViewData["ID"] = title;
-            return View();
+            List<ArtikelModel> artikelen = new List<ArtikelModel>();
+            ApiController api = new ApiController();
+            await api.ArtikelPaginaAPI();
+            artikelen = api.artikelen;
+            ArtikelModel artikel = new ArtikelModel();
+            Console.WriteLine(ViewData["ID"].ToString());
+            foreach (ArtikelModel ar in artikelen)
+            {
+                if (ar.Title.Equals(ViewData["ID"].ToString()))
+                {
+                    artikel = ar;
+                }
+            }
+            string contentValue;
+            artikel.Attributes.TryGetValue("content", out contentValue);
+            if (contentValue != null)
+            {
+                ViewData["Content"] = Base64Decode(contentValue);
+            }
+            else
+            {
+                ViewData["Content"] = "";
+            }
+            string PdfUrlvalue;
+            artikel.Attributes.TryGetValue("pdf", out PdfUrlvalue);
+            if (PdfUrlvalue != null)
+            {
+                ViewData["PdfUrl"] = "https://localhost:6001/api/File/" + artikel.Attributes["pdf"] + "/retrieve";
+            }
+            else
+            {
+                ViewData["PdfUrl"] = "";
+            }
+
+            return View(artikel);
         }
-        public async Task<IActionResult> OnDemand(string Tribe)
+
+        private static string Base64Decode(string base64EncodedData)
+        {
+            var base64EncodedBytes = Convert.FromBase64String(base64EncodedData);
+            return System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
+        }
+
+        public IActionResult OnDemand(string Tribe)
         {
             if (Tribe == null)
             {
@@ -137,6 +178,17 @@ namespace Rockstars_Frontend.Controllers
             return View();
         }
 
+        [HttpGet]
+        public async Task<ActionResult> RequestOnDemandPartial(int Page)
+        {
+            TalksViewModel talksviewmodel = new TalksViewModel();
+
+            ApiController api = new ApiController();
+            await api.PostOverzichtAPI(1, 1, 3, Page);
+            talksviewmodel.talks = api.talks;
+
+            return PartialView("OnDemandPartialView", talksviewmodel);
+        }
 
         public async Task<IActionResult> Podcast(string? title)
         {
