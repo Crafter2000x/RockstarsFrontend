@@ -8,11 +8,13 @@
     string multipleKeywords;
     Model.podcasts[i].attributes.TryGetValue("keypoints", out multipleKeywords);
     keywords = multipleKeywords.Split(",").ToList();
+    string podcastUrl = "https://localhost:44330/Home/Artikel?title=" + Model.podcasts[i].title;
+    string id = "PopupUpdatetabel" + Model.podcasts[i].Id;
 
     <div class="col-md-12">
         <div class="podcastbox">
             <div class="widget-share">
-                <a asp-controller="Home" asp-action="Podcast" asp-route-title="@Model.podcasts[i].title" target="_blank"><i class="fa fa-share" style="color:#ffe000"></i></a>
+                <a data-target="#@id" data-toggle="modal" target="_blank"><i class="fa fa-share" style="color:#ffe000; cursor: pointer"></i></a>
             </div>
             <a asp-controller="Home" asp-action="Podcast" asp-route-title="@Model.podcasts[i].title">
                 <img class="thumbnailimage" src="@Imageurl"/>
@@ -39,6 +41,19 @@
                 <li><a href="tribesearch1">@Model.podcasts[i].Tribe.Title</a></li>
             </ul>
         </div>
+        <div class="modal" id="@id" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content" style="background-color: rgb(34,34,34); border: solid 1px #ffe000">
+                        <div class="modal-header" style="border-bottom:1px solid #ffe000!important">
+                            <h4 class="modal-title titlecolor" style="color:white;" id="addEventLabel">Deel de volgende podcast: <p style="color: #ffe000;">@Model.podcasts[i].title</p>door de link hieronder te kopiëren</h4>
+                            <button class="close" data-dismiss="modal" style="color:#ffe000"><i class="fa fa-times"></i></button>
+                        </div>
+                        <div class="modal-body">
+                            <p style="color:white;">@podcastUrl</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </div>
 
 }
