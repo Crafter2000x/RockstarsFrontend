@@ -1,4 +1,4 @@
-﻿body {
+body {
     background-image: url(/Images/defaultOp.png) !important;
     background-attachment: fixed;
     font-family: 'DIN 2014';
@@ -160,6 +160,71 @@
             text-decoration: none;
             background-color: rgba(35, 35, 35, 0.5);
         }
+.viewcounter {
+    position: absolute;
+    color: #ffe000;
+    font-size: 150%;
+    text-align: right;
+    margin-left: 80%;
+    margin-top: -22%;
+    width: 15%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width: 768px) {
+    .thumbnailimage {
+        position: relative;
+        width: 250px;
+        height: 250px;
+        padding: 0px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        border: 2px solid #ffe000;
+    }
+
+    .article-title {
+        display:none;
+    }
+
+    .podcastbox {
+        position: relative;
+        margin-bottom: 30px;
+        margin-top: 30px;
+        padding: 0px 20px;
+        background: #fff;
+        background-color: rgba(35, 35, 35, 1);
+    }
+}
 
 a:hover {
     text-decoration: none !important;
