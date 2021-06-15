@@ -14,23 +14,17 @@ namespace Rockstars_Frontend.Models
             public string url { get; set; }
             public string contentType { get; set; }
         }
-
         public int id { get; set; }
         public string title { get; set; }
         public User author { get; set; }
-
         //nog in API
         public Tribe Tribe { get; set; }
-
+        public IDictionary<string, string> Attributes { get; set; }
         public string description { get; set; }
         public int Status { get; set; }
-
         public StoredFile thumbnail { get; set; }
-
         public int Type { get; set; }
-
         public int thumbnailId { get; set; }
-
         public DateTime CreatedAt { get; set; }
     }
 }

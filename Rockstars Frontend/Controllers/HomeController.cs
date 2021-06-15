@@ -31,9 +31,9 @@ namespace Rockstars_Frontend.Controllers
 
             List<ArtikelModel> data = api.artikelen;
 
-            List<ArtikelModel> artikelen = data.Where(datas => datas.Type == 0).ToList();
-            List<ArtikelModel> talks = data.Where(datas => datas.Type == 1).ToList();
-            List<ArtikelModel> podcasts = data.Where(datas => datas.Type == 2).ToList();
+            List<ArtikelModel> artikelen = data.Where(datas => datas.Type == 0 && datas.Status == 1).ToList();
+            List<ArtikelModel> talks = data.Where(datas => datas.Type == 1 && datas.Status == 1).ToList();
+            List<ArtikelModel> podcasts = data.Where(datas => datas.Type == 2 && datas.Status == 1).ToList();
 
             FormulierEnAanvraagModel f = new FormulierEnAanvraagModel();
             f.userlist = api.Tribeleads;
@@ -144,7 +144,7 @@ namespace Rockstars_Frontend.Controllers
             artikel.Attributes.TryGetValue("pdf", out PdfUrlvalue);
             if (PdfUrlvalue != null)
             {
-                ViewData["PdfUrl"] = "https://localhost:6001/api/File/" + artikel.Attributes["pdf"] + "/retrieve";
+                ViewData["PdfUrl"] = "https://i479146core.venus.fhict.nl/api/File/" + artikel.Attributes["pdf"] + "/retrieve";
             }
             else
             {

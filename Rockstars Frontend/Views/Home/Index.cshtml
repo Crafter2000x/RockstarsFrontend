@@ -3,8 +3,8 @@
 
 @{
     ViewData["Title"] = "Home Page";
-    string baseURL = "Https://localhost:6001"; // API
-                                               //string websiteURL = "Https://localhost:5001"; // FRONTEND
+    string baseURL = "https://i479146core.venus.fhict.nl"; // API
+                                                           //string websiteURL = "Https://localhost:5001"; // FRONTEND
 }
 
 <link rel="stylesheet" href="~/css/HomePage.css" />
@@ -62,35 +62,35 @@
                                                 </div>
                                             </a>
                                         </div>
-                                                }
+                                    }
                                     @if (artikelen.Count >= 2)
                                     {
-                                <div class="carousel-item">
-                                    @{string Imageurl2 = baseURL + artikelen[1].Thumbnail.RelativeUrl; }
+                                        <div class="carousel-item">
+                                            @{string Imageurl2 = baseURL + artikelen[1].Thumbnail.RelativeUrl; }
 
-                                    <a asp-action="Artikel" asp-route-title="@artikelen[1].Title">
-                                        <img class="d-block w-100" src="@Imageurl2" alt="Second slide">
-                                        <div class="carousel-caption d-none d-md-block">
-                                            <h5>@artikelen[1].Title.ToUpper()</h5>
-                                            <p>@artikelen[1].Author.Name.ToUpper()</p>
+                                            <a asp-action="Artikel" asp-route-title="@artikelen[1].Title">
+                                                <img class="d-block w-100" src="@Imageurl2" alt="Second slide">
+                                                <div class="carousel-caption d-none d-md-block">
+                                                    <h5>@artikelen[1].Title.ToUpper()</h5>
+                                                    <p>@artikelen[1].Author.Name.ToUpper()</p>
+                                                </div>
+                                            </a>
                                         </div>
-                                    </a>
-                                </div>
-                                        }
+                                    }
                                     @if (artikelen.Count >= 3)
                                     {
-                                <div class="carousel-item">
-                                    @{string Imageurl3 = baseURL + artikelen[2].Thumbnail.RelativeUrl; }
+                                        <div class="carousel-item">
+                                            @{string Imageurl3 = baseURL + artikelen[2].Thumbnail.RelativeUrl; }
 
-                                    <a asp-action="Artikel" asp-route-title="@artikelen[2].Title">
-                                        <img class="d-block w-100" src="@Imageurl3" alt="Third slide">
-                                        <div class="carousel-caption d-none d-md-block">
-                                            <h5>@artikelen[2].Title.ToUpper()</h5>
-                                            <p>@artikelen[2].Author.Name.ToUpper()</p>
+                                            <a asp-action="Artikel" asp-route-title="@artikelen[2].Title">
+                                                <img class="d-block w-100" src="@Imageurl3" alt="Third slide">
+                                                <div class="carousel-caption d-none d-md-block">
+                                                    <h5>@artikelen[2].Title.ToUpper()</h5>
+                                                    <p>@artikelen[2].Author.Name.ToUpper()</p>
+                                                </div>
+                                            </a>
                                         </div>
-                                    </a>
-                                </div>
-                                        }
+                                    }
 
                                 </div>
                                 @if (artikelen.Count > 1)
@@ -108,16 +108,16 @@
                             </div>
                         </div>
                         <div class="ArtikelInformation d-flex flex-column">
-                            <p >Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam sequi asperiores ipsa, et cupiditate vitae atque? Sapiente repudiandae pariatur obcaecati? Atque qui officia debitis molestias fugiat sapiente Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam sequi asperiores ipsa, et cupiditate vitae atque? Sapiente repudiandae pariatur obcaecati? Atque qui officia debitis molestias fugiat sapiente nesciuntnesciunt distinctio. Expedita!</p>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam sequi asperiores ipsa, et cupiditate vitae atque? Sapiente repudiandae pariatur obcaecati? Atque qui officia debitis molestias fugiat sapiente Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam sequi asperiores ipsa, et cupiditate vitae atque? Sapiente repudiandae pariatur obcaecati? Atque qui officia debitis molestias fugiat sapiente nesciuntnesciunt distinctio. Expedita!</p>
                             <a type="button" class="btn btn-light text-center mt-auto p-2 MoreArtikelButton" asp-controller="Home" asp-action="ArtikelPagina">Meer Artikelen</a>
                         </div>
                     </div>
                 </div>
-                                        }
+            }
             @if (talks.Count > 0)
             {
                 <div class="PartPage ArtikelPart">
-                    <div class="row ArtikelSplit"  style="border-top: solid 1px white;">
+                    <div class="row ArtikelSplit" style="border-top: solid 1px white;">
                         <div class="ArtikelInformation d-flex flex-column">
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam sequi asperiores ipsa, et cupiditate vitae atque? Sapiente repudiandae pariatur obcaecati? Atque qui officia debitis molestias fugiat sapiente Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam sequi asperiores ipsa, et cupiditate vitae atque? Sapiente repudiandae pariatur obcaecati? Atque qui officia debitis molestias fugiat sapiente nesciuntnesciunt distinctio. Expedita!</p>
                             <a type="button" class="btn btn-light text-center mt-auto p-2 MoreArtikelButton" style="" asp-controller="Home" asp-action="OnDemand">Meer Webinars</a>
@@ -139,7 +139,7 @@
                                                 </div>
                                             </a>
                                         </div>
-                                                }
+                                    }
                                     @if (talks.Count >= 2)
                                     {
                                         <div class="carousel-item">
@@ -153,7 +153,7 @@
                                                 </div>
                                             </a>
                                         </div>
-                                                }
+                                    }
                                     @if (talks.Count >= 3)
                                     {
                                         <div class="carousel-item">
@@ -167,7 +167,7 @@
                                                 </div>
                                             </a>
                                         </div>
-                                                }
+                                    }
 
                                 </div>
                                 @if (talks.Count > 1)
@@ -186,7 +186,7 @@
 
                     </div>
                 </div>
-                                                }
+            }
             @if (podcasts.Count > 0)
             {
                 <div class="PartPage ArtikelPart">
@@ -208,7 +208,7 @@
                                                 </div>
                                             </a>
                                         </div>
-                                                }
+                                    }
                                     @if (podcasts.Count >= 2)
                                     {
                                         <div class="carousel-item">
@@ -222,7 +222,7 @@
                                                 </div>
                                             </a>
                                         </div>
-                                                }
+                                    }
                                     @if (podcasts.Count >= 3)
                                     {
                                         <div class="carousel-item">
@@ -236,7 +236,7 @@
                                                 </div>
                                             </a>
                                         </div>
-                                                }
+                                    }
                                 </div>
                                 @if (podcasts.Count > 1)
                                 {
@@ -259,52 +259,9 @@
                     </div>
                 </div>
 
-                                                }
+            }
         </div>
     </div>
 
 </body>
 
-
-
-
-<!--<div class="container-fluid">
-    <div class="text-center">
-        <p class="text-white">
-            Lorem Ipsum <br>
-            "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
-            "There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..."
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc imperdiet, quam non aliquam convallis, magna tortor sodales purus, vel dignissim sem lorem eget urna. Morbi a ipsum lectus. Mauris nec ex vel est blandit convallis. Praesent quis viverra erat. Duis sapien lacus, rutrum quis velit eu, ornare finibus ligula. Aenean nec scelerisque libero. Donec id egestas orci, eu mattis lectus. Suspendisse potenti. Etiam quis mauris in erat condimentum ullamcorper. Vestibulum porta velit ac ligula tempor, ac sollicitudin arcu elementum. Morbi eu odio gravida justo luctus tempus. Duis auctor placerat orci, quis scelerisque quam dapibus sed. Cras tellus libero, dictum eget augue eget, consectetur maximus lacus. Donec commodo ex ligula, in auctor metus mollis et. Suspendisse finibus sem sit amet nulla ullamcorper vehicula. Quisque sed elementum elit.
-
-            Nullam eget dolor massa. Quisque facilisis arcu et velit scelerisque pretium. In purus neque, placerat sollicitudin aliquam a, finibus nec tellus. Maecenas vel luctus ante. Nunc id iaculis nunc. Praesent scelerisque erat quis lectus ultricies, quis mollis purus tristique. Aenean lacinia a nisl sed blandit. Pellentesque at facilisis dolor. Maecenas vitae congue felis.
-
-            In malesuada dapibus ex, nec vehicula mi. Nam luctus felis at elit suscipit, a bibendum nisi laoreet. Nullam eu arcu sapien. Pellentesque convallis quis enim nec dictum. Nullam dapibus, felis sit amet viverra feugiat, turpis mauris tincidunt nibh, eget rhoncus leo massa quis nisi. Donec ut nibh tincidunt, vestibulum urna in, tincidunt magna. Sed malesuada eu arcu at vehicula. Suspendisse aliquet ipsum sit amet ultrices viverra. Ut suscipit placerat eros nec rutrum. Proin a sapien sit amet augue convallis lobortis nec sed dolor. Morbi mattis id leo a consectetur. Nulla ultricies ultricies nisi. Cras nisi tellus, viverra et nunc quis, sodales pulvinar quam. Etiam ultrices enim ac commodo ultrices. Morbi venenatis nisl et leo pulvinar, eget aliquet quam sagittis.
-
-            Nunc eleifend mattis massa, at maximus ipsum dapibus sit amet. Integer imperdiet ipsum tellus, ac posuere velit tincidunt et. Aliquam vel nunc dui. Proin dictum nisi id sagittis consectetur. Praesent vitae lorem interdum ligula lobortis blandit at at mi. Integer in tortor sit amet nisl lacinia sodales. Nullam dignissim, orci eu ultricies fringilla, velit metus euismod neque, in placerat tellus ante ac nisl. Ut eros lacus, fringilla ut justo eget, convallis lobortis quam. Morbi cursus nisl ac velit commodo, in vehicula purus venenatis. Aenean sed sollicitudin tellus. Nulla vel tortor sed enim faucibus porta at congue neque. Phasellus laoreet ex ut sem porta, a accumsan augue iaculis. Fusce quis sem in dolor placerat iaculis pretium eu ipsum. Etiam eleifend congue erat, a pellentesque dui tincidunt sit amet. Vestibulum viverra eleifend ultrices.
-
-            Pellentesque pulvinar ornare dui id feugiat. Nullam posuere pharetra eros sed iaculis. Duis lobortis odio massa, vel scelerisque nunc convallis at. Proin consectetur nisi non hendrerit feugiat. Donec vitae enim eu nulla sollicitudin feugiat a nec mauris. Mauris commodo mi ante, nec accumsan mauris eleifend sit amet. Ut vitae mollis turpis, nec gravida tortor. Nunc nulla ipsum, consectetur sit amet orci nec, scelerisque egestas sem. Sed sed justo justo.
-        </p>-->
-@*try
-    {
-        ApiController api;
-        List<ArtikelModel> artikelen = new List<ArtikelModel>();
-
-        api = new ApiController();
-        await api.ArtikelPaginaAPI();
-        artikelen = api.artikelen;
-        if (api.connection)
-        {
-            <h3 style="color:white;">ping: OK!</h3>
-        }
-    }
-    catch
-    {
-        <h3 style="color:white;">ping: NOT SUCCESFULL!</h3>
-    }*@
-@*
-
-    @{ string pdfurl = "https://localhost:6001" + artikelen[0].pdf.url; }
-       <embed src="@pdfurl#view=FitH&scrollbar=0&toolbar=0&statusbar=0&messages=0&navpanes=0" width="100%" height="1000px" />
-*@
-<!--</div>
-</div>-->

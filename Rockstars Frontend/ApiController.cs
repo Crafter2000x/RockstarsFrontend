@@ -11,7 +11,7 @@ namespace Rockstars_Frontend
 {
     public class ApiController
     {
-        string Baseurl = "https://localhost:6001/";
+        string Baseurl = "https://i479146core.venus.fhict.nl/";
         public List<ArtikelModel> artikelen = new List<ArtikelModel>();
         public List<Tribe> AllTribes = new List<Tribe>();
         public List<User> Tribeleads = new List<User>();

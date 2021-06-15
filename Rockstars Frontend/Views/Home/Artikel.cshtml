@@ -4,19 +4,6 @@
     ViewData["Title"] = "Artikel";
     string content = ViewData["Content"].ToString();
     string pdfurl = ViewData["PdfUrl"].ToString();
-    //List<ArtikelModel> artikelen = new List<ArtikelModel>();
-    //ApiController api = new ApiController();
-    //await api.ArtikelPaginaAPI();
-    //artikelen = api.artikelen;
-    //ArtikelModel artikel = new ArtikelModel();
-    //Console.WriteLine(ViewData["ID"].ToString());
-    //foreach (ArtikelModel ar in artikelen)
-    //{
-    //    if (ar.Title.Equals(ViewData["ID"].ToString()))
-    //    {
-    //        artikel = ar;
-    //    }
-    //}
 
 }
 
@@ -25,42 +12,40 @@
     <a class="backButton" asp-controller="Home" asp-action="ArtikelPagina"><i class="fa fa-arrow-left"></i></a>
 </div>
 
-@*@{string pdfurl = "https://localhost:6001/api/File/" + Model.Attributes["pdf"] +"/retrieve"; }*@
-
-@{ string Imageurl = "https://localhost:6001" + Model.Thumbnail.RelativeUrl;}
+@{ string Imageurl = "https://i479146core.venus.fhict.nl" + Model.Thumbnail.RelativeUrl;}
 <div class="container">
     <div class="row artikelInfo">
-            <div class="information">
-                <div class="artikelTitle">
-                    <h1>@Model.Title</h1>
-                </div>
-                <h3><i class="fa fa-pencil"></i>&nbsp; &nbsp;@Model.Author.Name</h3>
-                <h3><i class="fa fa-calendar-o"></i>&nbsp; &nbsp;@Model.CreatedAt.ToString("dd-MM-yyyy")</h3>
-                <h3><i class="fa fa-users"></i>&nbsp; &nbsp;@Model.Tribe.Title</h3><br />
-                @if (pdfurl != "")
-                {
+        <div class="information">
+            <div class="artikelTitle">
+                <h1>@Model.Title</h1>
+            </div>
+            <h3><i class="fa fa-pencil"></i>&nbsp; &nbsp;@Model.Author.Name</h3>
+            <h3><i class="fa fa-calendar-o"></i>&nbsp; &nbsp;@Model.CreatedAt.ToString("dd-MM-yyyy")</h3>
+            <h3><i class="fa fa-users"></i>&nbsp; &nbsp;@Model.Tribe.Title</h3><br />
+            @if (pdfurl != "")
+            {
                 <a href="@pdfurl" download><h2>Download als PDF</h2></a>
-                }
-            </div>
-            <div class="thumbnail">
-                <img class="img-fluid" src="@Imageurl" />
-            </div>
-            <div class="description">
-                <p>
-                    @Model.Description
-                </p>
-            </div>
-        
+            }
+        </div>
+        <div class="thumbnail">
+            <img class="img-fluid" src="@Imageurl" />
+        </div>
+        <div class="description">
+            <p>
+                @Model.Description
+            </p>
+        </div>
+
         @if (pdfurl != "")
         {
-        <embed class="pdfReader" src="@pdfurl#view=FitH&scrollbar=0&toolbar=0&statusbar=0&messages=0&navpanes=0" />
+            <embed class="pdfReader" src="@pdfurl#view=FitH&scrollbar=0&toolbar=0&statusbar=0&messages=0&navpanes=0" />
         }
     </div>
     @if (content != "")
     {
-    <div class="container Content">
-        @Html.Raw(content)
-    </div>
+        <div class="container Content">
+            @Html.Raw(content)
+        </div>
     }
 </div>
 

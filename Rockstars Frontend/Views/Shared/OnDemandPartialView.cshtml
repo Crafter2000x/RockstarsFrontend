@@ -1,73 +1,86 @@
 ﻿@model TalksViewModel
 
+@for (int i = 0; i < Model.talks.Count; i++)
+{
+    List<string> keywords = new List<string>();
+    string multipleKeywords;
 
-<div class="talks">
-    @for (int i = 0; i < Model.talks.Count; i++)
+    Model.talks[i].Attributes.TryGetValue("keypoints", out multipleKeywords);
+    if (multipleKeywords != null)
     {
-        string thumbnailUrl = "https://localhost:6001" + @Model.talks[i].thumbnail.RelativeUrl;
-        <div class="col-md-12">
-            <section class="widgetweb">
-                <div class="widgetweb-body">
-                    <div class="widgetweb-top-overflow text-white">
-                        <div class="web-title">@Model.talks[i].title</div>
-                        <a><img src="@thumbnailUrl"></a>
-                        <ul class="webtags text-black-50 pull-right">
-                            <li><a href="tribesearch1">@Model.talks[i].Tribe.Title</a></li>
-                        </ul>
-                    </div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="postweb-user mt-sm">
-                                    <span class="thumb pull-left mr">
-                                        <img class="rounded-circle" src="https://bootdey.com/img/Content/user_1.jpg" alt="...">
-                                    </span>
-                                    <h5 class="mb-xs mt-xs text-light"><span class="fw-semi-bold">@Model.talks[i].author.Name</span></h5>
-                                    <p class="fsweb-mini text-muted"><span class="fsweb-mini text-muted"><i class="fa fa-tag"></i>&nbsp;Special agent</span></p>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <p class="text-light fsweb-mini web-desc">
-                                    @Model.talks[i].description
-                                </p>
-                                <input type="hidden" id="ArtikelId" value=@Model.talks[i].id>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <footer class="bg-body-light">
-                    <ul class="postweb-links">
-                        <li><i class="fa fa-calendar"></i><time>&nbsp;@Model.talks[i].CreatedAt.ToString("dd-MM-yyyy")</time>&nbsp;</li>
-                        <li><i class="fa fa-hashtag"></i>&nbsp;Add some tags here</li>
+        keywords = multipleKeywords.Split(",").ToList();
+    }
+    string thumbnailUrl = "https://i479146core.venus.fhict.nl" + @Model.talks[i].thumbnail.RelativeUrl;
+    <div class="col-md-12">
+        <section class="widgetweb">
+            <div class="widgetweb-body">
+                <div class="widgetweb-top-overflow text-white">
+                    <div class="web-title">@Model.talks[i].title</div>
+                    <a><img src="@thumbnailUrl"></a>
+                    <ul class="webtags text-black-50 pull-right">
+                        <li><a href="tribesearch1">@Model.talks[i].Tribe.Title</a></li>
                     </ul>
-                </footer>
-                <button type="button" class="btn btn-primary btnAanvraag" data-target="#PopupUpdatetabel1" data-toggle="modal">Toegang aanvragen</button>
-            </section>
-            <div class="modal" id="PopupUpdatetabel1" role="dialog">
-                <div class="modal-dialog">
-                    <div class="modal-content" style="background-color: rgb(34,34,34); border: solid 1px #ffe000">
-                        <div class="modal-header" style="border-bottom:1px solid #ffe000!important">
-                            <h4 class="modal-title titlecolor" style="color:white;" id="addEventLabel">Toegang aanvragen</h4>
-                            <button class="close" data-dismiss="modal" style="color:#ffe000"><i class="fa fa-times"></i></button>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="postweb-user mt-sm">
+                                <span class="thumb pull-left mr">
+                                    <img class="rounded-circle" src="https://bootdey.com/img/Content/user_1.jpg" alt="...">
+                                </span>
+                                <h5 class="mb-xs mt-xs text-light"><span class="fw-semi-bold">@Model.talks[i].author.Name</span></h5>
+                                <p class="fsweb-mini text-muted"><span class="fsweb-mini text-muted"><i class="fa fa-tag"></i>&nbsp;Special agent</span></p>
+                            </div>
                         </div>
-
-                        @using (Html.BeginForm("Aanvragen", "Home", FormMethod.Post))
-                        {
-                            <div class="modal-body"style="color:white;">
-                                <h5>Email<span style="color:#ff000d;">*</span> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Bedrijfsnaam<span style="color:#ff000d;">*</span> </h5> @Html.TextBoxFor(m => m.form.contactEmail, new { @type = "mail", @required = "required", autocomplete = "off" })&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#8239; @Html.TextBoxFor(m => m.form.companyName, new { autocomplete = "off", @required = "required" })
-                                <br />
-                                <h5>Rol &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Telefoon<span style="color:#ff000d;">*</span> </h5> @Html.TextBoxFor(m => m.form.comment, new { autocomplete = "off" }) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#8239; @Html.TextBoxFor(m => m.form.phoneNumber, new { autocomplete = "off", @required = "required" })
-                                <br />
-                                <h6 style="color:#ff000d;">*Verplicht in te vullen</h6>
-                            </div>
-                            <div class="modal-footer" style="border-top:1px solid #ffe000!important">
-                                <input type="submit" style="width:25%;" class="btn btn-block buttonaanvraag btn-primary" value="Vraag aan" />
-                            </div>
-                        }
+                        <div class="col-md-6">
+                            <p class="text-light fsweb-mini web-desc">
+                                @Model.talks[i].description
+                            </p>
+                            <input type="hidden" id="ArtikelId" value=@Model.talks[i].id>
+                        </div>
                     </div>
                 </div>
             </div>
+            <footer class="bg-body-light">
+                <ul class="postweb-links">
+                    <li><i class="fa fa-calendar"></i><time>&nbsp;@Model.talks[i].CreatedAt.ToString("dd-MM-yyyy")</time>&nbsp;</li>
+                    <li>
+                        <i class="fa fa-hashtag"></i>&nbsp;@foreach (var kword in keywords)
+                        {@kword <span>.</span>}
+                    </li>
+                </ul>
+            </footer>
+            <button type="button" class="btn btn-primary btnAanvraag" data-target="#PopupUpdatetabel1" data-toggle="modal">Toegang aanvragen</button>
+        </section>
+        <div class="modal" id="PopupUpdatetabel1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content" style="background-color: rgb(34,34,34); border: solid 1px #ffe000">
+                    <div class="modal-header" style="border-bottom:1px solid #ffe000!important">
+                        <h4 class="modal-title titlecolor" style="color:white;" id="addEventLabel">Toegang aanvragen</h4>
+                        <button class="close" data-dismiss="modal" style="color:#ffe000"><i class="fa fa-times"></i></button>
+                    </div>
+
+                    @using (Html.BeginForm("Aanvragen", "Home", FormMethod.Post))
+                    {
+                        <div class="modal-body" style="color:white;">
+                            <h5>Email<span style="color:#ff000d;">*</span> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Bedrijfsnaam<span style="color:#ff000d;">*</span> </h5> @Html.TextBoxFor(m => m.form.contactEmail, new { @type = "mail", @required = "required", autocomplete = "off" })&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#8239; @Html.TextBoxFor(m => m.form.companyName, new { autocomplete = "off", @required = "required" })
+                            <br />
+                            <h5>Rol &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Telefoon<span style="color:#ff000d;">*</span> </h5> @Html.TextBoxFor(m => m.form.comment, new { autocomplete = "off" }) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#8239; @Html.TextBoxFor(m => m.form.phoneNumber, new { autocomplete = "off", @required = "required" })
+                            <br />
+                            <h6 style="color:#ff000d;">*Verplicht in te vullen</h6>
+                        </div>
+                        <div class="modal-footer" style="border-top:1px solid #ffe000!important">
+                            <input type="submit" style="width:25%;" class="btn btn-block buttonaanvraag btn-primary" value="Vraag aan" />
+                        </div>
+                    }
+                </div>
+            </div>
         </div>
-    }
-</div>
+    </div>
+}
+
+
+
+
+
 

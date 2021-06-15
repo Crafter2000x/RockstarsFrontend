@@ -18,7 +18,7 @@ namespace Rockstars_Frontend.Models
 
         public string RelativeUrl => $"/api/File/{Id}/retrieve"; //TODO: Change hardcoded string to dynamically assign based on controller and action route
 
-        public string AbsoluteUrl => $"https://localhost:6001/api/File/{Id}/retrieve";
+        public string AbsoluteUrl => $"https://i479146core.venus.fhict.nl/api/File/{Id}/retrieve";
 
         public DateTime CreatedAt { get; set; }
 

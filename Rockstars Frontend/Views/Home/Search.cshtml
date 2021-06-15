@@ -13,7 +13,7 @@
     ApiController api = new ApiController();
     await api.ArtikelPaginaAPI();
     Everything = api.artikelen;
-    string baseIP = "https://localhost:6001";
+    string baseIP = "https://i479146core.venus.fhict.nl";
 
     if (ViewData["KeyWord"] == null)
     {
@@ -63,384 +63,350 @@
     </div>
 }
 else
-{ 
-<div class="SearchTerm">
-    @if (tribe == "ALL" && type == "ALL")
-    {
-        <p>Er zijn @EverythingNew.Count resultaten voor de zoekterm "@keyword".</p>
-    }
-    @if (type == "Artikel")
-    {
-        <p>Alle artikelen voor de zoekterm "@keyword".</p>
-    }
-    @if (type == "Webinar")
-    {
-        <p>Alle webinars voor de zoekterm "@keyword".</p>
-    }
-    @if (type == "Podcast")
-    {
-        <p>Alle podcasts voor de zoekterm "@keyword".</p>
-    }
-    @foreach (var Tribe in tribes)
-    {
-        @if (tribe == Tribe.Title)
-        {
-            <p>Alle resultaten voor de zoekterm "@keyword" in de @Tribe.Title.</p>
-        }
-    }
-</div>
-
-<div class="dropdown">
-    <button class="btn btn-primary dropdown-toggle DropdownButton shadow-none" type="button" data-toggle="dropdown">
-        <i class="fa fa-filter" style="color: #ffe000"></i>
-        <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu Options">
-        <a asp-controller="Home" asp-action="Search" asp-route-SearchTerm="@keyword" asp-route-type="ALL"><li class="dropdown-item DropdownItem">Alles</li></a>
-        <li class="dropdown-header DropdownHeader">Type</li>
-        <a asp-controller="Home" asp-action="Search" asp-route-SearchTerm="@keyword" asp-route-type="Artikel"><li class="dropdown-item DropdownItem">Artikelen</li></a>
-        <a asp-controller="Home" asp-action="Search" asp-route-SearchTerm="@keyword" asp-route-type="Webinar"><li class="dropdown-item DropdownItem">Webinars</li></a>
-        <a asp-controller="Home" asp-action="Search" asp-route-SearchTerm="@keyword" asp-route-type="Podcast"><li class="dropdown-item DropdownItem">Podcasts</li></a>
-        <li class="dropdown-header DropdownHeader">Tribe</li>
-        @foreach (Tribe t in tribes)
-        {
-            var title = t.Title.Replace("Tribe", "");
-            <a asp-controller="Home" asp-action="Search" asp-route-SearchTerm="@keyword" asp-route-tribe="@t.Title"><li class="dropdown-item DropdownItem">@title</li></a>
-        }
-    </ul>
-</div>
-
-@if (type == "Artikel" || type == "ALL")
 {
+    <div class="SearchTerm">
+        @if (tribe == "ALL" && type == "ALL")
+        {
+            <p>Er zijn @EverythingNew.Count resultaten voor de zoekterm "@keyword".</p>
+        }
+        @if (type == "Artikel")
+        {
+            <p>Alle artikelen voor de zoekterm "@keyword".</p>
+        }
+        @if (type == "Webinar")
+        {
+            <p>Alle webinars voor de zoekterm "@keyword".</p>
+        }
+        @if (type == "Podcast")
+        {
+            <p>Alle podcasts voor de zoekterm "@keyword".</p>
+        }
+        @foreach (var Tribe in tribes)
+        {
+            @if (tribe == Tribe.Title)
+            {
+                <p>Alle resultaten voor de zoekterm "@keyword" in de @Tribe.Title.</p>
+            }
+        }
+    </div>
 
-<div class="row">
-    @for (int i = 0; i < artikelen.Count; i++)
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle DropdownButton shadow-none" type="button" data-toggle="dropdown">
+            <i class="fa fa-filter" style="color: #ffe000"></i>
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu Options">
+            <a asp-controller="Home" asp-action="Search" asp-route-SearchTerm="@keyword" asp-route-type="ALL">
+            <li class="dropdown-item DropdownItem">Alles</li></a>
+            <li class="dropdown-header DropdownHeader">Type</li>
+            <a asp-controller="Home" asp-action="Search" asp-route-SearchTerm="@keyword" asp-route-type="Artikel">
+            <li class="dropdown-item DropdownItem">Artikelen</li></a>
+            <a asp-controller="Home" asp-action="Search" asp-route-SearchTerm="@keyword" asp-route-type="Webinar">
+            <li class="dropdown-item DropdownItem">Webinars</li></a>
+            <a asp-controller="Home" asp-action="Search" asp-route-SearchTerm="@keyword" asp-route-type="Podcast">
+            <li class="dropdown-item DropdownItem">Podcasts</li></a>
+            <li class="dropdown-header DropdownHeader">Tribe</li>
+            @foreach (Tribe t in tribes)
+            {
+                var title = t.Title.Replace("Tribe", "");
+                <a asp-controller="Home" asp-action="Search" asp-route-SearchTerm="@keyword" asp-route-tribe="@t.Title">
+                <li class="dropdown-item DropdownItem">@title</li></a>
+            }
+        </ul>
+    </div>
+
+    @if (type == "Artikel" || type == "ALL")
     {
-        string artikelURL1 = "https://localhost:44330/Home/Artikel?title=" + artikelen[i].Title;
-        string id1 = "PopupUpdatetabel" + artikelen[i].Id;
-        string artikelURL2 = "";
-        string id2 = "";
 
-        if (i + 1 < artikelen.Count)
-        {
-            artikelURL2 = "https://localhost:44330/Home/Artikel?title=" + artikelen[i + 1].Title;
-            id2 = "PopupUpdatetabel" + (artikelen[i].Id + 1);
-        }
-
-        if (artikelen[i].Tribe.Title.Contains(tribe) || tribe == "ALL")
-        {
-            string Imageurl = "https://localhost:6001" + artikelen[i].Thumbnail.RelativeUrl;
-            string artikeltitle = artikelen[i].Title;
-            <div class="container">
-                <div class="container">
-
-
-                    <div class="row">
-
-                        <div class="col-md-6">
-                            <section class="widget">
-                                <div class="widget-controls">
-                                    <a data-target="#@id1" data-toggle="modal" target="_blank"><i class="fa fa-share" style="color:#ffe000; cursor: pointer"></i></a>
-                                </div>
-                                <div class="widget-body">
-                                    <div class="widget-top-overflow text-white">
-                                        <div class="article-title">@artikelen[i].Title</div>
-                                        <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle"><img src="@Imageurl"></a>
-                                        <ul class="tags text-black-50 pull-right">
-                                            <li><a href="tribesearch1">@artikelen[i].Tribe.Title</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="post-user mt-sm">
-                                        <span class="thumb pull-left mr">
-                                            <img class="rounded-circle" src="https://bootdey.com/img/Content/user_1.jpg" alt="...">
-                                        </span>
-                                        <h5 class="mb-xs mt-xs text-light"><span class="fw-semi-bold">@artikelen[i].Author.Name</span></h5>
-                                        <p class="fs-mini text-muted"><span class="fs-mini text-muted"><i class="fa fa-tag"></i>&nbsp;Special agent</span></p>
-                                    </div>
-                                    <p class="text-light fs-mini m">
-                                        @artikelen[i].Description
-                                    </p>
-                                    <input type="hidden" id="ArtikelId" value=@artikelen[i].Id>
-                                </div>
-                                <footer class="bg-body-light">
-                                    <ul class="post-links">
-                                        <li><i class="fa fa-calendar"></i><time>&nbsp;@artikelen[i].CreatedAt.ToString("dd-MM-yyyy")</time>&nbsp;</li>
-                                        <li><i class="fa fa-hashtag"></i>&nbsp;Add some tags here</li>
-                                    </ul>
-                                </footer>
-                            </section>
-                            <div class="modal" id="@id1" role="dialog">
-                                <div class="modal-dialog">
-                                    <div class="modal-content" style="background-color: rgb(34,34,34); border: solid 1px #ffe000">
-                                        <div class="modal-header" style="border-bottom:1px solid #ffe000!important">
-                                            <h4 class="modal-title titlecolor" style="color:white;" id="addEventLabel">Deel het volgende artikel: <p style="color: #ffe000;">@artikelen[i].Title</p>door de link hieronder te kopiëren</h4>
-                                            <button class="close" data-dismiss="modal" style="color:#ffe000"><i class="fa fa-times"></i></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p style="color:white;">@artikelURL1</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        @if (@artikelen[@artikelen.Count - 1] != @artikelen[i])
-                        {
-                            i++;
-                            string Imageurl2 = "https://localhost:6001" + artikelen[i].Thumbnail.RelativeUrl;
-                            string artikeltitle2 = artikelen[i].Title;
-
-                    <div class="col-md-6">
-                        <section class="widget">
-                            <div class="widget-controls">
-                                <a data-target="#@id2" data-toggle="modal" target="_blank"><i class="fa fa-share" style="color:#ffe000; cursor: pointer"></i></a>
-                            </div>
-                            <div class="widget-body">
-                                <div class="widget-top-overflow text-white">
-                                    <div class="article-title">@artikelen[i].Title</div>
-                                    <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle2"><img src="@Imageurl2"></a>
-                                    <ul class="tags text-black-50 pull-right">
-                                        <li><a href="tribesearch1">@artikelen[i].Tribe.Title</a></li>
-                                    </ul>
-                                </div>
-                                <div class="post-user mt-sm">
-                                    <span class="thumb pull-left mr">
-                                        <img class="rounded-circle" src="https://bootdey.com/img/Content/user_1.jpg" alt="...">
-                                    </span>
-                                    <h5 class="mb-xs mt-xs text-light"><span class="fw-semi-bold">@artikelen[i].Author.Name</span></h5>
-                                    <p class="fs-mini text-muted"><span class="fs-mini text-muted"><i class="fa fa-tag"></i>&nbsp;Special agent</span></p>
-                                </div>
-                                <p class="text-light fs-mini m">
-                                    @artikelen[i].Description
-                                </p>
-                                <input type="hidden" id="ArtikelId" value=@artikelen[i].Id>
-                            </div>
-                            <footer class="bg-body-light">
-                                <ul class="post-links">
-                                    <li><i class="fa fa-calendar"></i><time>&nbsp;@artikelen[i].CreatedAt.ToString("dd-MM-yyyy")</time>&nbsp;</li>
-                                    <li><i class="fa fa-hashtag"></i>&nbsp;Add some tags here</li>
-                                </ul>
-                            </footer>
-                        </section>
-                        <div class="modal" id="@id2" role="dialog">
-                            <div class="modal-dialog">
-                                <div class="modal-content" style="background-color: rgb(34,34,34); border: solid 1px #ffe000">
-                                    <div class="modal-header" style="border-bottom:1px solid #ffe000!important">
-                                        <h4 class="modal-title titlecolor" style="color:white;" id="addEventLabel">Deel het volgende artikel: <p style="color: #ffe000;">@artikelen[i].Title</p>door de link hieronder te kopiëren</h4>
-                                        <button class="close" data-dismiss="modal" style="color:#ffe000"><i class="fa fa-times"></i></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p style="color: white;">@artikelURL2</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                        }
-                    </div>
-                </div>
-            </div>
-        }
-    }
-    @*<div class="row">*@
-    @*@foreach (var artikel in artikelen)
-        {*@
-    @*string Imageurl = "https://localhost:6001" + artikel.Thumbnail.RelativeUrl;
-            string artikeltitle = artikel.Title;
-
-        if (artikel.Status == 1 && artikel.Type == 0 || artikel.Status == 0 && artikel.Type == 0)
-        {
-            if (artikel.Tribe.Title.Contains(tribe) || tribe == "ALL")
+        <div class="row">
+            @for (int i = 0; i < artikelen.Count; i++)
             {
-                <div class="col-md-12 col-lg-4 col-sm-3 fullArtikel">
-                        <div class="beep">
-                            <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle">
-                                <div class="card h-100 artikel">
-                                    <img src=@Imageurl class="card-img-top" alt="...">
-                                    <div class="card-body info">
-                                        <h5 class="card-title Titel text-uppercase name">@artikel.Title</h5>
-                                        <h3 class="card-text author name2"><i class="fa fa-pencil"></i>&nbsp; &nbsp;@artikel.Author.Name</h3>
-                                        <h3 class="card-text author"><i class="fa fa-users"></i>&nbsp; &nbsp;@artikel.Tribe.Title</h3>
-                                        <h3 class="name3" style="display:none">@artikel.Description</h3>
-                                    </div>
-                                    <div class="card-footer">
-                                        <h3><i class="fa fa-calendar-o"></i>&nbsp; &nbsp;@artikel.CreatedAt.ToString("dd-MM-yyyy")</h3>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-            }*@
-    }
-</div>
-}
+                string artikelURL1 = "https://localhost:44330/Home/Artikel?title=" + artikelen[i].Title;
+                string id1 = "PopupUpdatetabel" + artikelen[i].Id;
+                string artikelURL2 = "";
+                string id2 = "";
 
-@if (type == "Webinar" || type == "ALL")
-{
-
-    <div class="talks">
-        @foreach (var talk in webinars)
-        {
-            string thumbnailUrl = "https://localhost:6001" + talk.Thumbnail.RelativeUrl;
-            // na de || moet eigenijk weg omdat deze niet published zijn.
-            if (talk.Type == 1 && talk.Status == 1 || talk.Type == 1 && talk.Status == 0)
-            {
-                if (talk.Tribe.Title.Contains(tribe) || tribe == "ALL")
+                if (i + 1 < artikelen.Count)
                 {
-                    <div class="col-md-12">
-                        <section class="widgetweb">
-                            <div class="widgetweb-body">
-                                <div class="widgetweb-top-overflow text-white">
-                                    <div class="web-title">@talk.Title</div>
-                                    <a><img src="@thumbnailUrl"></a>
-                                    <ul class="webtags text-black-50 pull-right">
-                                        <li><a href="tribesearch1">@talk.Tribe.Title</a></li>
-                                    </ul>
-                                </div>
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="postweb-user mt-sm">
+                    artikelURL2 = "https://localhost:44330/Home/Artikel?title=" + artikelen[i + 1].Title;
+                    id2 = "PopupUpdatetabel" + (artikelen[i].Id + 1);
+                }
+
+                if (artikelen[i].Tribe.Title.Contains(tribe) || tribe == "ALL")
+                {
+                    string Imageurl = "https://i479146core.venus.fhict.nl" + artikelen[i].Thumbnail.RelativeUrl;
+                    string artikeltitle = artikelen[i].Title;
+                    <div class="container">
+                        <div class="container">
+
+
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <section class="widget">
+                                        <div class="widget-controls">
+                                            <a data-target="#@id1" data-toggle="modal" target="_blank"><i class="fa fa-share" style="color:#ffe000; cursor: pointer"></i></a>
+                                        </div>
+                                        <div class="widget-body">
+                                            <div class="widget-top-overflow text-white">
+                                                <div class="article-title">@artikelen[i].Title</div>
+                                                <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle"><img src="@Imageurl"></a>
+                                                <ul class="tags text-black-50 pull-right">
+                                                    <li><a href="tribesearch1">@artikelen[i].Tribe.Title</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="post-user mt-sm">
                                                 <span class="thumb pull-left mr">
                                                     <img class="rounded-circle" src="https://bootdey.com/img/Content/user_1.jpg" alt="...">
                                                 </span>
-                                                <h5 class="mb-xs mt-xs text-light"><span class="fw-semi-bold">@talk.Author.Name</span></h5>
-                                                <p class="fsweb-mini text-muted"><span class="fsweb-mini text-muted"><i class="fa fa-tag"></i>&nbsp;Special agent</span></p>
+                                                <h5 class="mb-xs mt-xs text-light"><span class="fw-semi-bold">@artikelen[i].Author.Name</span></h5>
+                                                <p class="fs-mini text-muted"><span class="fs-mini text-muted"><i class="fa fa-tag"></i>&nbsp;Special agent</span></p>
+                                            </div>
+                                            <p class="text-light fs-mini m">
+                                                @artikelen[i].Description
+                                            </p>
+                                            <input type="hidden" id="ArtikelId" value=@artikelen[i].Id>
+                                        </div>
+                                        <footer class="bg-body-light">
+                                            <ul class="post-links">
+                                                <li><i class="fa fa-calendar"></i><time>&nbsp;@artikelen[i].CreatedAt.ToString("dd-MM-yyyy")</time>&nbsp;</li>
+                                                <li><i class="fa fa-hashtag"></i>&nbsp;Add some tags here</li>
+                                            </ul>
+                                        </footer>
+                                    </section>
+                                    <div class="modal" id="@id1" role="dialog">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content" style="background-color: rgb(34,34,34); border: solid 1px #ffe000">
+                                                <div class="modal-header" style="border-bottom:1px solid #ffe000!important">
+                                                    <h4 class="modal-title titlecolor" style="color:white;" id="addEventLabel">Deel het volgende artikel: <p style="color: #ffe000;">@artikelen[i].Title</p>door de link hieronder te kopiëren</h4>
+                                                    <button class="close" data-dismiss="modal" style="color:#ffe000"><i class="fa fa-times"></i></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p style="color:white;">@artikelURL1</p>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <p class="text-light fsweb-mini web-desc">
-                                                @talk.Description
-                                            </p>
-                                            <input type="hidden" id="ArtikelId" value=@talk.Id>
-                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <footer class="bg-body-light">
-                                <ul class="postweb-links">
-                                    <li><i class="fa fa-calendar"></i><time>&nbsp;@talk.CreatedAt.ToString("dd-MM-yyyy")</time>&nbsp;</li>
-                                    <li><i class="fa fa-hashtag"></i>&nbsp;Add some tags here</li>
-                                </ul>
-                            </footer>
-                            <button type="button" class="btn btn-primary btnAanvraag" data-target="#PopupUpdatetabel1" data-toggle="modal">Toegang aanvragen</button>
-                        </section>
-                        <div class="modal" id="PopupUpdatetabel1" role="dialog">
-                            <div class="modal-dialog">
-                                <div class="modal-content" style="background-color: rgb(34,34,34); border: solid 1px #ffe000">
-                                    <div class="modal-header" style="border-bottom:1px solid #ffe000!important">
-                                        <h4 class="modal-title titlecolor" style="color:white;" id="addEventLabel">Toegang aanvragen</h4>
-                                        <button class="close" data-dismiss="modal" style="color:#ffe000"><i class="fa fa-times"></i></button>
-                                    </div>
 
-                                    @using (Html.BeginForm("Aanvragen", "Home", FormMethod.Post))
-                                    {
-                                        <div class="modal-body" style="color:white;">
-                                            <h5>Email<span style="color:#ff000d;">*</span> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Bedrijfsnaam<span style="color:#ff000d;">*</span> </h5> @Html.TextBoxFor(m => m.form.contactEmail, new { @type = "mail", @required = "required", autocomplete = "off" })&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#8239; @Html.TextBoxFor(m => m.form.companyName, new { autocomplete = "off", @required = "required" })
-                                            <br />
-                                            <h5>Rol &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Telefoon<span style="color:#ff000d;">*</span> </h5> @Html.TextBoxFor(m => m.form.comment, new { autocomplete = "off" }) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#8239; @Html.TextBoxFor(m => m.form.phoneNumber, new { autocomplete = "off", @required = "required" })
-                                            <br />
-                                            <h6 style="color:#ff000d;">*Verplicht in te vullen</h6>
+                                @if (@artikelen[@artikelen.Count - 1] != @artikelen[i])
+                                {
+                                    i++;
+                                    string Imageurl2 = "https://i479146core.venus.fhict.nl" + artikelen[i].Thumbnail.RelativeUrl;
+                                    string artikeltitle2 = artikelen[i].Title;
+
+                                    <div class="col-md-6">
+                                        <section class="widget">
+                                            <div class="widget-controls">
+                                                <a data-target="#@id2" data-toggle="modal" target="_blank"><i class="fa fa-share" style="color:#ffe000; cursor: pointer"></i></a>
+                                            </div>
+                                            <div class="widget-body">
+                                                <div class="widget-top-overflow text-white">
+                                                    <div class="article-title">@artikelen[i].Title</div>
+                                                    <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle2"><img src="@Imageurl2"></a>
+                                                    <ul class="tags text-black-50 pull-right">
+                                                        <li><a href="tribesearch1">@artikelen[i].Tribe.Title</a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="post-user mt-sm">
+                                                    <span class="thumb pull-left mr">
+                                                        <img class="rounded-circle" src="https://bootdey.com/img/Content/user_1.jpg" alt="...">
+                                                    </span>
+                                                    <h5 class="mb-xs mt-xs text-light"><span class="fw-semi-bold">@artikelen[i].Author.Name</span></h5>
+                                                    <p class="fs-mini text-muted"><span class="fs-mini text-muted"><i class="fa fa-tag"></i>&nbsp;Special agent</span></p>
+                                                </div>
+                                                <p class="text-light fs-mini m">
+                                                    @artikelen[i].Description
+                                                </p>
+                                                <input type="hidden" id="ArtikelId" value=@artikelen[i].Id>
+                                            </div>
+                                            <footer class="bg-body-light">
+                                                <ul class="post-links">
+                                                    <li><i class="fa fa-calendar"></i><time>&nbsp;@artikelen[i].CreatedAt.ToString("dd-MM-yyyy")</time>&nbsp;</li>
+                                                    <li><i class="fa fa-hashtag"></i>&nbsp;Add some tags here</li>
+                                                </ul>
+                                            </footer>
+                                        </section>
+                                        <div class="modal" id="@id2" role="dialog">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content" style="background-color: rgb(34,34,34); border: solid 1px #ffe000">
+                                                    <div class="modal-header" style="border-bottom:1px solid #ffe000!important">
+                                                        <h4 class="modal-title titlecolor" style="color:white;" id="addEventLabel">Deel het volgende artikel: <p style="color: #ffe000;">@artikelen[i].Title</p>door de link hieronder te kopiëren</h4>
+                                                        <button class="close" data-dismiss="modal" style="color:#ffe000"><i class="fa fa-times"></i></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p style="color: white;">@artikelURL2</p>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="modal-footer" style="border-top:1px solid #ffe000!important">
-                                            <input type="submit" style="width:25%;" class="btn btn-block buttonaanvraag btn-primary" value="Vraag aan" />
-                                        </div>
-                                    }
-                                </div>
+                                    </div>
+                                }
                             </div>
                         </div>
                     </div>
                 }
             }
-        }
-    </div>
-}
+        </div>
+    }
 
-@if (type == "Podcast" || type == "ALL")
-{
-
-
-    @for (int i = 0; i < podcasts.Count; i++)
+    @if (type == "Webinar" || type == "ALL")
     {
-        string podcastUrl = "https://localhost:44330/Home/Podcast?title=" + podcasts[i].Title;
-        string id = "PopupUpdatetabel" + podcasts[i].Id;
 
-        if (podcasts[i].Status == 1 && podcasts[i].Type == 2 || podcasts[i].Status == 0 && podcasts[i].Type == 2)
-        {
-            if (podcasts[i].Tribe.Title.Contains(tribe) || tribe == "ALL")
+        <div class="talks">
+            @foreach (var talk in webinars)
             {
-                string Imageurl = "https://localhost:6001" + podcasts[i].Thumbnail.RelativeUrl;
+                string thumbnailUrl = "https://i479146core.venus.fhict.nl" + talk.Thumbnail.RelativeUrl;
+                // na de || moet eigenijk weg omdat deze niet published zijn.
+                if (talk.Type == 1 && talk.Status == 1 || talk.Type == 1 && talk.Status == 0)
+                {
+                    if (talk.Tribe.Title.Contains(tribe) || tribe == "ALL")
+                    {
+                        <div class="col-md-12">
+                            <section class="widgetweb">
+                                <div class="widgetweb-body">
+                                    <div class="widgetweb-top-overflow text-white">
+                                        <div class="web-title">@talk.Title</div>
+                                        <a><img src="@thumbnailUrl"></a>
+                                        <ul class="webtags text-black-50 pull-right">
+                                            <li><a href="tribesearch1">@talk.Tribe.Title</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="postweb-user mt-sm">
+                                                    <span class="thumb pull-left mr">
+                                                        <img class="rounded-circle" src="https://bootdey.com/img/Content/user_1.jpg" alt="...">
+                                                    </span>
+                                                    <h5 class="mb-xs mt-xs text-light"><span class="fw-semi-bold">@talk.Author.Name</span></h5>
+                                                    <p class="fsweb-mini text-muted"><span class="fsweb-mini text-muted"><i class="fa fa-tag"></i>&nbsp;Special agent</span></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p class="text-light fsweb-mini web-desc">
+                                                    @talk.Description
+                                                </p>
+                                                <input type="hidden" id="ArtikelId" value=@talk.Id>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <footer class="bg-body-light">
+                                    <ul class="postweb-links">
+                                        <li><i class="fa fa-calendar"></i><time>&nbsp;@talk.CreatedAt.ToString("dd-MM-yyyy")</time>&nbsp;</li>
+                                        <li><i class="fa fa-hashtag"></i>&nbsp;Add some tags here</li>
+                                    </ul>
+                                </footer>
+                                <button type="button" class="btn btn-primary btnAanvraag" data-target="#PopupUpdatetabel1" data-toggle="modal">Toegang aanvragen</button>
+                            </section>
+                            <div class="modal" id="PopupUpdatetabel1" role="dialog">
+                                <div class="modal-dialog">
+                                    <div class="modal-content" style="background-color: rgb(34,34,34); border: solid 1px #ffe000">
+                                        <div class="modal-header" style="border-bottom:1px solid #ffe000!important">
+                                            <h4 class="modal-title titlecolor" style="color:white;" id="addEventLabel">Toegang aanvragen</h4>
+                                            <button class="close" data-dismiss="modal" style="color:#ffe000"><i class="fa fa-times"></i></button>
+                                        </div>
 
-                List<string> keywords = new List<string>();
-                string multipleKeywords;
-                podcasts[i].Attributes.TryGetValue("keypoints", out multipleKeywords);
-                keywords = multipleKeywords.Split(",").ToList();
-
-                <div class="col-md-12">
-                    <div class="podcastbox">
-                        <div class="widget-share">
-                            <a data-target="#@id" data-toggle="modal" target="_blank"><i class="fa fa-share" style="color:#ffe000; cursor: pointer"></i></a>
-                        </div>
-                        <a asp-controller="Home" asp-action="Podcast" asp-route-title="@podcasts[i].Title">
-                            <img class="thumbnailimage" src="@Imageurl" />
-                            <div class="podcast-title">@podcasts[i].Title</div>
-
-                            <div class="podcast-user user-sm">
-                                <span class="userimage pull-left mr">
-                                    <img class="rounded-circle" src="https://bootdey.com/img/Content/user_1.jpg" alt="...">
-                                </span>
-                                <h5 class="mt-xs text-light"><span class="fw-semi-bold">@podcasts[i].Author.Name</span></h5>
-                                <p class="fs-role text-muted"><span class="fs-role text-muted"><i class="fa fa-tag"></i>&nbsp;Special agent</span></p>
-                            </div>
-                            <p class="text-light podcast-disc">
-                                @podcasts[i].Description
-                            </p>
-                            <footer class="podcastboxfooter">
-                                <ul class="podcast-links">
-                                    <li><i class="fa fa-calendar"></i><time>&nbsp;@podcasts[i].CreatedAt.ToString("dd-MM-yyyy")</time>&nbsp;</li>
-                                    <li>
-                                        <i class="fa fa-hashtag"></i>&nbsp;@foreach (var kword in keywords)
-                                        {@kword <span></span>}
-                                    </li>
-                                </ul>
-                            </footer>
-                        </a>
-                        <ul class="tags text-black-50 pull-right">
-                            <li><a href="tribesearch1">@podcasts[i].Tribe.Title</a></li>
-                        </ul>
-                    </div>
-                    <div class="modal" id="@id" role="dialog">
-                <div class="modal-dialog">
-                    <div class="modal-content" style="background-color: rgb(34,34,34); border: solid 1px #ffe000">
-                        <div class="modal-header" style="border-bottom:1px solid #ffe000!important">
-                            <h4 class="modal-title titlecolor" style="color:white;" id="addEventLabel">Deel de volgende podcast: <p style="color: #ffe000;">@podcasts[i].Title</p>door de link hieronder te kopiëren</h4>
-                            <button class="close" data-dismiss="modal" style="color:#ffe000"><i class="fa fa-times"></i></button>
-                        </div>
-                        <div class="modal-body">
-                            <p style="color:white;">@podcastUrl</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-                </div>
-
-                @*string profilePicture = baseIP + "/api/File/" + podcast.Author.ImageId + "/retrieve";
-                    <a asp-controller="Home" asp-action="Podcast" asp-route-title="@podcast.Title">
-                        <div class="container podcast">
-                            <div class="row">
-                                <img class="picture" src="@profilePicture" />
-                                <div class="text">
-                                    <h1 class="title name">@podcast.Title</h1>
+                                        @using (Html.BeginForm("Aanvragen", "Home", FormMethod.Post))
+                                        {
+                                            <div class="modal-body" style="color:white;">
+                                                <h5>Email<span style="color:#ff000d;">*</span> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Bedrijfsnaam<span style="color:#ff000d;">*</span> </h5> @Html.TextBoxFor(m => m.form.contactEmail, new { @type = "mail", @required = "required", autocomplete = "off" })&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#8239; @Html.TextBoxFor(m => m.form.companyName, new { autocomplete = "off", @required = "required" })
+                                                <br />
+                                                <h5>Rol &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Telefoon<span style="color:#ff000d;">*</span> </h5> @Html.TextBoxFor(m => m.form.comment, new { autocomplete = "off" }) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#8239; @Html.TextBoxFor(m => m.form.phoneNumber, new { autocomplete = "off", @required = "required" })
+                                                <br />
+                                                <h6 style="color:#ff000d;">*Verplicht in te vullen</h6>
+                                            </div>
+                                            <div class="modal-footer" style="border-top:1px solid #ffe000!important">
+                                                <input type="submit" style="width:25%;" class="btn btn-block buttonaanvraag btn-primary" value="Vraag aan" />
+                                            </div>
+                                        }
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </a>*@
+                    }
+                }
+            }
+        </div>
+    }
+
+    @if (type == "Podcast" || type == "ALL")
+    {
+
+
+        @for (int i = 0; i < podcasts.Count; i++)
+        {
+            string podcastUrl = "https://localhost:44330/Home/Podcast?title=" + podcasts[i].Title;
+            string id = "PopupUpdatetabel" + podcasts[i].Id;
+
+            if (podcasts[i].Status == 1 && podcasts[i].Type == 2 || podcasts[i].Status == 0 && podcasts[i].Type == 2)
+            {
+                if (podcasts[i].Tribe.Title.Contains(tribe) || tribe == "ALL")
+                {
+                    string Imageurl = "https://i479146core.venus.fhict.nl" + podcasts[i].Thumbnail.RelativeUrl;
+
+                    List<string> keywords = new List<string>();
+                    string multipleKeywords;
+                    podcasts[i].Attributes.TryGetValue("keypoints", out multipleKeywords);
+                    keywords = multipleKeywords.Split(",").ToList();
+
+                    <div class="col-md-12">
+                        <div class="podcastbox">
+                            <div class="widget-share">
+                                <a data-target="#@id" data-toggle="modal" target="_blank"><i class="fa fa-share" style="color:#ffe000; cursor: pointer"></i></a>
+                            </div>
+                            <a asp-controller="Home" asp-action="Podcast" asp-route-title="@podcasts[i].Title">
+                                <img class="thumbnailimage" src="@Imageurl" />
+                                <div class="podcast-title">@podcasts[i].Title</div>
+
+                                <div class="podcast-user user-sm">
+                                    <span class="userimage pull-left mr">
+                                        <img class="rounded-circle" src="https://bootdey.com/img/Content/user_1.jpg" alt="...">
+                                    </span>
+                                    <h5 class="mt-xs text-light"><span class="fw-semi-bold">@podcasts[i].Author.Name</span></h5>
+                                    <p class="fs-role text-muted"><span class="fs-role text-muted"><i class="fa fa-tag"></i>&nbsp;Special agent</span></p>
+                                </div>
+                                <p class="text-light podcast-disc">
+                                    @podcasts[i].Description
+                                </p>
+                                <footer class="podcastboxfooter">
+                                    <ul class="podcast-links">
+                                        <li><i class="fa fa-calendar"></i><time>&nbsp;@podcasts[i].CreatedAt.ToString("dd-MM-yyyy")</time>&nbsp;</li>
+                                        <li>
+                                            <i class="fa fa-hashtag"></i>&nbsp;@foreach (var kword in keywords)
+                                            {@kword <span></span>}
+                                        </li>
+                                    </ul>
+                                </footer>
+                            </a>
+                            <ul class="tags text-black-50 pull-right">
+                                <li><a href="tribesearch1">@podcasts[i].Tribe.Title</a></li>
+                            </ul>
+                        </div>
+                        <div class="modal" id="@id" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content" style="background-color: rgb(34,34,34); border: solid 1px #ffe000">
+                                    <div class="modal-header" style="border-bottom:1px solid #ffe000!important">
+                                        <h4 class="modal-title titlecolor" style="color:white;" id="addEventLabel">Deel de volgende podcast: <p style="color: #ffe000;">@podcasts[i].Title</p>door de link hieronder te kopiëren</h4>
+                                        <button class="close" data-dismiss="modal" style="color:#ffe000"><i class="fa fa-times"></i></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p style="color:white;">@podcastUrl</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                }
             }
         }
     }
+
 }
-    
-}
+
 
 
 

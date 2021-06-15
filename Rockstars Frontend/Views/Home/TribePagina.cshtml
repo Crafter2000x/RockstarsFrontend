@@ -42,8 +42,8 @@
 <div class="row art">
     @foreach (User user in tribeleads)
     {
-        
-        string profilePicture = "https://localhost:6001" + user.Image.RelativeUrl;
+
+        string profilePicture = "https://i479146core.venus.fhict.nl" + user.Image.RelativeUrl;
         //if (user.MemberOf[3].Role.Equals("TribeLead"))
         //{
         //if(user.tribe=viewdata)
@@ -69,9 +69,9 @@
     }
 </div>
 
-    @*@{string pdfurl = "https://localhost:6001/api/File/" + artikel.Attributes["pdf"] + "/retrieve"; }*@
+@*@{string pdfurl = "https://i479146core.venus.fhict.nl/api/File/" + artikel.Attributes["pdf"] + "/retrieve"; }*@
 
-    @*@{ string Imageurl = "https://localhost:6001" + Tribeso.Members[0].User.Image;}*@
+@*@{ string Imageurl = "https://i479146core.venus.fhict.nl" + Tribeso.Members[0].User.Image;}*@
 <div class="container">
 
     @{artikelen = artikelen.OrderByDescending(x => x.CreatedAt).ToList();
@@ -189,14 +189,15 @@
             }
         }
     }
-    @if (drieartikelen.Count > 0) { 
-    <div style="width: 100%; border-bottom: solid 2.5px #ffe000;">
-        <h1>Artikelen</h1>
-    </div>
-    <div class="row art">
-        @*@for (int g = 0; g < drieartikelen.Count; g++)
+    @if (drieartikelen.Count > 0)
+    {
+        <div style="width: 100%; border-bottom: solid 2.5px #ffe000;">
+            <h1>Artikelen</h1>
+        </div>
+        <div class="row art">
+            @*@for (int g = 0; g < drieartikelen.Count; g++)
         {
-            string Imageurl = "https://localhost:6001" + drieartikelen[g].Thumbnail.RelativeUrl;
+            string Imageurl = "https://i479146core.venus.fhict.nl" + drieartikelen[g].Thumbnail.RelativeUrl;
             string artikeltitle = drieartikelen[g].Title;
             <div class="container">
                 <div class="container">
@@ -242,261 +243,262 @@
             </div>
 
         }*@
-        @if (drieartikelen.Count > 0)
-        {
-            string artikeltitle = drieartikelen[0].Title;
-            string Imageurl = "https://localhost:6001" + drieartikelen[0].Thumbnail.RelativeUrl;
-            <div class="PartPage ArtikelPart">
-                <div class="row ArtikelSplit">
-                    <div class="ArtikelCarousel">
-                        <div id="Artikel" class="carousel slide" data-ride="carousel" style="height: 84.3%;">
-                            <div class="carousel-inner">
-                                @if (artikelen.Count >= 1)
-                                {
-                                    
-                                <div class="carousel-item active">
-                                    <div class="col-md-12">
-                                        <section class="widget">
-                                            <div class="widget-controls">
-                                                <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle" target="_blank"><i class="fa fa-share" style="color:#ffe000"></i></a>
-                                            </div>
-                                            <div class="widget-body">
-                                                <div class="widget-top-overflow text-white">
-                                                    <div class="article-title">@drieartikelen[0].Title</div>
-                                                    <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle"><img class="d-block w-100" src="@Imageurl"></a>
-                                                    <ul class="tags text-black-50 pull-right">
-                                                        <li><a href="tribesearch1">@drieartikelen[0].Tribe.Title</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="post-user mt-sm">
-                                                    <span class="thumb pull-left mr">
-                                                        <img class="rounded-circle" src="https://bootdey.com/img/Content/user_1.jpg" alt="...">
-                                                    </span>
-                                                    <h5 class="mb-xs mt-xs text-light"><span class="fw-semi-bold">@drieartikelen[0].Author.Name</span></h5>
-                                                    <p class="fs-mini text-muted"><span class="fs-mini text-muted"><i class="fa fa-tag"></i>&nbsp;Special agent</span></p>
-                                                </div>
-                                                <p class="text-light fs-mini m">
-                                                    @drieartikelen[0].Description
-                                                </p>
-                                                <input type="hidden" id="ArtikelId" value=@drieartikelen[0].Id>
-                                            </div>
-                                            <footer class="bg-body-light">
-                                                <ul class="post-links">
-                                                    <li><i class="fa fa-calendar"></i><time>&nbsp;@drieartikelen[0].CreatedAt.ToString("dd-MM-yyyy")</time>&nbsp;</li>
-                                                    <li><i class="fa fa-hashtag"></i>&nbsp;Add some tags here</li>
-                                                </ul>
-                                            </footer>
-                                        </section>
-                                    </div>
-                                    @*@{string Imageurl = "https://localhost:6001" + drieartikelen[0].Thumbnail.RelativeUrl; }
+            @if (drieartikelen.Count > 0)
+            {
+                string artikeltitle = drieartikelen[0].Title;
+                string Imageurl = "https://i479146core.venus.fhict.nl" + drieartikelen[0].Thumbnail.RelativeUrl;
+                <div class="PartPage ArtikelPart">
+                    <div class="row ArtikelSplit">
+                        <div class="ArtikelCarousel">
+                            <div id="Artikel" class="carousel slide" data-ride="carousel" style="height: 84.3%;">
+                                <div class="carousel-inner">
+                                    @if (artikelen.Count >= 1)
+                                    {
 
-        <a asp-action="Artikel" asp-route-title="@drieartikelen[0].Title">
-            <img class="d-block w-100" src="@Imageurl" alt="First slide">
-            <div class="carousel-caption d-none d-md-block">
-                <h5>@drieartikelen[0].Title.ToUpper()</h5>
-                <p>@drieartikelen[0].Author.Name.ToUpper()</p>
-            </div>
-        </a>*@
+                                        <div class="carousel-item active">
+                                            <div class="col-md-12">
+                                                <section class="widget">
+                                                    <div class="widget-controls">
+                                                        <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle" target="_blank"><i class="fa fa-share" style="color:#ffe000"></i></a>
+                                                    </div>
+                                                    <div class="widget-body">
+                                                        <div class="widget-top-overflow text-white">
+                                                            <div class="article-title">@drieartikelen[0].Title</div>
+                                                            <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle"><img class="d-block w-100" src="@Imageurl"></a>
+                                                            <ul class="tags text-black-50 pull-right">
+                                                                <li><a href="tribesearch1">@drieartikelen[0].Tribe.Title</a></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="post-user mt-sm">
+                                                            <span class="thumb pull-left mr">
+                                                                <img class="rounded-circle" src="https://bootdey.com/img/Content/user_1.jpg" alt="...">
+                                                            </span>
+                                                            <h5 class="mb-xs mt-xs text-light"><span class="fw-semi-bold">@drieartikelen[0].Author.Name</span></h5>
+                                                            <p class="fs-mini text-muted"><span class="fs-mini text-muted"><i class="fa fa-tag"></i>&nbsp;Special agent</span></p>
+                                                        </div>
+                                                        <p class="text-light fs-mini m">
+                                                            @drieartikelen[0].Description
+                                                        </p>
+                                                        <input type="hidden" id="ArtikelId" value=@drieartikelen[0].Id>
+                                                    </div>
+                                                    <footer class="bg-body-light">
+                                                        <ul class="post-links">
+                                                            <li><i class="fa fa-calendar"></i><time>&nbsp;@drieartikelen[0].CreatedAt.ToString("dd-MM-yyyy")</time>&nbsp;</li>
+                                                            <li><i class="fa fa-hashtag"></i>&nbsp;Add some tags here</li>
+                                                        </ul>
+                                                    </footer>
+                                                </section>
+                                            </div>
+                                            @*@{string Imageurl = "https://i479146core.venus.fhict.nl" + drieartikelen[0].Thumbnail.RelativeUrl; }
+
+                                        <a asp-action="Artikel" asp-route-title="@drieartikelen[0].Title">
+                                            <img class="d-block w-100" src="@Imageurl" alt="First slide">
+                                            <div class="carousel-caption d-none d-md-block">
+                                                <h5>@drieartikelen[0].Title.ToUpper()</h5>
+                                                <p>@drieartikelen[0].Author.Name.ToUpper()</p>
+                                            </div>
+                                        </a>*@
+                                        </div>
+                                    }
+                                    @if (drieartikelen.Count >= 2)
+                                    {
+                                        <div class="carousel-item">
+                                            @*@{string Imageurl2 = "https://i479146core.venus.fhict.nl" + drieartikelen[1].Thumbnail.RelativeUrl; }
+
+                                        <a asp-action="Artikel" asp-route-title="@drieartikelen[1].Title">
+                                            <img class="d-block w-100" src="@Imageurl2" alt="Second slide">
+                                            <div class="carousel-caption d-none d-md-block">
+                                                <h5>@drieartikelen[1].Title.ToUpper()</h5>
+                                                <p>@drieartikelen[1].Author.Name.ToUpper()</p>
+                                            </div>
+                                        </a>*@
+                                            <div class="col-md-12">
+                                                <section class="widget">
+                                                    <div class="widget-controls">
+                                                        <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle" target="_blank"><i class="fa fa-share" style="color:#ffe000"></i></a>
+                                                    </div>
+                                                    <div class="widget-body">
+                                                        <div class="widget-top-overflow text-white">
+                                                            <div class="article-title">@drieartikelen[0].Title</div>
+                                                            <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle"><img class="d-block w-100" src="@Imageurl"></a>
+                                                            <ul class="tags text-black-50 pull-right">
+                                                                <li><a href="tribesearch1">@drieartikelen[0].Tribe.Title</a></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="post-user mt-sm">
+                                                            <span class="thumb pull-left mr">
+                                                                <img class="rounded-circle" src="https://bootdey.com/img/Content/user_1.jpg" alt="...">
+                                                            </span>
+                                                            <h5 class="mb-xs mt-xs text-light"><span class="fw-semi-bold">@drieartikelen[0].Author.Name</span></h5>
+                                                            <p class="fs-mini text-muted"><span class="fs-mini text-muted"><i class="fa fa-tag"></i>&nbsp;Special agent</span></p>
+                                                        </div>
+                                                        <p class="text-light fs-mini m">
+                                                            @drieartikelen[0].Description
+                                                        </p>
+                                                        <input type="hidden" id="ArtikelId" value=@drieartikelen[0].Id>
+                                                    </div>
+                                                    <footer class="bg-body-light">
+                                                        <ul class="post-links">
+                                                            <li><i class="fa fa-calendar"></i><time>&nbsp;@drieartikelen[0].CreatedAt.ToString("dd-MM-yyyy")</time>&nbsp;</li>
+                                                            <li><i class="fa fa-hashtag"></i>&nbsp;Add some tags here</li>
+                                                        </ul>
+                                                    </footer>
+                                                </section>
+                                            </div>
+                                        </div>
+                                    }
+                                    @if (drieartikelen.Count >= 3)
+                                    {
+                                        <div class="carousel-item">
+                                            @*@{string Imageurl3 = "https://i479146core.venus.fhict.nl" + drieartikelen[2].Thumbnail.RelativeUrl; }
+
+                                        <a asp-action="Artikel" asp-route-title="@drieartikelen[2].Title">
+                                            <img class="d-block w-100" src="@Imageurl3" alt="Third slide">
+                                            <div class="carousel-caption d-none d-md-block">
+                                                <h5>@drieartikelen[2].Title.ToUpper()</h5>
+                                                <p>@drieartikelen[2].Author.Name.ToUpper()</p>
+                                            </div>
+                                        </a>*@
+                                            <div class="col-md-12">
+                                                <section class="widget">
+                                                    <div class="widget-controls">
+                                                        <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle" target="_blank"><i class="fa fa-share" style="color:#ffe000"></i></a>
+                                                    </div>
+                                                    <div class="widget-body">
+                                                        <div class="widget-top-overflow text-white">
+                                                            <div class="article-title">@drieartikelen[0].Title</div>
+                                                            <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle"><img class="d-block w-100" src="@Imageurl"></a>
+                                                            <ul class="tags text-black-50 pull-right">
+                                                                <li><a href="tribesearch1">@drieartikelen[0].Tribe.Title</a></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="post-user mt-sm">
+                                                            <span class="thumb pull-left mr">
+                                                                <img class="rounded-circle" src="https://bootdey.com/img/Content/user_1.jpg" alt="...">
+                                                            </span>
+                                                            <h5 class="mb-xs mt-xs text-light"><span class="fw-semi-bold">@drieartikelen[0].Author.Name</span></h5>
+                                                            <p class="fs-mini text-muted"><span class="fs-mini text-muted"><i class="fa fa-tag"></i>&nbsp;Special agent</span></p>
+                                                        </div>
+                                                        <p class="text-light fs-mini m">
+                                                            @drieartikelen[0].Description
+                                                        </p>
+                                                        <input type="hidden" id="ArtikelId" value=@drieartikelen[0].Id>
+                                                    </div>
+                                                    <footer class="bg-body-light">
+                                                        <ul class="post-links">
+                                                            <li><i class="fa fa-calendar"></i><time>&nbsp;@drieartikelen[0].CreatedAt.ToString("dd-MM-yyyy")</time>&nbsp;</li>
+                                                            <li><i class="fa fa-hashtag"></i>&nbsp;Add some tags here</li>
+                                                        </ul>
+                                                    </footer>
+                                                </section>
+                                            </div>
+                                        </div>
+                                    }
+
                                 </div>
-                                            }
-                                @if (drieartikelen.Count >= 2)
+                                @if (drieartikelen.Count > 1)
                                 {
-                            <div class="carousel-item">
-                                @*@{string Imageurl2 = "https://localhost:6001" + drieartikelen[1].Thumbnail.RelativeUrl; }
-
-        <a asp-action="Artikel" asp-route-title="@drieartikelen[1].Title">
-            <img class="d-block w-100" src="@Imageurl2" alt="Second slide">
-            <div class="carousel-caption d-none d-md-block">
-                <h5>@drieartikelen[1].Title.ToUpper()</h5>
-                <p>@drieartikelen[1].Author.Name.ToUpper()</p>
-            </div>
-        </a>*@
-                                <div class="col-md-12">
-                                    <section class="widget">
-                                        <div class="widget-controls">
-                                            <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle" target="_blank"><i class="fa fa-share" style="color:#ffe000"></i></a>
-                                        </div>
-                                        <div class="widget-body">
-                                            <div class="widget-top-overflow text-white">
-                                                <div class="article-title">@drieartikelen[0].Title</div>
-                                                <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle"><img class="d-block w-100" src="@Imageurl"></a>
-                                                <ul class="tags text-black-50 pull-right">
-                                                    <li><a href="tribesearch1">@drieartikelen[0].Tribe.Title</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="post-user mt-sm">
-                                                <span class="thumb pull-left mr">
-                                                    <img class="rounded-circle" src="https://bootdey.com/img/Content/user_1.jpg" alt="...">
-                                                </span>
-                                                <h5 class="mb-xs mt-xs text-light"><span class="fw-semi-bold">@drieartikelen[0].Author.Name</span></h5>
-                                                <p class="fs-mini text-muted"><span class="fs-mini text-muted"><i class="fa fa-tag"></i>&nbsp;Special agent</span></p>
-                                            </div>
-                                            <p class="text-light fs-mini m">
-                                                @drieartikelen[0].Description
-                                            </p>
-                                            <input type="hidden" id="ArtikelId" value=@drieartikelen[0].Id>
-                                        </div>
-                                        <footer class="bg-body-light">
-                                            <ul class="post-links">
-                                                <li><i class="fa fa-calendar"></i><time>&nbsp;@drieartikelen[0].CreatedAt.ToString("dd-MM-yyyy")</time>&nbsp;</li>
-                                                <li><i class="fa fa-hashtag"></i>&nbsp;Add some tags here</li>
-                                            </ul>
-                                        </footer>
-                                    </section>
-                                </div>
-                            </div>
-                                            }
-                                @if (drieartikelen.Count >= 3)
-                                {
-                            <div class="carousel-item">
-                                @*@{string Imageurl3 = "https://localhost:6001" + drieartikelen[2].Thumbnail.RelativeUrl; }
-
-        <a asp-action="Artikel" asp-route-title="@drieartikelen[2].Title">
-            <img class="d-block w-100" src="@Imageurl3" alt="Third slide">
-            <div class="carousel-caption d-none d-md-block">
-                <h5>@drieartikelen[2].Title.ToUpper()</h5>
-                <p>@drieartikelen[2].Author.Name.ToUpper()</p>
-            </div>
-        </a>*@
-                                <div class="col-md-12">
-                                    <section class="widget">
-                                        <div class="widget-controls">
-                                            <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle" target="_blank"><i class="fa fa-share" style="color:#ffe000"></i></a>
-                                        </div>
-                                        <div class="widget-body">
-                                            <div class="widget-top-overflow text-white">
-                                                <div class="article-title">@drieartikelen[0].Title</div>
-                                                <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle"><img class="d-block w-100" src="@Imageurl"></a>
-                                                <ul class="tags text-black-50 pull-right">
-                                                    <li><a href="tribesearch1">@drieartikelen[0].Tribe.Title</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="post-user mt-sm">
-                                                <span class="thumb pull-left mr">
-                                                    <img class="rounded-circle" src="https://bootdey.com/img/Content/user_1.jpg" alt="...">
-                                                </span>
-                                                <h5 class="mb-xs mt-xs text-light"><span class="fw-semi-bold">@drieartikelen[0].Author.Name</span></h5>
-                                                <p class="fs-mini text-muted"><span class="fs-mini text-muted"><i class="fa fa-tag"></i>&nbsp;Special agent</span></p>
-                                            </div>
-                                            <p class="text-light fs-mini m">
-                                                @drieartikelen[0].Description
-                                            </p>
-                                            <input type="hidden" id="ArtikelId" value=@drieartikelen[0].Id>
-                                        </div>
-                                        <footer class="bg-body-light">
-                                            <ul class="post-links">
-                                                <li><i class="fa fa-calendar"></i><time>&nbsp;@drieartikelen[0].CreatedAt.ToString("dd-MM-yyyy")</time>&nbsp;</li>
-                                                <li><i class="fa fa-hashtag"></i>&nbsp;Add some tags here</li>
-                                            </ul>
-                                        </footer>
-                                    </section>
-                                </div>
-                            </div>
-                                            }
+                                    <a class="carousel-control-prev" style="color:blue!important" href="#Artikel" role="button" data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#Artikel" role="button" data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                }
 
                             </div>
-                            @if (drieartikelen.Count > 1)
-                            {
-                                <a class="carousel-control-prev" style="color:blue!important" href="#Artikel" role="button" data-slide="prev">
-                                    <span class="carousel-control-prev-icon"  aria-hidden="true"></span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                                <a class="carousel-control-next" href="#Artikel" role="button" data-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            }
-
                         </div>
                     </div>
                 </div>
-            </div>
-         }
+            }
             <a class="row moreButton " style="width: 100%;" asp-area="" asp-action="ArtikelPagina" asp-controller="Home" asp-route-Tribe="@ViewData["ID"].ToString()">
 
                 <h4>meer artikelen weergeven</h4>
 
             </a>
         </div>
-     }
-    @if (driewebinars.Count > 0) {
-    <div style="width: 100%; border-bottom: solid 2.5px #ffe000;">
-        <h1>Webinars</h1>
-    </div>
-    <div class="row art">
-        @foreach (TalkModel talk in driewebinars)
-        {
-            string thumbnailUrl = "https://localhost:6001" + @talk.thumbnail.RelativeUrl;
-            <div class="col-md-12">
-                <section class="widgetweb">
-                    <div class="widgetweb-body">
-                        <div class="widgetweb-top-overflow text-white">
-                            <div class="web-title">@talk.title</div>
-                            <a><img src="@thumbnailUrl"></a>
-                            <ul class="webtags text-black-50 pull-right">
-                                <li><a href="tribesearch1">@talk.Tribe.Title</a></li>
-                            </ul>
-                        </div>
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="postweb-user mt-sm">
-                                        <span class="thumb pull-left mr">
-                                            <img class="rounded-circle" src="https://bootdey.com/img/Content/user_1.jpg" alt="...">
-                                        </span>
-                                        <h5 class="mb-xs mt-xs text-light"><span class="fw-semi-bold">@talk.author.Name</span></h5>
-                                        <p class="fsweb-mini text-muted"><span class="fsweb-mini text-muted"><i class="fa fa-tag"></i>&nbsp;Special agent</span></p>
+    }
+    @if (driewebinars.Count > 0)
+    {
+        <div style="width: 100%; border-bottom: solid 2.5px #ffe000;">
+            <h1>Webinars</h1>
+        </div>
+        <div class="row art">
+            @foreach (TalkModel talk in driewebinars)
+            {
+                string thumbnailUrl = "https://i479146core.venus.fhict.nl" + @talk.thumbnail.RelativeUrl;
+                <div class="col-md-12">
+                    <section class="widgetweb">
+                        <div class="widgetweb-body">
+                            <div class="widgetweb-top-overflow text-white">
+                                <div class="web-title">@talk.title</div>
+                                <a><img src="@thumbnailUrl"></a>
+                                <ul class="webtags text-black-50 pull-right">
+                                    <li><a href="tribesearch1">@talk.Tribe.Title</a></li>
+                                </ul>
+                            </div>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="postweb-user mt-sm">
+                                            <span class="thumb pull-left mr">
+                                                <img class="rounded-circle" src="https://bootdey.com/img/Content/user_1.jpg" alt="...">
+                                            </span>
+                                            <h5 class="mb-xs mt-xs text-light"><span class="fw-semi-bold">@talk.author.Name</span></h5>
+                                            <p class="fsweb-mini text-muted"><span class="fsweb-mini text-muted"><i class="fa fa-tag"></i>&nbsp;Special agent</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p class="text-light fsweb-mini web-desc">
+                                            @talk.description
+                                        </p>
+                                        <input type="hidden" id="ArtikelId" value=@talk.id>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <p class="text-light fsweb-mini web-desc">
-                                        @talk.description
-                                    </p>
-                                    <input type="hidden" id="ArtikelId" value=@talk.id>
-                                </div>
                             </div>
                         </div>
-                    </div>
-                    <footer class="bg-body-light">
-                        <ul class="postweb-links">
-                            <li><i class="fa fa-calendar"></i><time>&nbsp;@talk.CreatedAt.ToString("dd-MM-yyyy")</time>&nbsp;</li>
-                            <li><i class="fa fa-hashtag"></i>&nbsp;Add some tags here</li>
-                        </ul>
-                    </footer>
-                    <button type="button" class="btn btn-primary btnAanvraag" data-target="#PopupUpdatetabel1" data-toggle="modal">Toegang aanvragen</button>
-                </section>
-                <div class="modal" id="PopupUpdatetabel1" role="dialog">
-                    <div class="modal-dialog">
-                        <div class="modal-content" style="background-color: rgb(34,34,34); border: solid 1px #ffe000">
-                            <div class="modal-header" style="border-bottom:1px solid #ffe000!important">
-                                <h4 class="modal-title titlecolor" style="color:white;" id="addEventLabel">Toegang aanvragen</h4>
-                                <button class="close" data-dismiss="modal" style="color:#ffe000"><i class="fa fa-times"></i></button>
-                            </div>
+                        <footer class="bg-body-light">
+                            <ul class="postweb-links">
+                                <li><i class="fa fa-calendar"></i><time>&nbsp;@talk.CreatedAt.ToString("dd-MM-yyyy")</time>&nbsp;</li>
+                                <li><i class="fa fa-hashtag"></i>&nbsp;Add some tags here</li>
+                            </ul>
+                        </footer>
+                        <button type="button" class="btn btn-primary btnAanvraag" data-target="#PopupUpdatetabel1" data-toggle="modal">Toegang aanvragen</button>
+                    </section>
+                    <div class="modal" id="PopupUpdatetabel1" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content" style="background-color: rgb(34,34,34); border: solid 1px #ffe000">
+                                <div class="modal-header" style="border-bottom:1px solid #ffe000!important">
+                                    <h4 class="modal-title titlecolor" style="color:white;" id="addEventLabel">Toegang aanvragen</h4>
+                                    <button class="close" data-dismiss="modal" style="color:#ffe000"><i class="fa fa-times"></i></button>
+                                </div>
 
-                            @using (Html.BeginForm("Aanvragen", "Home", FormMethod.Post))
-                            {
-                                <div class="modal-body" style="color:white;">
-                                    <h5>Email<span style="color:#ff000d;">*</span> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Bedrijfsnaam<span style="color:#ff000d;">*</span> </h5> @Html.TextBoxFor(m => m.form.contactEmail, new { @type = "mail", @required = "required", autocomplete = "off" })&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#8239; @Html.TextBoxFor(m => m.form.companyName, new { autocomplete = "off", @required = "required" })
-                                    <br />
-                                    <h5>Rol &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Telefoon<span style="color:#ff000d;">*</span> </h5> @Html.TextBoxFor(m => m.form.comment, new { autocomplete = "off" }) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#8239; @Html.TextBoxFor(m => m.form.phoneNumber, new { autocomplete = "off", @required = "required" })
-                                    <br />
-                                    <h6 style="color:#ff000d;">*Verplicht in te vullen</h6>
-                                </div>
-                                <div class="modal-footer" style="border-top:1px solid #ffe000!important">
-                                    <input type="submit" style="width:25%;" class="btn btn-block buttonaanvraag btn-primary" value="Vraag aan" />
-                                </div>
-                            }
+                                @using (Html.BeginForm("Aanvragen", "Home", FormMethod.Post))
+                                {
+                                    <div class="modal-body" style="color:white;">
+                                        <h5>Email<span style="color:#ff000d;">*</span> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Bedrijfsnaam<span style="color:#ff000d;">*</span> </h5> @Html.TextBoxFor(m => m.form.contactEmail, new { @type = "mail", @required = "required", autocomplete = "off" })&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#8239; @Html.TextBoxFor(m => m.form.companyName, new { autocomplete = "off", @required = "required" })
+                                        <br />
+                                        <h5>Rol &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Telefoon<span style="color:#ff000d;">*</span> </h5> @Html.TextBoxFor(m => m.form.comment, new { autocomplete = "off" }) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#8239; @Html.TextBoxFor(m => m.form.phoneNumber, new { autocomplete = "off", @required = "required" })
+                                        <br />
+                                        <h6 style="color:#ff000d;">*Verplicht in te vullen</h6>
+                                    </div>
+                                    <div class="modal-footer" style="border-top:1px solid #ffe000!important">
+                                        <input type="submit" style="width:25%;" class="btn btn-block buttonaanvraag btn-primary" value="Vraag aan" />
+                                    </div>
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        }
-        <a class="row moreButton" style="width:100%;" asp-area="" asp-action="OnDemand" asp-controller="Home" asp-route-Tribe="@ViewData["ID"].ToString()">
+            }
+            <a class="row moreButton" style="width:100%;" asp-area="" asp-action="OnDemand" asp-controller="Home" asp-route-Tribe="@ViewData["ID"].ToString()">
 
-            <h4>Meer webinars weergeven</h4>
+                <h4>Meer webinars weergeven</h4>
 
-        </a>
-    </div>
+            </a>
+        </div>
     }
 </div>
 
