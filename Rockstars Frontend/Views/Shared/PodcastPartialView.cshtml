@@ -8,7 +8,7 @@
     string multipleKeywords;
     Model.podcasts[i].attributes.TryGetValue("keypoints", out multipleKeywords);
     keywords = multipleKeywords.Split(",").ToList();
-    string podcastUrl = "https://localhost:44330/Home/Artikel?title=" + Model.podcasts[i].title;
+    string podcastUrl = "https://localhost:44330/Home/Podcast?title=" + Model.podcasts[i].title;
     string id = "PopupUpdatetabel" + Model.podcasts[i].Id;
 
     <div class="col-md-12">

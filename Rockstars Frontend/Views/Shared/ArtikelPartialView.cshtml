@@ -5,9 +5,15 @@
     string Imageurl = "https://localhost:6001" + Model.artikelen[i].Thumbnail.RelativeUrl;
     string artikeltitle = Model.artikelen[i].Title;
     string artikelURL1 = "https://localhost:44330/Home/Artikel?title=" + Model.artikelen[i].Title;
-    string artikelURL2 = "https://localhost:44330/Home/Artikel?title=" + Model.artikelen[i + 1].Title;
     string id1 = "PopupUpdatetabel" + Model.artikelen[i].Id;
-    string id2 = "PopupUpdatetabel" + (Model.artikelen[i].Id + 1) ;
+    string artikelURL2 = "";
+    string id2 = "";
+
+    if (i + 1 < Model.artikelen.Count)
+    {
+        artikelURL2 = "https://localhost:44330/Home/Artikel?title=" + Model.artikelen[i + 1].Title;
+        id2 = "PopupUpdatetabel" + (Model.artikelen[i].Id + 1);
+    }
 
  <body>
     <div class="row">
