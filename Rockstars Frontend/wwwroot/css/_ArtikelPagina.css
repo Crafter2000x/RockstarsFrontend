@@ -109,15 +109,14 @@ input:not([type="button"]):not([type="submit"]):not([type="reset"]):hover, input
 @media only screen and (max-width: 768px) {
     /* For mobile phones: */
     .article-title {
-        font-size: 14px;
+        font-size: 18px;
         display: inline-block;
         text-align: center;
         position: absolute;
         color: #ffe000;
-        background-color: rgba(35, 35, 35, 0.5);
         padding: 4px;
-        border: 2px solid #ffe000;
         margin: 8px;
+        text-shadow: 4px 4px 2px rgba(0,0,0,0.6);
     }
 }
 

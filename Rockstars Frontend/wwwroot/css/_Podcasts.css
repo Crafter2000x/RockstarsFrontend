@@ -1,4 +1,4 @@
-﻿body {
+body {
     background-image: url(/Images/defaultOp.png) !important;
     background-attachment: fixed;
     font-family: 'DIN 2014';
@@ -160,7 +160,6 @@
             text-decoration: none;
             background-color: rgba(35, 35, 35, 0.5);
         }
-
 .viewcounter {
     position: absolute;
     color: #ffe000;
@@ -226,12 +225,6 @@
         background-color: rgba(35, 35, 35, 1);
     }
 }
-
-
-
-
-
-
 
 a:hover {
     text-decoration: none !important;
@@ -302,4 +295,68 @@ a:hover {
 input:not([type="button"]):not([type="submit"]):not([type="reset"]):hover, input:not([type="button"]):not([type="submit"]):not([type="reset"]):focus, textarea:hover, textarea:focus, select:hover, select:focus {
     border: 2px solid #1b2a44;
     outline: none;
+}
+
+@media only screen and (max-width: 768px) {
+
+    .podcastbox {
+        position: relative;
+        margin-bottom: 30px;
+        margin-top: 30px;
+        padding: 0px 5px;
+        background-color: transparent;
+    }
+
+    .podcastboxfooter {
+        margin: -20px -5px 0px 0px ;
+        padding: 15px 15px;
+        background-color: #323334;
+        border-radius: 5px
+    }
+
+    .podcast-title {
+        font-size: 18px;
+        display: inline-block;
+        position: absolute;
+        color: #ffe000;
+        padding: 4px;
+        margin: -260px 0px;
+        text-shadow: 4px 4px 2px rgba(0,0,0,0.6);
+    }
+
+    .podcast-user {
+        display: none;
+    }
+
+    .podcast-disc {
+        display: none;
+    }
+
+    .widget-share {
+        display: none;
+    }
+
+    .tags {
+        padding-left: 0;
+        list-style: none;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        margin: 10px;
+    }
+
+        .tags > li {
+            float: left;
+            margin: 0px 0px 35px 0px ;
+        }
+
+            .tags > li > a {
+                padding: 2px 5px;
+                font-size: 12px;
+                border-radius: 6px;
+                border: 2px solid #ffe000;
+                color: #ffe000;
+                text-decoration: none;
+                background-color: rgba(35, 35, 35, 0.5);
+            }
 }

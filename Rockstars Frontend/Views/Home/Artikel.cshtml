@@ -1,19 +1,22 @@
-﻿@{
-    ViewData["Title"] = "Artikel";
-    List<ArtikelModel> artikelen = new List<ArtikelModel>();
-    ApiController api = new ApiController();
-    await api.ArtikelPaginaAPI();
-    artikelen = api.artikelen;
-    ArtikelModel artikel = new ArtikelModel();
-    Console.WriteLine(ViewData["ID"].ToString());
-    foreach (ArtikelModel ar in artikelen)
-    {
-        if (ar.Title.Equals(ViewData["ID"].ToString()))
-        {
-            artikel = ar;
-        }
-    }
+﻿@model ArtikelModel
 
+@{
+    ViewData["Title"] = "Artikel";
+    string content = ViewData["Content"].ToString();
+    string pdfurl = ViewData["PdfUrl"].ToString();
+    //List<ArtikelModel> artikelen = new List<ArtikelModel>();
+    //ApiController api = new ApiController();
+    //await api.ArtikelPaginaAPI();
+    //artikelen = api.artikelen;
+    //ArtikelModel artikel = new ArtikelModel();
+    //Console.WriteLine(ViewData["ID"].ToString());
+    //foreach (ArtikelModel ar in artikelen)
+    //{
+    //    if (ar.Title.Equals(ViewData["ID"].ToString()))
+    //    {
+    //        artikel = ar;
+    //    }
+    //}
 
 }
 
@@ -22,31 +25,55 @@
     <a class="backButton" asp-controller="Home" asp-action="ArtikelPagina">Terug</a>
 </div>
 
- @{string pdfurl = "https://localhost:6001/api/File/" + artikel.Attributes["pdf"] +"/retrieve"; }
+@*@{string pdfurl = "https://localhost:6001/api/File/" + Model.Attributes["pdf"] +"/retrieve"; }*@
 
-@{ string Imageurl = "https://localhost:6001" + artikel.Thumbnail.RelativeUrl;}
+@{ string Imageurl = "https://localhost:6001" + Model.Thumbnail.RelativeUrl;}
 <div class="container">
     <div class="row artikelInfo">
-        <div class="infoBorder">
             <div class="information">
                 <div class="artikelTitle">
-                    <h1>@artikel.Title</h1>
+                    <h1>@Model.Title</h1>
                 </div>
-                <h1><i class="fa fa-pencil"></i>&nbsp; &nbsp;@artikel.Author.Name</h1>
-                <h1><i class="fa fa-calendar-o"></i>&nbsp; &nbsp;@artikel.CreatedAt.ToString("dd-MM-yyyy")</h1>
-                <h1><i class="fa fa-users"></i>&nbsp; &nbsp;@artikel.Tribe.Title</h1><br />
+                <h3><i class="fa fa-pencil"></i>&nbsp; &nbsp;@Model.Author.Name</h3>
+                <h3><i class="fa fa-calendar-o"></i>&nbsp; &nbsp;@Model.CreatedAt.ToString("dd-MM-yyyy")</h3>
+                <h3><i class="fa fa-users"></i>&nbsp; &nbsp;@Model.Tribe.Title</h3><br />
+                @if (pdfurl != "")
+                {
                 <a href="@pdfurl" download><h2>Download als PDF</h2></a>
+                }
             </div>
             <div class="thumbnail">
-                <img src="@Imageurl" />
+                <img class="img-fluid" src="@Imageurl" />
             </div>
             <div class="description">
                 <p>
-                    @artikel.Description
+                    @Model.Description
                 </p>
             </div>
-        </div>
-       <embed class="pdfReader" src="@pdfurl#view=FitH&scrollbar=0&toolbar=0&statusbar=0&messages=0&navpanes=0" />
+        
+        @if (pdfurl != "")
+        {
+        <embed class="pdfReader" src="@pdfurl#view=FitH&scrollbar=0&toolbar=0&statusbar=0&messages=0&navpanes=0" />
+        }
     </div>
+    @if (content != "")
+    {
+    <div class="container Content">
+        @Html.Raw(content)
+    </div>
+    }
 </div>
+
+@section Scripts
+{
+    <script src="~/js/WYSIWYG.js" type="text/javascript">
+        ////var content = '<%=content%>'
+        ////document.write(content);
+        //let span = document.querySelector("span");
+
+        //let text = '<p>ghello</p>'
+
+        //span.innerHTML = text;
+    </script>
+}
 
