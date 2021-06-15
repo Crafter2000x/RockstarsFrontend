@@ -1,5 +1,11 @@
 ﻿@model PodcastsViewModel;
 
+@{  
+    ApiController api = new ApiController();
+    await api.GetTelemetryInfo();
+    Dictionary<string, int> telemetry = api.telemetry;
+    }
+
 @for (int i = 0; i < Model.podcasts.Count; i++)
 {
     string Imageurl = "https://localhost:6001" + Model.podcasts[i].Thumbnail.RelativeUrl;
@@ -8,6 +14,8 @@
     string multipleKeywords;
     Model.podcasts[i].attributes.TryGetValue("keypoints", out multipleKeywords);
     keywords = multipleKeywords.Split(",").ToList();
+    int count;
+    telemetry.TryGetValue(Model.podcasts[i].Id.ToString(), out count);
 
     <div class="col-md-12">
         <div class="podcastbox">
@@ -15,9 +23,15 @@
                 <a asp-controller="Home" asp-action="Podcast" asp-route-title="@Model.podcasts[i].title" target="_blank"><i class="fa fa-share" style="color:#ffe000"></i></a>
             </div>
             <a asp-controller="Home" asp-action="Podcast" asp-route-title="@Model.podcasts[i].title">
-                <img class="thumbnailimage" src="@Imageurl"/>
+                <img class="thumbnailimage" src="@Imageurl" />
                 <div class="podcast-title">@Model.podcasts[i].title</div>
-
+                <h4 class="viewcounter">
+                    <span class="fw-semi-bold">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-headphones" viewBox="0 0 16 16">
+                            <path d="M8 3a5 5 0 0 0-5 5v1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V8a6 6 0 1 1 12 0v5a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1V8a5 5 0 0 0-5-5z" />
+                        </svg>&nbsp;@count.ToString()
+                    </span>
+                </h4>
                 <div class="podcast-user user-sm">
                     <span class="userimage pull-left mr">
                         <img class="rounded-circle" src="https://bootdey.com/img/Content/user_1.jpg" alt="...">
@@ -31,7 +45,8 @@
                 <footer class="podcastboxfooter">
                     <ul class="podcast-links">
                         <li><i class="fa fa-calendar"></i><time>&nbsp;@Model.podcasts[i].CreatedAt.ToString("dd-MM-yyyy")</time>&nbsp;</li>
-                        <li><i class="fa fa-hashtag"></i>&nbsp;@foreach (var kword in keywords) { @kword <span></span>}</li>
+                        <li><i class="fa fa-hashtag"></i>&nbsp;@foreach (var kword in keywords)
+                        {@kword <span></span>}</li>
                     </ul>
                 </footer>
             </a>

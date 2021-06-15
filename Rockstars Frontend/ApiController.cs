@@ -17,6 +17,7 @@ namespace Rockstars_Frontend
         public List<User> Tribeleads = new List<User>();
         public List<TalkModel> talks = new List<TalkModel>();
         public List<PodcastModel> podcasts = new List<PodcastModel>();
+        public Dictionary<string, int> telemetry = new Dictionary<string, int>();
         public bool connection = false;
 
         public async Task PostOverzichtAPI(int PostType, int PostStatus, int PageSize, int Page)
@@ -207,6 +208,24 @@ namespace Rockstars_Frontend
                     throw new Exception(Res.ReasonPhrase);
                 }
 
+            }
+        }
+
+        public async Task GetTelemetryInfo()
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(Baseurl);
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage Res = await client.GetAsync("/api/Telemetry/posts/views?limit=1000");
+
+                if (Res.IsSuccessStatusCode)
+                {
+                    connection = true;
+                    var TelemetryResponse = Res.Content.ReadAsStringAsync().Result;
+                    telemetry = JsonConvert.DeserializeObject<Dictionary<string, int>>(TelemetryResponse);
+                }
             }
         }
     }

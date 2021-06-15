@@ -200,3 +200,14 @@ input:not([type="button"]):not([type="submit"]):not([type="reset"]):hover, input
     list-style: none;
     margin: 4px ;
 }
+
+
+.viewcounter {
+    position: absolute;
+    color: #ffe000;
+    font-size: 100%;
+    text-align: right;
+    margin-left: 85%;
+    margin-top: -7%;
+    width: 15%;
+}
