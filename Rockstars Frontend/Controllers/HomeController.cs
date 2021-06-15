@@ -150,7 +150,6 @@ namespace Rockstars_Frontend.Controllers
             {
                 ViewData["PdfUrl"] = "";
             }
-
             return View(artikel);
         }
 

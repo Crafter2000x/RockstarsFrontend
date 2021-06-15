@@ -1,4 +1,10 @@
-﻿@model PodcastsViewModel;
+@model PodcastsViewModel;
+
+@{  
+    ApiController api = new ApiController();
+    await api.GetTelemetryInfo();
+    Dictionary<string, int> telemetry = api.telemetry;
+    }
 
 @for (int i = 0; i < Model.podcasts.Count; i++)
 {
@@ -8,16 +14,26 @@
     string multipleKeywords;
     Model.podcasts[i].attributes.TryGetValue("keypoints", out multipleKeywords);
     keywords = multipleKeywords.Split(",").ToList();
+    int count;
+    telemetry.TryGetValue(Model.podcasts[i].Id.ToString(), out count);
+    string podcastUrl = "https://localhost:44330/Home/Podcast?title=" + Model.podcasts[i].title;
+    string id = "PopupUpdatetabel" + Model.podcasts[i].Id;
 
     <div class="col-md-12">
         <div class="podcastbox">
             <div class="widget-share">
-                <a asp-controller="Home" asp-action="Podcast" asp-route-title="@Model.podcasts[i].title" target="_blank"><i class="fa fa-share" style="color:#ffe000"></i></a>
+                <a data-target="#@id" data-toggle="modal" target="_blank"><i class="fa fa-share" style="color:#ffe000; cursor: pointer"></i></a>
             </div>
             <a asp-controller="Home" asp-action="Podcast" asp-route-title="@Model.podcasts[i].title">
-                <img class="thumbnailimage" src="@Imageurl"/>
+                <img class="thumbnailimage" src="@Imageurl" />
                 <div class="podcast-title">@Model.podcasts[i].title</div>
-
+                <h4 class="viewcounter">
+                    <span class="fw-semi-bold">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-headphones" viewBox="0 0 16 16">
+                            <path d="M8 3a5 5 0 0 0-5 5v1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V8a6 6 0 1 1 12 0v5a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1V8a5 5 0 0 0-5-5z" />
+                        </svg>&nbsp;@count.ToString()
+                    </span>
+                </h4>
                 <div class="podcast-user user-sm">
                     <span class="userimage pull-left mr">
                         <img class="rounded-circle" src="https://bootdey.com/img/Content/user_1.jpg" alt="...">
@@ -31,7 +47,8 @@
                 <footer class="podcastboxfooter">
                     <ul class="podcast-links">
                         <li><i class="fa fa-calendar"></i><time>&nbsp;@Model.podcasts[i].CreatedAt.ToString("dd-MM-yyyy")</time>&nbsp;</li>
-                        <li><i class="fa fa-hashtag"></i>&nbsp;@foreach (var kword in keywords) { @kword <span></span>}</li>
+                        <li><i class="fa fa-hashtag"></i>&nbsp;@foreach (var kword in keywords)
+                        {@kword <span></span>}</li>
                     </ul>
                 </footer>
             </a>
@@ -39,6 +56,19 @@
                 <li><a href="tribesearch1">@Model.podcasts[i].Tribe.Title</a></li>
             </ul>
         </div>
+        <div class="modal" id="@id" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content" style="background-color: rgb(34,34,34); border: solid 1px #ffe000">
+                        <div class="modal-header" style="border-bottom:1px solid #ffe000!important">
+                            <h4 class="modal-title titlecolor" style="color:white;" id="addEventLabel">Deel de volgende podcast: <p style="color: #ffe000;">@Model.podcasts[i].title</p>door de link hieronder te kopiëren</h4>
+                            <button class="close" data-dismiss="modal" style="color:#ffe000"><i class="fa fa-times"></i></button>
+                        </div>
+                        <div class="modal-body">
+                            <p style="color:white;">@podcastUrl</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </div>
 
 }

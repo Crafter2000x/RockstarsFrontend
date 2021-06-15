@@ -116,6 +116,17 @@ else
 <div class="row">
     @for (int i = 0; i < artikelen.Count; i++)
     {
+        string artikelURL1 = "https://localhost:44330/Home/Artikel?title=" + artikelen[i].Title;
+        string id1 = "PopupUpdatetabel" + artikelen[i].Id;
+        string artikelURL2 = "";
+        string id2 = "";
+
+        if (i + 1 < artikelen.Count)
+        {
+            artikelURL2 = "https://localhost:44330/Home/Artikel?title=" + artikelen[i + 1].Title;
+            id2 = "PopupUpdatetabel" + (artikelen[i].Id + 1);
+        }
+
         if (artikelen[i].Tribe.Title.Contains(tribe) || tribe == "ALL")
         {
             string Imageurl = "https://localhost:6001" + artikelen[i].Thumbnail.RelativeUrl;
@@ -129,7 +140,7 @@ else
                         <div class="col-md-6">
                             <section class="widget">
                                 <div class="widget-controls">
-                                    <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle" target="_blank"><i class="fa fa-share" style="color:#ffe000"></i></a>
+                                    <a data-target="#@id1" data-toggle="modal" target="_blank"><i class="fa fa-share" style="color:#ffe000; cursor: pointer"></i></a>
                                 </div>
                                 <div class="widget-body">
                                     <div class="widget-top-overflow text-white">
@@ -158,6 +169,19 @@ else
                                     </ul>
                                 </footer>
                             </section>
+                            <div class="modal" id="@id1" role="dialog">
+                                <div class="modal-dialog">
+                                    <div class="modal-content" style="background-color: rgb(34,34,34); border: solid 1px #ffe000">
+                                        <div class="modal-header" style="border-bottom:1px solid #ffe000!important">
+                                            <h4 class="modal-title titlecolor" style="color:white;" id="addEventLabel">Deel het volgende artikel: <p style="color: #ffe000;">@artikelen[i].Title</p>door de link hieronder te kopiëren</h4>
+                                            <button class="close" data-dismiss="modal" style="color:#ffe000"><i class="fa fa-times"></i></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p style="color:white;">@artikelURL1</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         @if (@artikelen[@artikelen.Count - 1] != @artikelen[i])
@@ -166,39 +190,52 @@ else
                             string Imageurl2 = "https://localhost:6001" + artikelen[i].Thumbnail.RelativeUrl;
                             string artikeltitle2 = artikelen[i].Title;
 
-                            <div class="col-md-6">
-                                <section class="widget">
-                                    <div class="widget-controls">
-                                        <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle2" target="_blank"><i class="fa fa-share" style="color:#ffe000"></i></a>
-                                    </div>
-                                    <div class="widget-body">
-                                        <div class="widget-top-overflow text-white">
-                                            <div class="article-title">@artikelen[i].Title</div>
-                                            <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle2"><img src="@Imageurl2"></a>
-                                            <ul class="tags text-black-50 pull-right">
-                                                <li><a href="tribesearch1">@artikelen[i].Tribe.Title</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="post-user mt-sm">
-                                            <span class="thumb pull-left mr">
-                                                <img class="rounded-circle" src="https://bootdey.com/img/Content/user_1.jpg" alt="...">
-                                            </span>
-                                            <h5 class="mb-xs mt-xs text-light"><span class="fw-semi-bold">@artikelen[i].Author.Name</span></h5>
-                                            <p class="fs-mini text-muted"><span class="fs-mini text-muted"><i class="fa fa-tag"></i>&nbsp;Special agent</span></p>
-                                        </div>
-                                        <p class="text-light fs-mini m">
-                                            @artikelen[i].Description
-                                        </p>
-                                        <input type="hidden" id="ArtikelId" value=@artikelen[i].Id>
-                                    </div>
-                                    <footer class="bg-body-light">
-                                        <ul class="post-links">
-                                            <li><i class="fa fa-calendar"></i><time>&nbsp;@artikelen[i].CreatedAt.ToString("dd-MM-yyyy")</time>&nbsp;</li>
-                                            <li><i class="fa fa-hashtag"></i>&nbsp;Add some tags here</li>
-                                        </ul>
-                                    </footer>
-                                </section>
+                    <div class="col-md-6">
+                        <section class="widget">
+                            <div class="widget-controls">
+                                <a data-target="#@id2" data-toggle="modal" target="_blank"><i class="fa fa-share" style="color:#ffe000; cursor: pointer"></i></a>
                             </div>
+                            <div class="widget-body">
+                                <div class="widget-top-overflow text-white">
+                                    <div class="article-title">@artikelen[i].Title</div>
+                                    <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle2"><img src="@Imageurl2"></a>
+                                    <ul class="tags text-black-50 pull-right">
+                                        <li><a href="tribesearch1">@artikelen[i].Tribe.Title</a></li>
+                                    </ul>
+                                </div>
+                                <div class="post-user mt-sm">
+                                    <span class="thumb pull-left mr">
+                                        <img class="rounded-circle" src="https://bootdey.com/img/Content/user_1.jpg" alt="...">
+                                    </span>
+                                    <h5 class="mb-xs mt-xs text-light"><span class="fw-semi-bold">@artikelen[i].Author.Name</span></h5>
+                                    <p class="fs-mini text-muted"><span class="fs-mini text-muted"><i class="fa fa-tag"></i>&nbsp;Special agent</span></p>
+                                </div>
+                                <p class="text-light fs-mini m">
+                                    @artikelen[i].Description
+                                </p>
+                                <input type="hidden" id="ArtikelId" value=@artikelen[i].Id>
+                            </div>
+                            <footer class="bg-body-light">
+                                <ul class="post-links">
+                                    <li><i class="fa fa-calendar"></i><time>&nbsp;@artikelen[i].CreatedAt.ToString("dd-MM-yyyy")</time>&nbsp;</li>
+                                    <li><i class="fa fa-hashtag"></i>&nbsp;Add some tags here</li>
+                                </ul>
+                            </footer>
+                        </section>
+                        <div class="modal" id="@id2" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content" style="background-color: rgb(34,34,34); border: solid 1px #ffe000">
+                                    <div class="modal-header" style="border-bottom:1px solid #ffe000!important">
+                                        <h4 class="modal-title titlecolor" style="color:white;" id="addEventLabel">Deel het volgende artikel: <p style="color: #ffe000;">@artikelen[i].Title</p>door de link hieronder te kopiëren</h4>
+                                        <button class="close" data-dismiss="modal" style="color:#ffe000"><i class="fa fa-times"></i></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p style="color: white;">@artikelURL2</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                         }
                     </div>
                 </div>
@@ -325,6 +362,9 @@ else
 
     @for (int i = 0; i < podcasts.Count; i++)
     {
+        string podcastUrl = "https://localhost:44330/Home/Podcast?title=" + podcasts[i].Title;
+        string id = "PopupUpdatetabel" + podcasts[i].Id;
+
         if (podcasts[i].Status == 1 && podcasts[i].Type == 2 || podcasts[i].Status == 0 && podcasts[i].Type == 2)
         {
             if (podcasts[i].Tribe.Title.Contains(tribe) || tribe == "ALL")
@@ -339,7 +379,7 @@ else
                 <div class="col-md-12">
                     <div class="podcastbox">
                         <div class="widget-share">
-                            <a asp-controller="Home" asp-action="Podcast" asp-route-title="@podcasts[i].Title" target="_blank"><i class="fa fa-share" style="color:#ffe000"></i></a>
+                            <a data-target="#@id" data-toggle="modal" target="_blank"><i class="fa fa-share" style="color:#ffe000; cursor: pointer"></i></a>
                         </div>
                         <a asp-controller="Home" asp-action="Podcast" asp-route-title="@podcasts[i].Title">
                             <img class="thumbnailimage" src="@Imageurl" />
@@ -369,6 +409,19 @@ else
                             <li><a href="tribesearch1">@podcasts[i].Tribe.Title</a></li>
                         </ul>
                     </div>
+                    <div class="modal" id="@id" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content" style="background-color: rgb(34,34,34); border: solid 1px #ffe000">
+                        <div class="modal-header" style="border-bottom:1px solid #ffe000!important">
+                            <h4 class="modal-title titlecolor" style="color:white;" id="addEventLabel">Deel de volgende podcast: <p style="color: #ffe000;">@podcasts[i].Title</p>door de link hieronder te kopiëren</h4>
+                            <button class="close" data-dismiss="modal" style="color:#ffe000"><i class="fa fa-times"></i></button>
+                        </div>
+                        <div class="modal-body">
+                            <p style="color:white;">@podcastUrl</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
                 </div>
 
                 @*string profilePicture = baseIP + "/api/File/" + podcast.Author.ImageId + "/retrieve";
