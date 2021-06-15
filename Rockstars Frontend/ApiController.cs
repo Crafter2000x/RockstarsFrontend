@@ -188,5 +188,26 @@ namespace Rockstars_Frontend
 
             }
         }
+
+        public async Task TelemetryAdd(TelemetryViewModel m)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(Baseurl);
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+
+                HttpResponseMessage Res = await client.PostAsJsonAsync("api/Telemetry", m);
+                if (Res.IsSuccessStatusCode)
+                {
+                    connection = true;
+                }
+                else
+                {
+                    throw new Exception(Res.ReasonPhrase);
+                }
+
+            }
+        }
     }
 }
