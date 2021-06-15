@@ -25,11 +25,10 @@
     telemetry.TryGetValue(Model.artikelen[i].Id.ToString(), out count);
 
 <div class="row">
-
     <div class="col-md-6">
         <section class="widget">
             <div class="widget-controls">
-                <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle" target="_blank"><i class="fa fa-share" style="color:#ffe000"></i></a>
+                <a data-target="#@id1" data-toggle="modal" target="_blank"><i class="fa fa-share" style="color:#ffe000; cursor: pointer"></i></a>
             </div>
             <div class="widget-body">
                 <div class="widget-top-overflow text-white">
@@ -43,11 +42,15 @@
                     <span class="thumb pull-left mr">
                         <img class="rounded-circle" src="https://bootdey.com/img/Content/user_1.jpg" alt="...">
                     </span>
-                        <h5 class="mb-xs mt-xs text-light"><span class="fw-semi-bold">@Model.artikelen[i].Author.Name</span></h5>
-                        <h4 class="viewcounter"><span class="fw-semi-bold"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                    <h5 class="mb-xs mt-xs text-light"><span class="fw-semi-bold">@Model.artikelen[i].Author.Name</span></h5>
+                    <h4 class="viewcounter">
+                        <span class="fw-semi-bold">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
                                 <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
                                 <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
-                                </svg>&nbsp;@count.ToString()</span></h4>
+                            </svg>&nbsp;@count.ToString()
+                        </span>
+                    </h4>
                     <p class="fs-mini text-muted"><span class="fs-mini text-muted"><i class="fa fa-tag"></i>&nbsp;Special agent</span></p>
                 </div>
                 <p class="text-light fs-mini m">
@@ -62,87 +65,38 @@
                 </ul>
             </footer>
         </section>
+        <div class="modal" id="@id1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content" style="background-color: rgb(34,34,34); border: solid 1px #ffe000">
+                    <div class="modal-header" style="border-bottom:1px solid #ffe000!important">
+                        <h4 class="modal-title titlecolor" style="color:white;" id="addEventLabel">Deel het volgende artikel: <p style="color: #ffe000;">@Model.artikelen[i].Title</p>door de link hieronder te kopiëren</h4>
+                        <button class="close" data-dismiss="modal" style="color:#ffe000"><i class="fa fa-times"></i></button>
+                    </div>
+                    <div class="modal-body">
+                        <p style="color: white;">@artikelURL1</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    @if (@Model.artikelen[@Model.artikelen.Count - 1] != @Model.artikelen[i])
+@*    @if (@Model.artikelen[@Model.artikelen.Count - 1] != @Model.artikelen[i])
     {
         i++;
         string Imageurl2 = "https://localhost:6001" + Model.artikelen[i].Thumbnail.RelativeUrl;
         string artikeltitle2 = Model.artikelen[i].Title;
         telemetry.TryGetValue(Model.artikelen[i].Id.ToString(), out count);
-        
- <body>
-    <div class="row">
-        <div class="col-md-6">
-            <section class="widget">
-                <div class="widget-controls">
-                    <a data-target="#@id1" data-toggle="modal" target="_blank"><i class="fa fa-share" style="color:#ffe000; cursor: pointer" ></i></a>
-                </div>
-                <div class="widget-body">
-                    <div class="widget-top-overflow text-white">
-                        <div class="article-title">@Model.artikelen[i].Title</div>
-                        <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle"><img src="@Imageurl"></a>
-                        <ul class="tags text-black-50 pull-right">
-                            <li><a href="tribesearch1">@Model.artikelen[i].Tribe.Title</a></li>
-                        </ul>
-                    </div>
-                    <div class="post-user mt-sm">
-                        <span class="thumb pull-left mr">
-                            <img class="rounded-circle" src="https://bootdey.com/img/Content/user_1.jpg" alt="...">
-                        </span>
-                            <h5 class="mb-xs mt-xs text-light"><span class="fw-semi-bold">@Model.artikelen[i].Author.Name</span></h5>
-                            <h4 class="viewcounter">
-                                <span class="fw-semi-bold">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
-                                        <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
-                                        <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
-                                    </svg>&nbsp;@count.ToString()
-                                </span>
-                            </h4>
-                        <p class="fs-mini text-muted"><span class="fs-mini text-muted"><i class="fa fa-tag"></i>&nbsp;Special agent</span></p>
-                    </div>
-                    <p class="text-light fs-mini m">
-                        @Model.artikelen[i].Description
-                    </p>
-                    <input class="clipboard" type="hidden" id="ArtikelId" value=@artikelURL1>
-                </div>
-                <footer class="bg-body-light">
-                    <ul class="post-links">
-                        <li><i class="fa fa-calendar"></i><time>&nbsp;@Model.artikelen[i].CreatedAt.ToString("dd-MM-yyyy")</time>&nbsp;</li>
-                        <li><i class="fa fa-hashtag"></i>&nbsp;Add some tags here</li>
-                    </ul>
-                </footer>
-            </section>
-            <div class="modal" id="@id1" role="dialog">
-                <div class="modal-dialog">
-                    <div class="modal-content" style="background-color: rgb(34,34,34); border: solid 1px #ffe000">
-                        <div class="modal-header" style="border-bottom:1px solid #ffe000!important">
-                            <h4 class="modal-title titlecolor" style="color:white;" id="addEventLabel">Deel het volgende artikel: <p style="color: #ffe000;">@Model.artikelen[i].Title</p>door de link hieronder te kopiëren</h4>
-                            <button class="close" data-dismiss="modal" style="color:#ffe000"><i class="fa fa-times"></i></button>
-                        </div>
-                        <div class="modal-body">
-                            <p style="color:white;">@artikelURL1</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        @if (@Model.artikelen[@Model.artikelen.Count - 1] != @Model.artikelen[i])
-        {
-            i++;
-            string Imageurl2 = "https://localhost:6001" + Model.artikelen[i].Thumbnail.RelativeUrl;
-            string artikeltitle2 = Model.artikelen[i].Title;
-
+        <div class="row">
             <div class="col-md-6">
                 <section class="widget">
                     <div class="widget-controls">
-                        <a data-target="#@id2" data-toggle="modal" target="_blank"><i class="fa fa-share" style="color:#ffe000; cursor: pointer"></i></a>
+                        <a data-target="#@id1" data-toggle="modal" target="_blank"><i class="fa fa-share" style="color:#ffe000; cursor: pointer"></i></a>
                     </div>
                     <div class="widget-body">
                         <div class="widget-top-overflow text-white">
                             <div class="article-title">@Model.artikelen[i].Title</div>
-                            <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle2"><img src="@Imageurl2"></a>
+                            <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle"><img src="@Imageurl"></a>
                             <ul class="tags text-black-50 pull-right">
                                 <li><a href="tribesearch1">@Model.artikelen[i].Tribe.Title</a></li>
                             </ul>
@@ -152,12 +106,20 @@
                                 <img class="rounded-circle" src="https://bootdey.com/img/Content/user_1.jpg" alt="...">
                             </span>
                             <h5 class="mb-xs mt-xs text-light"><span class="fw-semi-bold">@Model.artikelen[i].Author.Name</span></h5>
+                            <h4 class="viewcounter">
+                                <span class="fw-semi-bold">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                                        <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+                                        <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
+                                    </svg>&nbsp;@count.ToString()
+                                </span>
+                            </h4>
                             <p class="fs-mini text-muted"><span class="fs-mini text-muted"><i class="fa fa-tag"></i>&nbsp;Special agent</span></p>
                         </div>
                         <p class="text-light fs-mini m">
                             @Model.artikelen[i].Description
                         </p>
-                        <input class="clipboard" type="hidden" id="ArtikelId" value=@artikelURL2>
+                        <input class="clipboard" type="hidden" id="ArtikelId" value=@artikelURL1>
                     </div>
                     <footer class="bg-body-light">
                         <ul class="post-links">
@@ -166,25 +128,86 @@
                         </ul>
                     </footer>
                 </section>
-                <div class="modal" id="@id2" role="dialog">
+                <div class="modal" id="@id1" role="dialog">
                     <div class="modal-dialog">
                         <div class="modal-content" style="background-color: rgb(34,34,34); border: solid 1px #ffe000">
                             <div class="modal-header" style="border-bottom:1px solid #ffe000!important">
-                                <h4 class="modal-title titlecolor" style="color:white;" id="addEventLabel">Deel het volgende artikel: <p style="color: #ffe000;" >@Model.artikelen[i].Title</p>door de link hieronder te kopiëren</h4>
+                                <h4 class="modal-title titlecolor" style="color:white;" id="addEventLabel">Deel het volgende artikel: <p style="color: #ffe000;">@Model.artikelen[i].Title</p>door de link hieronder te kopiëren</h4>
                                 <button class="close" data-dismiss="modal" style="color:#ffe000"><i class="fa fa-times"></i></button>
                             </div>
                             <div class="modal-body">
-                                <p style="color: white;">@artikelURL2</p>
+                                <p style="color:white;">@artikelURL1</p>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        }
-    </div>
-</body>
+            </div>*@
 
- }
+                @if (@Model.artikelen[@Model.artikelen.Count - 1] != @Model.artikelen[i])
+                {
+                    i++;
+                    string Imageurl2 = "https://localhost:6001" + Model.artikelen[i].Thumbnail.RelativeUrl;
+                    string artikeltitle2 = Model.artikelen[i].Title;
+                    telemetry.TryGetValue(Model.artikelen[i].Id.ToString(), out count);
+
+
+                    <div class="col-md-6">
+                        <section class="widget">
+                            <div class="widget-controls">
+                                <a data-target="#@id2" data-toggle="modal" target="_blank"><i class="fa fa-share" style="color:#ffe000; cursor: pointer"></i></a>
+                            </div>
+                            <div class="widget-body">
+                                <div class="widget-top-overflow text-white">
+                                    <div class="article-title">@Model.artikelen[i].Title</div>
+                                    <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle2"><img src="@Imageurl2"></a>
+                                    <ul class="tags text-black-50 pull-right">
+                                        <li><a href="tribesearch1">@Model.artikelen[i].Tribe.Title</a></li>
+                                    </ul>
+                                </div>
+                                <div class="post-user mt-sm">
+                                    <span class="thumb pull-left mr">
+                                        <img class="rounded-circle" src="https://bootdey.com/img/Content/user_1.jpg" alt="...">
+                                    </span>
+                                    <h5 class="mb-xs mt-xs text-light"><span class="fw-semi-bold">@Model.artikelen[i].Author.Name</span></h5>
+                                    <h4 class="viewcounter">
+                                        <span class="fw-semi-bold">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                                                <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+                                                <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
+                                            </svg>&nbsp;@count.ToString()
+                                        </span>
+                                    </h4>
+                                    <p class="fs-mini text-muted"><span class="fs-mini text-muted"><i class="fa fa-tag"></i>&nbsp;Special agent</span></p>
+                                </div>
+                                <p class="text-light fs-mini m">
+                                    @Model.artikelen[i].Description
+                                </p>
+                                <input class="clipboard" type="hidden" id="ArtikelId" value=@artikelURL2>
+                            </div>
+                            <footer class="bg-body-light">
+                                <ul class="post-links">
+                                    <li><i class="fa fa-calendar"></i><time>&nbsp;@Model.artikelen[i].CreatedAt.ToString("dd-MM-yyyy")</time>&nbsp;</li>
+                                    <li><i class="fa fa-hashtag"></i>&nbsp;Add some tags here</li>
+                                </ul>
+                            </footer>
+                        </section>
+                        <div class="modal" id="@id2" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content" style="background-color: rgb(34,34,34); border: solid 1px #ffe000">
+                                    <div class="modal-header" style="border-bottom:1px solid #ffe000!important">
+                                        <h4 class="modal-title titlecolor" style="color:white;" id="addEventLabel">Deel het volgende artikel: <p style="color: #ffe000;" >@Model.artikelen[i].Title</p>door de link hieronder te kopiëren</h4>
+                                        <button class="close" data-dismiss="modal" style="color:#ffe000"><i class="fa fa-times"></i></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p style="color: white;">@artikelURL2</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    }
+</div>
+}
 
 
 <script type="text/javascript">
