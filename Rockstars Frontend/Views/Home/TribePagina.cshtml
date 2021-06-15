@@ -32,8 +32,9 @@
 <link rel="stylesheet" href="~/css/TribePagina.css" />
 <link rel="stylesheet" href="~/css/_ArtikelPagina.css" />
 <link rel="stylesheet" href="~/css/_OnDemand_.css" />
+@*<link rel="stylesheet" href="~/css/HomePage.css" />*@
 <div>
-    <a class="backButton" asp-controller="Home" asp-action="TribeOverzicht">Terug</a>
+    <a class="backButton" asp-controller="Home" asp-action="TribeOverzicht"><i class="fa fa-arrow-left"></i></a>
 </div>
 <div style="width: 100%; border-bottom: solid 2.5px #ffe000;">
     <h1>Tribeleads</h1>
@@ -188,11 +189,12 @@
             }
         }
     }
+    @if (drieartikelen.Count > 0) { 
     <div style="width: 100%; border-bottom: solid 2.5px #ffe000;">
         <h1>Artikelen</h1>
     </div>
     <div class="row art">
-        @for (int g = 0; g < drieartikelen.Count; g++)
+        @*@for (int g = 0; g < drieartikelen.Count; g++)
         {
             string Imageurl = "https://localhost:6001" + drieartikelen[g].Thumbnail.RelativeUrl;
             string artikeltitle = drieartikelen[g].Title;
@@ -239,13 +241,185 @@
                 </div>
             </div>
 
-        }
-        <a class="row moreButton " style="width: 100%;" asp-area="" asp-action="ArtikelPagina" asp-controller="Home" asp-route-Tribe="@ViewData["ID"].ToString()">
+        }*@
+        @if (drieartikelen.Count > 0)
+        {
+            string artikeltitle = drieartikelen[0].Title;
+            string Imageurl = "https://localhost:6001" + drieartikelen[0].Thumbnail.RelativeUrl;
+            <div class="PartPage ArtikelPart">
+                <div class="row ArtikelSplit">
+                    <div class="ArtikelCarousel">
+                        <div id="Artikel" class="carousel slide" data-ride="carousel" style="height: 84.3%;">
+                            <div class="carousel-inner">
+                                @if (artikelen.Count >= 1)
+                                {
+                                    
+                                <div class="carousel-item active">
+                                    <div class="col-md-12">
+                                        <section class="widget">
+                                            <div class="widget-controls">
+                                                <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle" target="_blank"><i class="fa fa-share" style="color:#ffe000"></i></a>
+                                            </div>
+                                            <div class="widget-body">
+                                                <div class="widget-top-overflow text-white">
+                                                    <div class="article-title">@drieartikelen[0].Title</div>
+                                                    <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle"><img class="d-block w-100" src="@Imageurl"></a>
+                                                    <ul class="tags text-black-50 pull-right">
+                                                        <li><a href="tribesearch1">@drieartikelen[0].Tribe.Title</a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="post-user mt-sm">
+                                                    <span class="thumb pull-left mr">
+                                                        <img class="rounded-circle" src="https://bootdey.com/img/Content/user_1.jpg" alt="...">
+                                                    </span>
+                                                    <h5 class="mb-xs mt-xs text-light"><span class="fw-semi-bold">@drieartikelen[0].Author.Name</span></h5>
+                                                    <p class="fs-mini text-muted"><span class="fs-mini text-muted"><i class="fa fa-tag"></i>&nbsp;Special agent</span></p>
+                                                </div>
+                                                <p class="text-light fs-mini m">
+                                                    @drieartikelen[0].Description
+                                                </p>
+                                                <input type="hidden" id="ArtikelId" value=@drieartikelen[0].Id>
+                                            </div>
+                                            <footer class="bg-body-light">
+                                                <ul class="post-links">
+                                                    <li><i class="fa fa-calendar"></i><time>&nbsp;@drieartikelen[0].CreatedAt.ToString("dd-MM-yyyy")</time>&nbsp;</li>
+                                                    <li><i class="fa fa-hashtag"></i>&nbsp;Add some tags here</li>
+                                                </ul>
+                                            </footer>
+                                        </section>
+                                    </div>
+                                    @*@{string Imageurl = "https://localhost:6001" + drieartikelen[0].Thumbnail.RelativeUrl; }
 
-            <h4>meer artikelen weergeven</h4>
+        <a asp-action="Artikel" asp-route-title="@drieartikelen[0].Title">
+            <img class="d-block w-100" src="@Imageurl" alt="First slide">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>@drieartikelen[0].Title.ToUpper()</h5>
+                <p>@drieartikelen[0].Author.Name.ToUpper()</p>
+            </div>
+        </a>*@
+                                </div>
+                                            }
+                                @if (drieartikelen.Count >= 2)
+                                {
+                            <div class="carousel-item">
+                                @*@{string Imageurl2 = "https://localhost:6001" + drieartikelen[1].Thumbnail.RelativeUrl; }
 
-        </a>
-    </div>
+        <a asp-action="Artikel" asp-route-title="@drieartikelen[1].Title">
+            <img class="d-block w-100" src="@Imageurl2" alt="Second slide">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>@drieartikelen[1].Title.ToUpper()</h5>
+                <p>@drieartikelen[1].Author.Name.ToUpper()</p>
+            </div>
+        </a>*@
+                                <div class="col-md-12">
+                                    <section class="widget">
+                                        <div class="widget-controls">
+                                            <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle" target="_blank"><i class="fa fa-share" style="color:#ffe000"></i></a>
+                                        </div>
+                                        <div class="widget-body">
+                                            <div class="widget-top-overflow text-white">
+                                                <div class="article-title">@drieartikelen[0].Title</div>
+                                                <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle"><img class="d-block w-100" src="@Imageurl"></a>
+                                                <ul class="tags text-black-50 pull-right">
+                                                    <li><a href="tribesearch1">@drieartikelen[0].Tribe.Title</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="post-user mt-sm">
+                                                <span class="thumb pull-left mr">
+                                                    <img class="rounded-circle" src="https://bootdey.com/img/Content/user_1.jpg" alt="...">
+                                                </span>
+                                                <h5 class="mb-xs mt-xs text-light"><span class="fw-semi-bold">@drieartikelen[0].Author.Name</span></h5>
+                                                <p class="fs-mini text-muted"><span class="fs-mini text-muted"><i class="fa fa-tag"></i>&nbsp;Special agent</span></p>
+                                            </div>
+                                            <p class="text-light fs-mini m">
+                                                @drieartikelen[0].Description
+                                            </p>
+                                            <input type="hidden" id="ArtikelId" value=@drieartikelen[0].Id>
+                                        </div>
+                                        <footer class="bg-body-light">
+                                            <ul class="post-links">
+                                                <li><i class="fa fa-calendar"></i><time>&nbsp;@drieartikelen[0].CreatedAt.ToString("dd-MM-yyyy")</time>&nbsp;</li>
+                                                <li><i class="fa fa-hashtag"></i>&nbsp;Add some tags here</li>
+                                            </ul>
+                                        </footer>
+                                    </section>
+                                </div>
+                            </div>
+                                            }
+                                @if (drieartikelen.Count >= 3)
+                                {
+                            <div class="carousel-item">
+                                @*@{string Imageurl3 = "https://localhost:6001" + drieartikelen[2].Thumbnail.RelativeUrl; }
+
+        <a asp-action="Artikel" asp-route-title="@drieartikelen[2].Title">
+            <img class="d-block w-100" src="@Imageurl3" alt="Third slide">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>@drieartikelen[2].Title.ToUpper()</h5>
+                <p>@drieartikelen[2].Author.Name.ToUpper()</p>
+            </div>
+        </a>*@
+                                <div class="col-md-12">
+                                    <section class="widget">
+                                        <div class="widget-controls">
+                                            <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle" target="_blank"><i class="fa fa-share" style="color:#ffe000"></i></a>
+                                        </div>
+                                        <div class="widget-body">
+                                            <div class="widget-top-overflow text-white">
+                                                <div class="article-title">@drieartikelen[0].Title</div>
+                                                <a asp-controller="Home" asp-action="Artikel" asp-route-title="@artikeltitle"><img class="d-block w-100" src="@Imageurl"></a>
+                                                <ul class="tags text-black-50 pull-right">
+                                                    <li><a href="tribesearch1">@drieartikelen[0].Tribe.Title</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="post-user mt-sm">
+                                                <span class="thumb pull-left mr">
+                                                    <img class="rounded-circle" src="https://bootdey.com/img/Content/user_1.jpg" alt="...">
+                                                </span>
+                                                <h5 class="mb-xs mt-xs text-light"><span class="fw-semi-bold">@drieartikelen[0].Author.Name</span></h5>
+                                                <p class="fs-mini text-muted"><span class="fs-mini text-muted"><i class="fa fa-tag"></i>&nbsp;Special agent</span></p>
+                                            </div>
+                                            <p class="text-light fs-mini m">
+                                                @drieartikelen[0].Description
+                                            </p>
+                                            <input type="hidden" id="ArtikelId" value=@drieartikelen[0].Id>
+                                        </div>
+                                        <footer class="bg-body-light">
+                                            <ul class="post-links">
+                                                <li><i class="fa fa-calendar"></i><time>&nbsp;@drieartikelen[0].CreatedAt.ToString("dd-MM-yyyy")</time>&nbsp;</li>
+                                                <li><i class="fa fa-hashtag"></i>&nbsp;Add some tags here</li>
+                                            </ul>
+                                        </footer>
+                                    </section>
+                                </div>
+                            </div>
+                                            }
+
+                            </div>
+                            @if (drieartikelen.Count > 1)
+                            {
+                                <a class="carousel-control-prev" style="color:blue!important" href="#Artikel" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon"  aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#Artikel" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+         }
+            <a class="row moreButton " style="width: 100%;" asp-area="" asp-action="ArtikelPagina" asp-controller="Home" asp-route-Tribe="@ViewData["ID"].ToString()">
+
+                <h4>meer artikelen weergeven</h4>
+
+            </a>
+        </div>
+     }
+    @if (driewebinars.Count > 0) {
     <div style="width: 100%; border-bottom: solid 2.5px #ffe000;">
         <h1>Webinars</h1>
     </div>
@@ -323,5 +497,6 @@
 
         </a>
     </div>
+    }
 </div>
 

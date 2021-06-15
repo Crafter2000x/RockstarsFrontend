@@ -60,7 +60,7 @@
 
     @{string profilePicture = baseURL + "/api/File/" + podcast.Author.ImageId + "/retrieve";}
     <div>
-        <a class="backButton" asp-controller="Home" asp-action="Podcasts">Terug</a>
+        <a class="backButton" asp-controller="Home" asp-action="Podcasts"><i class="fa fa-arrow-left"></i></a>
     </div>
     <div class="row Auteur">
         <img class="profilePicture" src="@profilePicture" />

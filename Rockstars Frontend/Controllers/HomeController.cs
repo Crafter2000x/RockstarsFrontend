@@ -160,7 +160,7 @@ namespace Rockstars_Frontend.Controllers
             return System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
         }
 
-        public IActionResult OnDemand(string Tribe)
+        public async Task<IActionResult> OnDemand(string Tribe)
         {
             if (Tribe == null)
             {
