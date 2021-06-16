@@ -58,7 +58,7 @@ namespace Rockstars_Frontend
             List<ArtikelModel> artikelen = api.artikelen;
             foreach(ArtikelModel artikel in artikelen)
             {
-                if(artikel.Title == title)
+                if(artikel.Title == title && artikel.Status == 1)
                 {
                     found = true;
                     return artikel.Id;
