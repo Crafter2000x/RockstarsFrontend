@@ -131,7 +131,7 @@
                                         <div class="carousel-item active">
                                             @{string Imageurl = baseURL + talks[0].Thumbnail.RelativeUrl; }
 
-                                            <a asp-action="Search" asp-route-SearchTerm="@talks[0].Title" asp-route-type="Webinar">
+                                            <a asp-area="" asp-controller="Home" asp-action="OnDemand">
                                                 <img class="d-block w-100" src="@Imageurl" alt="First slide">
                                                 <div class="carousel-caption d-none d-md-block">
                                                     <h5>@talks[0].Title.ToUpper()</h5>
@@ -145,7 +145,7 @@
                                         <div class="carousel-item">
                                             @{string Imageurl2 = baseURL + talks[1].Thumbnail.RelativeUrl; }
 
-                                            <a asp-action="Search" asp-route-SearchTerm="@talks[1].Title" asp-route-type="Webinar">
+                                            <a asp-area="" asp-controller="Home" asp-action="OnDemand">
                                                 <img class="d-block w-100" src="@Imageurl2" alt="Second slide">
                                                 <div class="carousel-caption d-none d-md-block">
                                                     <h5>@talks[1].Title.ToUpper()</h5>
@@ -159,7 +159,7 @@
                                         <div class="carousel-item">
                                             @{string Imageurl3 = baseURL + talks[2].Thumbnail.RelativeUrl; }
 
-                                            <a asp-action="Search" asp-route-SearchTerm="@talks[2].Title" asp-route-type="Webinar">
+                                            <a asp-area="" asp-controller="Home" asp-action="OnDemand">
                                                 <img class="d-block w-100" src="@Imageurl3" alt="Third slide">
                                                 <div class="carousel-caption d-none d-md-block">
                                                     <h5>@talks[2].Title.ToUpper()</h5>
