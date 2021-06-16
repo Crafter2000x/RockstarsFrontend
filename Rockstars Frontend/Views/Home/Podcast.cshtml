@@ -59,11 +59,12 @@
         }*@
 
     @{string profilePicture = baseURL + "/api/File/" + podcast.Author.ImageId + "/retrieve";}
+    <div class="container">
     <div>
         <a class="backButton" asp-controller="Home" asp-action="Podcasts"><i class="fa fa-arrow-left"></i></a>
     </div>
     <div class="row Auteur">
-        <img class="profilePicture" src="@profilePicture" />
+        <img class="img-fluid" src="@profilePicture" />
         <div class="profileInfo">
             <h1>@podcast.Author.Name</h1>
             <h2><a>@podcast.Tribe.Title</a> - @podcast.Author.Name</h2>
@@ -108,6 +109,7 @@
         }
     </div>
     <iframe src="@goodpodcastURL" width="100%" height="232" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+    </div>
 
 
 

@@ -133,6 +133,12 @@
 .Content div {
     border-bottom: 1px solid #ffe000;
     padding: 30px;
+    color: whitesmoke;
+}
+
+.Content li {
+    color: whitesmoke;
+    text-align: left;
 }
 
 .Content div:last-child {
@@ -143,29 +149,35 @@
     color: #ffe000;
     text-transform: uppercase;
     font-weight: bold;
+    padding: 20px;
 }
 
 .Content h2 {
     color: whitesmoke;
     text-transform: uppercase;
     font-weight: bold;
+    padding: 20px;
 }
 
 .Content h3 {
     color: #ffe000;
-    font-family: 'Harlow Solid'
+    font-family: 'Harlow Solid';
+    padding: 20px;
 }
 
 .Content h4 {
     color: whitesmoke;
-    font-family: 'Harlow Solid'
+    font-family: 'Harlow Solid';
+    padding: 20px;
 }
 
 .Content h5 {
     color: #ffe000;
+    padding: 20px;
 }
 
 .Content h6 {
     color: whitesmoke;
+    padding: 20px;
 }
 
