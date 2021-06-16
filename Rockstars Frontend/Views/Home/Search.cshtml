@@ -34,9 +34,12 @@
 
 @foreach (ArtikelModel p in Everything)
 {
-    if (p.Title.ToUpper().Contains(keyword) || p.Author.Name.ToUpper().Contains(keyword) || p.Description.ToUpper().Contains(keyword))
+    if (p.Status == 1)
     {
-        EverythingNew.Add(p);
+        if (p.Title.ToUpper().Contains(keyword) || p.Author.Name.ToUpper().Contains(keyword) || p.Description.ToUpper().Contains(keyword))
+        {
+            EverythingNew.Add(p);
+        }
     }
 }
 
@@ -131,7 +134,7 @@ else
                     artikelURL2 = "https://localhost:44330/Home/Artikel?title=" + artikelen[i + 1].Title;
                     id2 = "PopupUpdatetabel" + (artikelen[i].Id + 1);
                 }
-
+                if (artikelen[i].Status == 1) {
                 if (artikelen[i].Tribe.Title.Contains(tribe) || tribe == "ALL")
                 {
                     string Imageurl = "https://i479146core.venus.fhict.nl" + artikelen[i].Thumbnail.RelativeUrl;
@@ -245,6 +248,7 @@ else
                             </div>
                         </div>
                     </div>
+                    }
                 }
             }
         </div>
