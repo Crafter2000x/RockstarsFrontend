@@ -124,14 +124,14 @@ else
         <div class="row">
             @for (int i = 0; i < artikelen.Count; i++)
             {
-                string artikelURL1 = "https://localhost:44330/Home/Artikel?title=" + artikelen[i].Title;
+                string artikelURL1 = "https://:44330/Home/Artikel?title=" + artikelen[i].Title;
                 string id1 = "PopupUpdatetabel" + artikelen[i].Id;
                 string artikelURL2 = "";
                 string id2 = "";
 
                 if (i + 1 < artikelen.Count)
                 {
-                    artikelURL2 = "https://localhost:44330/Home/Artikel?title=" + artikelen[i + 1].Title;
+                    artikelURL2 = "https://i457736core.venus.fhict.nl/Home/Artikel?title=" + artikelen[i + 1].Title;
                     id2 = "PopupUpdatetabel" + (artikelen[i].Id + 1);
                 }
                 if (artikelen[i].Status == 1) {
@@ -341,7 +341,7 @@ else
 
         @for (int i = 0; i < podcasts.Count; i++)
         {
-            string podcastUrl = "https://localhost:44330/Home/Podcast?title=" + podcasts[i].Title;
+            string podcastUrl = "https://i457736core.venus.fhict.nl/Home/Podcast?title=" + podcasts[i].Title;
             string id = "PopupUpdatetabel" + podcasts[i].Id;
 
             if (podcasts[i].Status == 1 && podcasts[i].Type == 2 || podcasts[i].Status == 0 && podcasts[i].Type == 2)
